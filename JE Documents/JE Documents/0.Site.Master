@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="0.Site.Master.cs" Inherits="JE_Documents.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="http://www.w3schools.com/lib/w3.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/CSS/StyleSheet1.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="w3-row">
+            <div class="w3-third">
+                <h1>JE Documents</h1>
+            </div>
+            <div class="w3-third">
+                <asp:Label ID="lblTitle" runat="server" Text="..."></asp:Label><br />
+                <asp:Label ID="lblInfo" runat="server" Text="..."></asp:Label>
+            </div>
+            <div class="w3-third">
+                
+                    <span class="fa fa-sign-out" style="text-align:right;"></span><br />
+                    <span class="fa fa-user"></span><br />
+                    User:       <asp:Label ID="lblUserID" runat="server" Text="..."></asp:Label><br />
+                    Name:       <asp:Label ID="lblUsername" runat="server" Text="..."></asp:Label><br />
+                    Department: <asp:Label ID="lblUserDepartment" runat="server" Text="..."></asp:Label><br />
+                    Roles:      <asp:Label ID="lblUserRoles" runat="server" Text="..."></asp:Label><br />
+                    <span class="fa fa-calendar"></span> Date:<asp:Label ID="lblDate" runat="server" Text="..."></asp:Label><br />
+                
+            </div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div>
+            <asp:Label ID="lblMessage" runat="server" Text="..." /><br />
+            <asp:ContentPlaceHolder ID="footer" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

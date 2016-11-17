@@ -1,0 +1,33 @@
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\ApplicationInsights.config
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\csc.exe
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\vbc.exe
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\VBCSCompiler.exe
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\JE Documents.dll.config
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\JE Documents.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\JE Documents.pdb
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.Web.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.ApplicationInsights.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.Web.xml
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.ApplicationInsights.xml
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\obj\Debug\JE Documents.csprojResolveAssemblyReference.cache
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\obj\Debug\JE Documents.dll
+C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\obj\Debug\JE Documents.pdb
