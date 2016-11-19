@@ -26,8 +26,8 @@ namespace JE_Documents
                 Label lblUserRoles = (Label)Page.Master.FindControl("lblUserRoles");
                 lblUserID.Text = username;
                 muser = new JEuser(lblUserID.Text, Server.MapPath(userDatafile));
-                lblUserID.Text = muser.username;
-                lblUsername.Text = muser.fullname;
+                lblUserID.Text = muser.id;
+                lblUsername.Text = muser.username;
                 lblUserDepartment.Text = muser.department;
                 lblUserRoles.Text = string.Join(", ", muser.roles);
                 mpTitle.Text = "Main page";

@@ -90,7 +90,7 @@
                     CssClass="w3-btn stbutton w3-deep-orange"
                     Text="Cancel"
                     formnovalidate="true" 
-                    OnClick="btnCustomerCancel_Click"/>
+                    OnClick="btnCancel_Click"/>
 
                 <br />
                 <asp:Button ID="btnUserDelete" runat="server"

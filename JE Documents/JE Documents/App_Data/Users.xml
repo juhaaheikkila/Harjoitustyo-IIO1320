@@ -1,27 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <users>
   <user>
-    <id>ttestaaja</id>
-    <name>Tuija Testaaja</name>
-    <department>Notes-kehitys</department>
-    <email>tuija.testaaja@je.com</email>
-    <roles>
-      <role>approver</role>
-      <role>author</role>
-    </roles>
-  </user>
-  <user>
-    <id>TREApprover</id>
-    <name>Hyväksyjä Tampere</name>
-    <department>Talous</department>
-    <email>hyvaksyja.tampere@je.com</email>
-    <roles>
-      <role>approver</role>
-    </roles>
-  </user>
-  <user>
-    <id>HKIApprover</id>
-    <name>Hyväksyjä Helsinki</name>
+    <id>5</id>
+    <username>HKIApprover</username>
+    <firstname>Hyväksyjä</firstname>
+    <lastname>Helsinki</lastname>
     <department>Talous</department>
     <email>hyvaksyja.helsinki@je.com</email>
     <roles>
@@ -29,8 +12,10 @@
     </roles>
   </user>
   <user>
-    <id>JKLApprover</id>
-    <name>Hyväksyjä Jyväskylä </name>
+    <id>4</id>
+    <username>JKLApprover</username>
+    <firstname>Hyväksyjä</firstname>
+    <lastname>Jyväskylä</lastname>
     <department>Talous</department>
     <email>hyvaksyja.jyvaskyla@je.com</email>
     <roles>
@@ -38,13 +23,39 @@
     </roles>
   </user>
   <user>
-    <id>jheikkil</id>
-    <name>Juha Armas Heikkilä</name>
+    <id>3</id>
+    <username>jheikkil</username>
+    <firstname>Juha</firstname>
+    <lastname>Heikkilä</lastname>
     <department>Notes-kehitystä</department>
     <email>jheikkil@je.com</email>
     <roles>
       <role>admin</role>
       <role>approver</role>
+      <role>author</role>
+    </roles>
+  </user>
+  <user>
+    <id>2</id>
+    <username>TREApprover</username>
+    <firstname>Hyväksyjä</firstname>
+    <lastname>Tampere</lastname>
+    <department>Talous</department>
+    <email>hyvaksyja.tampere@je.com</email>
+    <roles>
+      <role>approver</role>
+    </roles>
+  </user>
+  <user>
+    <id>1</id>
+    <username>ttestaaja</username>
+    <firstname>Tuija</firstname>
+    <lastname>Testaaja</lastname>
+    <department>Notes-kehitys</department>
+    <email>tuija.testaaja@je.com</email>
+    <roles>
+      <role>approver</role>
+      <role>author</role>
     </roles>
   </user>
 </users>

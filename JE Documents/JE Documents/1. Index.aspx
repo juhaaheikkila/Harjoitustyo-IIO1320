@@ -21,6 +21,7 @@
                 Visible="false">
                     <span class="fa fa-user"></span> Open users
             </asp:HyperLink>
+            <br />
             <asp:HyperLink ID="hlCompanies"
                 runat="server"
                 NavigateUrl="~/3.Companies.aspx"
@@ -32,6 +33,7 @@
             <br />
         </div>
         <div class="w3-twothird">
+            <h1>JE Documents</h1>
         </div>
     </div>
 </asp:Content>

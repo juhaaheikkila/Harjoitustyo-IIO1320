@@ -11,8 +11,10 @@ namespace JE_Documents.Data
 {
     public class JEuser
     {
+        public string id { get; set; }
         public string username { get; set; }
-        public string fullname { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
         public string department { get; set; }
         public string email { get; set; }
         public string[] roles { get; set; }
@@ -28,8 +30,11 @@ namespace JE_Documents.Data
             xDoc = XDocument.Load(rstrUserDataFile);
             if (xDoc != null)
             {
-                var xuser = xDoc.Root.Descendants("user").Where(x => x.Element("id").Value == rstrusername).SingleOrDefault();
-                string xusername = xuser.Element("name").Value;
+                var xuser = xDoc.Root.Descendants("user").Where(x => x.Element("username").Value == rstrusername).SingleOrDefault();
+                string xuserid = xuser.Element("id").Value;
+                string xusername = xuser.Element("username").Value;
+                string xfirstname = xuser.Element("firstname").Value;
+                string xlastname = xuser.Element("lastname").Value;
                 string xuserdepartment = xuser.Element("department").Value;
                 string xuseremail = xuser.Element("email").Value;
                 List<string> xuserRoles = new List<string>();
@@ -37,8 +42,10 @@ namespace JE_Documents.Data
                 {
                     xuserRoles.Add(xrole.Value);
                 }
-                this.username = rstrusername;
-                this.fullname = xusername;
+                this.id = xuserid;
+                this.username = xusername;
+                this.firstname = xfirstname;
+                this.lastname = xlastname;
                 this.department = xuserdepartment;
                 this.email = xuseremail;
                 this.roles = xuserRoles.ToArray();

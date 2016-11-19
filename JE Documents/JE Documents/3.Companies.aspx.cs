@@ -84,7 +84,7 @@ namespace JE_Documents
 
         }
 
-        protected void btnCustomerCancel_Click(object sender, EventArgs e)
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
             NewCompany.Visible = false;
             CompanyList.Visible = true;
@@ -108,7 +108,7 @@ namespace JE_Documents
                 foreach (XElement xuser in xdoc.Root.Descendants("user"))
                 {
                     string xuserid = xuser.Element("id").Value;
-                    string xusername = xuser.Element("name").Value;
+                    string xusername = xuser.Element("username").Value;
                     ddlUser.Items.Add(new ListItem(xuserid + ": " + xusername, xuserid));
                 }
                 //empty element at selection list
