@@ -1,8 +1,6 @@
 ﻿
         
 .select {
-    border: 2px solid darkblue;
-    border-radius: 5px;
     -webkit-appearance: none;
 }
 .select::-ms-expand{

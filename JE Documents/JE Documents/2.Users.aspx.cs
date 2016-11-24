@@ -16,11 +16,6 @@ namespace JE_Documents
 
 
     {
-        const bool
-            NODELETEBUTTON = false,
-            DELETEBUTTON = true,
-            NOSELECTLIST = false,
-            SELECTLIST = true;
 
         Label mpMessage;
         static string userDataFile;
@@ -43,6 +38,7 @@ namespace JE_Documents
                     chkRoles.Items.Add(new ListItem(role, role));
                 }
                 updateXML();
+                FillControls();
             }
         }
 
@@ -58,10 +54,8 @@ namespace JE_Documents
 
         protected void ddlUser_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             JEuser user = new JEuser(ddlUser.SelectedValue, userDataFile);
-            //CRUDia varten
-            titleUser.InnerText = user.id + ": " + user.username;
+            displayEditForm(user.id + ": " + user.username, true, true, true, true, true);
             txtUserID.Text = user.id;
             txtUsername.Text = user.username;
             txtFirstname.Text = user.firstname;
@@ -80,27 +74,13 @@ namespace JE_Documents
                     }
                 }
             }
-            btnSave.Visible = true;
-            btnCancel.Visible = true;
-            btnDelete.Visible = true;
-
-        }
-        protected void displayEditForm(string strTitle, bool blnShowSelectUser)
-        {
-            liDdlUser.Visible = blnShowSelectUser;
-            titleUser.InnerText = strTitle;
-            NewUser.Visible = true;
-            UserList.Visible = false;
-            FillControls();
-            btnSave.Visible = !blnShowSelectUser;
-            btnCancel.Visible = !blnShowSelectUser;
-            btnDelete.Visible = false;
+            
         }
 
         //NEW
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
-            displayEditForm("New user", NOSELECTLIST);
+            displayEditForm("New user", false,true,true,true, false);
         }
 
         //SAVE
@@ -139,46 +119,65 @@ namespace JE_Documents
             }
 
             xdoc.Save(userDataFile);
-
+            hideEditForm();
+            
             //updating page
-            Response.Redirect(Request.RawUrl);
+            //Response.Redirect(Request.RawUrl);
         }
 
         //EDIT
         protected void btnModify_Click(object sender, EventArgs e)
         {
-            displayEditForm("Select user to edit", SELECTLIST);
+            displayEditForm("Select user to edit", true, false, false, false, false);
         }
 
-        //DELETION
+        //DELETE
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             XDocument xdoc = XDocument.Load(userDataFile);
             if (xdoc != null)
             {
                 //search for user
-                var xuser = xdoc.Root.Descendants("user").Where(x => x.Element("id").Value == txtUserID.Text).SingleOrDefault();
-                if (xuser != null)
+                var xuser= xdoc.Root.Descendants("user").Where(x => x.Element("id").Value == txtUserID.Text).SingleOrDefault();
+                if (xuser!= null)
                 {
                     xuser.Remove();
                 }
                 xdoc.Save(userDataFile);
-                btnDelete.Visible = false;
-                //update page
-                Response.Redirect(Request.RawUrl);
+                hideEditForm();
             }
         }
 
         //CANCED
         protected void btnCancel_Click(object sended, EventArgs e)
         {
-            NewUser.Visible = false;
-            UserList.Visible = true;
-            updateXML();
+            hideEditForm();
         }
 
 
         #region METHODS
+        protected void hideEditForm()
+        {
+            NewUser.Visible = false;
+            UserList.Visible = true;
+            divNavigation.Visible = true;
+            updateXML();
+            FillControls();
+        }
+
+        protected void displayEditForm(string strTitle, bool blnShowSelectUser, bool blnShowUserData, bool blnShowSave, bool blnShowCancel, bool blnShowDelete)
+        {
+            divNavigation.Visible = false;
+            liUserData.Visible = blnShowUserData;
+            titleUser.InnerText = strTitle;
+            NewUser.Visible = true;
+            UserList.Visible = false;
+            FillControls();
+            btnSave.Visible = blnShowSave;
+            btnCancel.Visible = blnShowCancel;
+            btnDelete.Visible = blnShowDelete;
+        }
+
         protected void updateXML()
         {
             //Listaa kaikki käyttäjät XML-tiedostosta
@@ -242,7 +241,7 @@ namespace JE_Documents
                 ddlUser.DataValueField = "username";
                 ddlUser.DataBind();
                 //empty element at selection list
-                ddlUser.Items.Insert(0, string.Empty);
+                ddlUser.Items.Insert(0, "Edit users");
 
                 //for CRUD
                 ddlUser.SelectedIndex = 0;

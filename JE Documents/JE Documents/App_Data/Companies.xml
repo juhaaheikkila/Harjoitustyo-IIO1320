@@ -1,25 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <companies>
   <company>
-    <id>FA123</id>
-    <name>Solteq TRE</name>
-    <address>Vapaudenkatu 48-50, 40101 Jyväskylä</address>
-    <approvers>
-      <approver>jheikkil</approver>
-      <approver>JKLApprover</approver>
-    </approvers>
-    <departments>
-      <department>0100</department>
-      <department>0110</department>
-      <department>0120</department>
-      <department>0130</department>
-    </departments>
-    <homecurrency>EUR</homecurrency>
-  </company>
-  <company>
-    <id>FA345</id>
-    <name>Solteq JKL</name>
+    <id>2</id>
+    <code>FA345</code>
+    <name>Solteq Oyj, TRE</name>
     <address>Aleksanterinkatu 50, 33333 Tampere</address>
+    <homecurrency>EUR</homecurrency>
     <approvers>
       <approver>jheikkil</approver>
       <approver>TREApprover</approver>
@@ -30,12 +16,13 @@
       <department>1120</department>
       <department>1130</department>
     </departments>
-    <homecurrency>EUR</homecurrency>
   </company>
   <company>
-    <id>FA678</id>
-    <name>Solteq HKI</name>
+    <id>3</id>
+    <code>FA678</code>
+    <name>Solteq Oyj, HKI</name>
     <address>Aviapolis 50, 11111 Hki</address>
+    <homecurrency>EUR</homecurrency>
     <approvers>
       <approver>jheikkil</approver>
       <approver>HKIApprover</approver>
@@ -46,6 +33,22 @@
       <department>2120</department>
       <department>2130</department>
     </departments>
+  </company>
+  <company>
+    <id>1</id>
+    <code>FA123</code>
+    <name>Solteq Oyj, JKL</name>
+    <address>Vapaudenkatu 48-50, 40101 Jyväskylä</address>
     <homecurrency>EUR</homecurrency>
+    <approvers>
+      <approver>jheikkil</approver>
+      <approver>JKLApprover</approver>
+    </approvers>
+    <departments>
+      <department>0100</department>
+      <department>0110</department>
+      <department>0120</department>
+      <department>0130</department>
+    </departments>
   </company>
 </companies>

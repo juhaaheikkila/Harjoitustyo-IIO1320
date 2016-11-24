@@ -21,14 +21,11 @@
                     Text="Create new company" />
                 <br />
 
-                <asp:Button ID="btnModify" runat="server"
-                    CssClass="w3-btn stbutton dcbutton"
-                    Text="Edit companies" />
-                <br />
+                <asp:DropDownList ID="ddlCompanies" runat="server"
+                    CssClass="w3-btn stbutton dcbutton select"
+                    OnSelectedIndexChanged="ddlCompanies_SelectedIndexChanged"
+                    AutoPostBack="true" />
 
-                <asp:Button ID="btnCloseUser" runat="server"
-                    CssClass="w3-btn stbutton dcbutton"
-                    Text="Close" />
                 <br />
 
             </div>
@@ -36,20 +33,24 @@
         <div class="w3-twothird">
             <div id="NewCompany" runat="server" visible="false">
                 <div class="contact_form">
-                    <ul>
+                    <ul id="liCompanyData" runat="server">
                         <li>
-                            <h2 id="titleCompany" runat="server">New user</h2>
+                            <h2 id="titleCompany" runat="server">New company</h2>
                             <span class="required_notification">* Denotes Required Field</span>
                         </li>
                         <li>
                             <label for="txtCompanyID">Id:</label>
-                            <asp:TextBox ID="txtCompanyID" runat="server" required Visible="False"></asp:TextBox>
-                            <asp:DropDownList ID="ddlCompanies" runat="server" AutoPostBack="True" Visible="false" Style="height: 30px; width: 300px; padding: 5px 8px;" />
+                            <asp:TextBox ID="txtCompanyID" runat="server" required></asp:TextBox>
+                            <span class="form_hint">Company ID</span>
+                        </li>
+                        <li>
+                            <label for="txtCompanyCode">Code:</label>
+                            <asp:TextBox ID="txtCompanyCode" runat="server" required></asp:TextBox>
                             <span class="form_hint">Company code</span>
                         </li>
                         <li>
                             <label for="txtCompanyName">Name:</label>
-                            <asp:TextBox ID="txtCompanyname" runat="server" required></asp:TextBox>
+                            <asp:TextBox ID="txtCompanyName" runat="server" required></asp:TextBox>
                             <span class="form_hint">Company name</span>
                         </li>
                         <li>
@@ -60,17 +61,25 @@
                         <li>
                             <label for="txtApprovers">Approvers:</label>
                             <asp:DropDownList ID="ddlUser" runat="server" AutoPostBack="True" Style="height: 30px; width: 300px; padding: 5px 8px;" />
-                             <asp:Button ID="addApprover" runat="server" Style="height: 30px; width: 45px; padding: 5px 8px;" Text="Add" formnovalidate="true" OnClick="addApprover_Click"/>
-
-                            <asp:TextBox ID="txtApprovers" runat="server" visible="false"></asp:TextBox>
-
+                            <asp:Button ID="addApprover" runat="server" Style="height: 30px; width: 45px; padding: 5px 8px;" Text="Add" formnovalidate="true" OnClick="addApprover_Click" />
                             <span class="form_hint">Approvers</span>
-
+                        </li>
+                        <li>
+                            <label for="txtApprovers">Selected Approvers:</label>
+                            <asp:CheckBoxList ID="chkApprovers" runat="server" />
+                            <span class="form_hint">Selected approvers</span>
                         </li>
                         <li>
                             <label for="txtDepartments">Departments:</label>
-                            <asp:TextBox ID="txtDepartments" runat="server" required></asp:TextBox>
+                            <asp:TextBox ID="txtDepartment" runat="server"></asp:TextBox>
+                            <asp:Button ID="addDepartment" runat="server" Style="height: 30px; width: 45px; padding: 5px 8px;" Text="Add" formnovalidate="true" OnClick="addDepartment_Click" />
                             <span class="form_hint">Department codes</span>
+                        </li>
+                        <li>
+                            <label for="txtApprovers">Selected departments:</label>
+                            <asp:CheckBoxList ID="chkDepartments" runat="server" />
+                            <span class="form_hint">Selected departments</span>
+
                         </li>
                         <li>
                             <label for="txtHomeCurrency">Home currency:</label>
@@ -82,24 +91,24 @@
                 <br />
 
                 <!--Action-buttons -->
-                <asp:Button ID="btnCustomerSave" runat="server"
+                <asp:Button ID="btnSave" runat="server"
                     CssClass="w3-btn stbutton acbutton"
-                    Text="Save" />
+                    Text="Save"
+                    OnClick="btnSave_Click" />
 
-                <asp:Button ID="btnCustomerCancel" runat="server"
+                <asp:Button ID="btnCancel" runat="server"
                     CssClass="w3-btn stbutton w3-deep-orange"
                     Text="Cancel"
-                    formnovalidate="true" 
-                    OnClick="btnCancel_Click"/>
+                    formnovalidate="true"
+                    OnClick="btnCancel_Click" />
 
-                <br />
-                <asp:Button ID="btnUserDelete" runat="server"
+                <asp:Button ID="btnDelete" runat="server"
                     CssClass="w3-btn stbutton"
                     Text="Delete"
                     formnovalidate="true"
                     Visible="false"
-                    OnClientClick="return confirm('Do you want to delete the user ? ');" 
-                    OnClick="btnUserDelete_Click"/>
+                    OnClientClick="return confirm('Do you want to delete the user ? ');"
+                    OnClick="btnDelete_Click" />
 
             </div>
             <div id="CompanyList" runat="server">

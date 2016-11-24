@@ -12,7 +12,6 @@
                 OnClick="btnJEDocuments_Click"
                 Text="JE Documents" />
             <br />
-            <br />
             <asp:HyperLink ID="hlUsers"
                 runat="server"
                 NavigateUrl="~/2.Users.aspx"

@@ -20,11 +20,11 @@
                     Text="Create new user" />
                 <br />
 
-                <asp:Button ID="btnModify" runat="server"
-                    CssClass="w3-btn stbutton dcbutton"
-                    OnClick="btnModify_Click"
-                    Text="Edit users" />
-                <br />
+                <asp:DropDownList ID="ddlUser" runat="server"
+                    CssClass="w3-btn stbutton dcbutton select"
+                    OnSelectedIndexChanged="ddlUser_SelectedIndexChanged"
+                    AutoPostBack="true" />
+
 
             </div>
         </div>
@@ -32,15 +32,10 @@
             <!-- New / Edit / Delete -->
             <div id="NewUser" runat="server" visible="false">
                 <div class="contact_form">
-                    <ul>
+                    <ul id="liUserData" runat="server">
                         <li>
                             <h2 id="titleUser" runat="server">New user</h2>
                             <span class="required_notification">* Denotes Required Field</span>
-                        </li>
-                        <li id="liDdlUser" runat="server">
-                            <label for="ddlUser">Select user:</label>
-                            <asp:DropDownList ID="ddlUser" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUser_SelectedIndexChanged" Style="height: 30px; width: 300px; padding: 5px 8px;" />
-                            <span class="form_hint">User id</span>
                         </li>
                         <li>
                             <label for="txtuserID">User id:</label>
@@ -93,7 +88,6 @@
                     OnClick="btnCancel_Click"
                     Text="Cancel"
                     formnovalidate="true" />
-                <br />
                 <asp:Button ID="btnDelete" runat="server"
                     CssClass="w3-btn stbutton"
                     OnClick="btnDelete_Click"

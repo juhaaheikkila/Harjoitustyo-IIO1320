@@ -1,18 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <users>
   <user>
-    <id>5</id>
-    <username>HKIApprover</username>
-    <firstname>Hyväksyjä</firstname>
-    <lastname>Helsinki</lastname>
-    <department>Talous</department>
-    <email>hyvaksyja.helsinki@je.com</email>
-    <roles>
-      <role>approver</role>
-    </roles>
-  </user>
-  <user>
-    <id>4</id>
+    <id>3</id>
     <username>JKLApprover</username>
     <firstname>Hyväksyjä</firstname>
     <lastname>Jyväskylä</lastname>
@@ -20,19 +9,6 @@
     <email>hyvaksyja.jyvaskyla@je.com</email>
     <roles>
       <role>approver</role>
-    </roles>
-  </user>
-  <user>
-    <id>3</id>
-    <username>jheikkil</username>
-    <firstname>Juha</firstname>
-    <lastname>Heikkilä</lastname>
-    <department>Notes-kehitystä</department>
-    <email>jheikkil@je.com</email>
-    <roles>
-      <role>admin</role>
-      <role>approver</role>
-      <role>author</role>
     </roles>
   </user>
   <user>
@@ -47,13 +23,25 @@
     </roles>
   </user>
   <user>
-    <id>1</id>
-    <username>ttestaaja</username>
-    <firstname>Tuija</firstname>
-    <lastname>Testaaja</lastname>
-    <department>Notes-kehitys</department>
-    <email>tuija.testaaja@je.com</email>
+    <id>4</id>
+    <username>HKIApprover</username>
+    <firstname>Hyväksyjä</firstname>
+    <lastname>Helsinki</lastname>
+    <department>Talous</department>
+    <email>hyvaksyja.helsinki@je.com</email>
     <roles>
+      <role>approver</role>
+    </roles>
+  </user>
+  <user>
+    <id>1</id>
+    <username>jheikkil</username>
+    <firstname>Juha</firstname>
+    <lastname>Heikkilä</lastname>
+    <department>Notes-tiimi</department>
+    <email>jheikkil@je.com</email>
+    <roles>
+      <role>admin</role>
       <role>approver</role>
       <role>author</role>
     </roles>

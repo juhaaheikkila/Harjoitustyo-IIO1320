@@ -56,6 +56,8 @@ namespace JE_Documents.Data
             }
         }
 
+       
+
         public bool isUserRoleOn(string ruserRole)
         {
             return (this.roles.Contains(ruserRole));
@@ -65,6 +67,68 @@ namespace JE_Documents.Data
     public class JEusers
     {
         public JEuser[] allusers { get; set; }
+    }
+
+    public class JECompany
+    {
+
+        public string id { get; set; }
+        public string code { get; set; }
+        public string name { get; set; }
+        public string address { get; set; }
+        public string[] approvers { get; set; }
+        public string[] departments { get; set; }
+        public string homecurrency { get; set; }
+        
+
+        public JECompany()
+        {
+
+        }
+        public JECompany(string rstrcompany, string rstrCompanyDataFile)
+        {
+            XDocument xDoc = new XDocument();
+            xDoc = XDocument.Load(rstrCompanyDataFile);
+            if (xDoc != null)
+            {
+                var xcompany = xDoc.Root.Descendants("company").Where(x => x.Element("id").Value == rstrcompany).SingleOrDefault();
+                string xid = xcompany.Element("id").Value;
+                string xcode = xcompany.Element("code").Value;
+                string xname = xcompany.Element("name").Value;
+                string xaddress = xcompany.Element("address").Value;
+                List<string> xapprovers = new List<string>();
+                foreach (XElement approver in xcompany.Descendants("approver"))
+                {
+                    if (!"".Equals(approver.Value))
+                    {
+                        xapprovers.Add(approver.Value);
+                    }
+                }
+
+                List<string> xdepartments = new List<string>();
+                foreach (XElement department in xcompany.Descendants("department"))
+                {
+                    if (!"".Equals(department.Value))
+                    {
+                        xdepartments.Add(department.Value);
+                    }
+                }
+                string xhomecurrency = xcompany.Element("homecurrency").Value;
+
+                this.id = xid;
+                this.code = xcode;
+                this.name = xname;
+                this.address = xaddress;
+                this.approvers = xapprovers.ToArray();
+                this.departments= xdepartments.ToArray();
+                this.homecurrency = xhomecurrency;
+            }
+            else
+            {
+
+            }
+        }
+
     }
 
 

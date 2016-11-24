@@ -40,22 +40,13 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.Button btnAddNew;
         
         /// <summary>
-        /// btnModify control.
+        /// ddlCompanies control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModify;
-        
-        /// <summary>
-        /// btnCloseUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCloseUser;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCompanies;
         
         /// <summary>
         /// NewCompany control.
@@ -65,6 +56,15 @@ namespace JE_Documents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewCompany;
+        
+        /// <summary>
+        /// liCompanyData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCompanyData;
         
         /// <summary>
         /// titleCompany control.
@@ -85,22 +85,22 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.TextBox txtCompanyID;
         
         /// <summary>
-        /// ddlCompanies control.
+        /// txtCompanyCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCompanies;
+        protected global::System.Web.UI.WebControls.TextBox txtCompanyCode;
         
         /// <summary>
-        /// txtCompanyname control.
+        /// txtCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompanyname;
+        protected global::System.Web.UI.WebControls.TextBox txtCompanyName;
         
         /// <summary>
         /// txtAddress control.
@@ -130,22 +130,40 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.Button addApprover;
         
         /// <summary>
-        /// txtApprovers control.
+        /// chkApprovers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApprovers;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkApprovers;
         
         /// <summary>
-        /// txtDepartments control.
+        /// txtDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDepartments;
+        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
+        
+        /// <summary>
+        /// addDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button addDepartment;
+        
+        /// <summary>
+        /// chkDepartments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkDepartments;
         
         /// <summary>
         /// txtHomeCurrency control.
@@ -157,31 +175,31 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.TextBox txtHomeCurrency;
         
         /// <summary>
-        /// btnCustomerSave control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCustomerSave;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// btnCustomerCancel control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCustomerCancel;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// btnUserDelete control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUserDelete;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
         
         /// <summary>
         /// CompanyList control.

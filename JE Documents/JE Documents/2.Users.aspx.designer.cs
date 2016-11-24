@@ -40,13 +40,13 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.Button btnAddNew;
         
         /// <summary>
-        /// btnModify control.
+        /// ddlUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModify;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUser;
         
         /// <summary>
         /// NewUser control.
@@ -58,6 +58,15 @@ namespace JE_Documents {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewUser;
         
         /// <summary>
+        /// liUserData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUserData;
+        
+        /// <summary>
         /// titleUser control.
         /// </summary>
         /// <remarks>
@@ -65,24 +74,6 @@ namespace JE_Documents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl titleUser;
-        
-        /// <summary>
-        /// liDdlUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liDdlUser;
-        
-        /// <summary>
-        /// ddlUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUser;
         
         /// <summary>
         /// txtUserID control.
