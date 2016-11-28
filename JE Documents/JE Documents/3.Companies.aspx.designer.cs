@@ -13,15 +13,6 @@ namespace JE_Documents {
     public partial class _02_Company {
         
         /// <summary>
-        /// divNavigation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNavigation;
-        
-        /// <summary>
         /// btnGetCompanies control.
         /// </summary>
         /// <remarks>
@@ -38,15 +29,6 @@ namespace JE_Documents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddNew;
-        
-        /// <summary>
-        /// ddlCompanies control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCompanies;
         
         /// <summary>
         /// NewCompany control.
@@ -220,12 +202,21 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.Label lblAllCompaniesXML;
         
         /// <summary>
-        /// ltCompanies control.
+        /// ltTableHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltCompanies;
+        protected global::System.Web.UI.WebControls.Literal ltTableHead;
+        
+        /// <summary>
+        /// ltTableData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltTableData;
     }
 }

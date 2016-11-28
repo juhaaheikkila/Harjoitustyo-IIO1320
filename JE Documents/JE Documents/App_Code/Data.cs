@@ -9,6 +9,123 @@ using System.Xml.Linq;
 
 namespace JE_Documents.Data
 {
+    public class JEDoc
+    {
+        public string id { get; set; }
+        public string status { get; set; }
+        public string period { get; set; }
+        public string documenttype { get; set; }
+        public string documentnumber { get; set; }
+        public string date { get; set; }
+        public string companycode { get; set; }
+        public string companyname { get; set; }
+        public string author { get; set; }
+        public string department { get; set; }
+        public string headertext { get; set; }
+        public string currency { get; set; }
+        public double currencyrate { get; set; }
+        public string information { get; set; }
+        public JEDocRow[] rows { get; set; }
+        public JEDocStatus[] processinghistory { get; set; }
+
+        public JEDoc()
+        {
+
+        }
+
+        public JEDoc(string rstrID, string rstrJEDatafile)
+        {
+            XDocument xDoc = new XDocument();
+            xDoc = XDocument.Load(rstrJEDatafile);
+            if (xDoc != null)
+            {
+                var xjedoc = xDoc.Root.Descendants("user").Where(x => x.Element("username").Value == rstrJEDatafile).SingleOrDefault();
+                if (xjedoc != null)
+                {
+                    string xid = xjedoc.Element("id").Value;
+                    string xstatus = xjedoc.Element("status").Value;
+                    string xperiod = xjedoc.Element("period").Value;
+                    string xdoctype = xjedoc.Element("documenttype").Value;
+                    string xdocnumber = xjedoc.Element("documentnumber").Value;
+                    string xdate = xjedoc.Element("date").Value;
+                    string xcompanycode = xjedoc.Element("companycode").Value;
+                    string xcompanyname = xjedoc.Element("companyname").Value;
+                    string xauthor = xjedoc.Element("author").Value;
+                    string xdepartment = xjedoc.Element("department").Value;
+                    string xheadertext = xjedoc.Element("headertext").Value;
+                    string xcurrency = xjedoc.Element("currency").Value;
+                    string xcurrencyrate = xjedoc.Element("currencyrate").Value;
+                    string xinformation = xjedoc.Element("information").Value;
+
+
+                    List<string> xuserRoles = new List<string>();
+                    foreach (XElement xrole in xjedoc.Descendants("jerows"))
+                    {
+                        //xuserRoles.Add(xrole.Value);
+                    }
+
+                    this.id = xid;
+                    this.status = xstatus;
+                    this.period = xperiod;
+                    this.documenttype = xdoctype;
+                    this.documentnumber = xdocnumber;
+                    this.date = xdate;
+                    this.companycode = xcompanycode;
+                    this.companyname = xcompanyname;
+                    this.author = xauthor;
+                    this.department = xdepartment;
+                    this.headertext = xheadertext;
+                    this.currency = xcurrency;
+                    this.currencyrate = Convert.ToDouble(xcurrencyrate);
+                    this.information = xinformation;
+                    //rows
+
+                    //statuses
+                    foreach (XElement status in xjedoc.Descendants("jestatuses"))
+                    {
+                        JEDocStatus docStatus = new JEDocStatus();
+                        docStatus.id = status.Element("id").Value;
+                        docStatus.status = status.Element("status").Value;
+                        docStatus.username = status.Element("username").Value;
+                        docStatus.date = status.Element("date").Value;
+
+                    }
+                }
+            }
+        }
+    }
+
+    public class JEDocStatus
+    {
+        public string id { get; set; }
+        public string status { get; set; }
+        public string username { get; set; }
+        public string date { get; set; }
+
+        public JEDocStatus()
+        {
+
+        }
+    }
+
+    public class JEDocRow
+    {
+        public string id { get; set; }
+        public string company { get; set; }
+        public string account { get; set; }
+        public string debetcredit { get; set; }
+        public string project { get; set; }
+        public string dim1 { get; set; }
+        public string element { get; set; }
+        public double total { get; set; }
+        public string country { get; set; }
+        public string vatcode { get; set; }
+        public string reference { get; set; }
+        public JEDocRow()
+        {
+
+        }
+    }
     public class JEuser
     {
         public string id { get; set; }
@@ -31,24 +148,27 @@ namespace JE_Documents.Data
             if (xDoc != null)
             {
                 var xuser = xDoc.Root.Descendants("user").Where(x => x.Element("username").Value == rstrusername).SingleOrDefault();
-                string xuserid = xuser.Element("id").Value;
-                string xusername = xuser.Element("username").Value;
-                string xfirstname = xuser.Element("firstname").Value;
-                string xlastname = xuser.Element("lastname").Value;
-                string xuserdepartment = xuser.Element("department").Value;
-                string xuseremail = xuser.Element("email").Value;
-                List<string> xuserRoles = new List<string>();
-                foreach (XElement xrole in xuser.Descendants("role"))
+                if (xuser != null)
                 {
-                    xuserRoles.Add(xrole.Value);
+                    string xuserid = xuser.Element("id").Value;
+                    string xusername = xuser.Element("username").Value;
+                    string xfirstname = xuser.Element("firstname").Value;
+                    string xlastname = xuser.Element("lastname").Value;
+                    string xuserdepartment = xuser.Element("department").Value;
+                    string xuseremail = xuser.Element("email").Value;
+                    List<string> xuserRoles = new List<string>();
+                    foreach (XElement xrole in xuser.Descendants("role"))
+                    {
+                        xuserRoles.Add(xrole.Value);
+                    }
+                    this.id = xuserid;
+                    this.username = xusername;
+                    this.firstname = xfirstname;
+                    this.lastname = xlastname;
+                    this.department = xuserdepartment;
+                    this.email = xuseremail;
+                    this.roles = xuserRoles.ToArray();
                 }
-                this.id = xuserid;
-                this.username = xusername;
-                this.firstname = xfirstname;
-                this.lastname = xlastname;
-                this.department = xuserdepartment;
-                this.email = xuseremail;
-                this.roles = xuserRoles.ToArray();
             }
             else
             {
@@ -56,7 +176,7 @@ namespace JE_Documents.Data
             }
         }
 
-       
+
 
         public bool isUserRoleOn(string ruserRole)
         {
@@ -79,7 +199,7 @@ namespace JE_Documents.Data
         public string[] approvers { get; set; }
         public string[] departments { get; set; }
         public string homecurrency { get; set; }
-        
+
 
         public JECompany()
         {
@@ -120,7 +240,7 @@ namespace JE_Documents.Data
                 this.name = xname;
                 this.address = xaddress;
                 this.approvers = xapprovers.ToArray();
-                this.departments= xdepartments.ToArray();
+                this.departments = xdepartments.ToArray();
                 this.homecurrency = xhomecurrency;
             }
             else

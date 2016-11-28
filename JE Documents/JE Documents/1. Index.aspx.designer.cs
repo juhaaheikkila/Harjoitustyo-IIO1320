@@ -11,32 +11,5 @@ namespace JE_Documents {
     
     
     public partial class Index {
-        
-        /// <summary>
-        /// btnJEDocuments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnJEDocuments;
-        
-        /// <summary>
-        /// hlUsers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlUsers;
-        
-        /// <summary>
-        /// hlCompanies control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlCompanies;
     }
 }

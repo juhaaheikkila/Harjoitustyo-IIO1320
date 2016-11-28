@@ -1,23 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <companies>
   <company>
-    <id>2</id>
-    <code>FA345</code>
-    <name>Solteq Oyj, TRE</name>
-    <address>Aleksanterinkatu 50, 33333 Tampere</address>
-    <homecurrency>EUR</homecurrency>
-    <approvers>
-      <approver>jheikkil</approver>
-      <approver>TREApprover</approver>
-    </approvers>
-    <departments>
-      <department>1100</department>
-      <department>1110</department>
-      <department>1120</department>
-      <department>1130</department>
-    </departments>
-  </company>
-  <company>
     <id>3</id>
     <code>FA678</code>
     <name>Solteq Oyj, HKI</name>
@@ -35,6 +18,23 @@
     </departments>
   </company>
   <company>
+    <id>2</id>
+    <code>FA345</code>
+    <name>Solteq Oyj, TRE</name>
+    <address>Aleksanterinkatu 50, 33333 Tampere</address>
+    <homecurrency>EUR</homecurrency>
+    <approvers>
+      <approver>jheikkil</approver>
+      <approver>TREApprover</approver>
+    </approvers>
+    <departments>
+      <department>1100</department>
+      <department>1110</department>
+      <department>1120</department>
+      <department>1130</department>
+    </departments>
+  </company>
+  <company>
     <id>1</id>
     <code>FA123</code>
     <name>Solteq Oyj, JKL</name>
@@ -49,6 +49,7 @@
       <department>0110</department>
       <department>0120</department>
       <department>0130</department>
+      <department>0140</department>
     </departments>
   </company>
 </companies>

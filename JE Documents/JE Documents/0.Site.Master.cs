@@ -13,13 +13,29 @@ namespace JE_Documents
     public partial class Site1 : System.Web.UI.MasterPage
     {
         //public static JE_Documents.Data.user gUser;
+        JEuser muser = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                lblDate.Text = DateTime.Today.ToShortDateString();
+                string username = System.Configuration.ConfigurationManager.AppSettings["Username"];
+                string userDatafile = System.Configuration.ConfigurationManager.AppSettings["UserDataFile"];
+                muser = new JEuser(username, Server.MapPath(userDatafile));
+                lblUserName.Text = muser.username;
+                lblUserDepartment.Text = muser.department;
+                lblUserRoles.Text = "[" + string.Join("], [", muser.roles) + "]";
+                SetButtons(muser);
             }
+        }
+
+
+        protected void SetButtons(JEuser rUser)
+        {
+            //user admin
+            liSettings.Visible = muser.isUserRoleOn("admin");
+            hlUsers.Visible = muser.isUserRoleOn("admin");
+            hlCompanies.Visible = muser.isUserRoleOn("admin");
         }
 
     }

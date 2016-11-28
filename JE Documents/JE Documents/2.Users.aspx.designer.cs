@@ -13,15 +13,6 @@ namespace JE_Documents {
     public partial class _2_Users {
         
         /// <summary>
-        /// divNavigation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNavigation;
-        
-        /// <summary>
         /// btnGetUsers control.
         /// </summary>
         /// <remarks>
@@ -38,15 +29,6 @@ namespace JE_Documents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddNew;
-        
-        /// <summary>
-        /// ddlUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUser;
         
         /// <summary>
         /// NewUser control.
@@ -184,12 +166,21 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.Label lblAllUsersXML;
         
         /// <summary>
-        /// ltUsers control.
+        /// ltTableHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltUsers;
+        protected global::System.Web.UI.WebControls.Literal ltTableHead;
+        
+        /// <summary>
+        /// ltTableData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltTableData;
     }
 }

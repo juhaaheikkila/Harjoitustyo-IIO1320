@@ -14,31 +14,38 @@ namespace JE_Documents
 {
     public partial class _2_Users : System.Web.UI.Page
 
-
     {
 
         Label mpMessage;
+        Label mpPageTitle;
         static string userDataFile;
+        static string strQueryKey = "UserName";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            mpPageTitle = (Label)Page.Master.FindControl("lblPageTitle");
+            mpPageTitle.Text = "Users page";
+            mpMessage = (Label)Page.Master.FindControl("lblMessage");
+            mpMessage.Text = "...";
+            userDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
+
             if (!IsPostBack)
             {
-                //DropDownList lstLocations;
-
-                Label mpTitle = (Label)Page.Master.FindControl("lblTitle");
-                mpMessage = (Label)Page.Master.FindControl("lblMessage");
-                mpTitle.Text = "User page";
-                mpMessage.Text = "...";
-                userDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
-                string userroles = System.Configuration.ConfigurationManager.AppSettings["Userroles"];
-                string[] splittedroles = userroles.Split(',');
-                foreach (string role in splittedroles)
-                {
-                    chkRoles.Items.Add(new ListItem(role, role));
-                }
-                updateXML();
                 FillControls();
+            }
+
+            hideEditForm();
+            
+
+            if (Request.QueryString[strQueryKey] != null)
+            {
+                string strUsername = Request.QueryString[strQueryKey];
+                if (!"".Equals(strUsername))
+                {
+                    mpPageTitle.Text = "Users page / user: " + strUsername;
+                    JEuser user = new JEuser(strUsername, userDataFile);
+                    getUserData(user);
+                }
             }
         }
 
@@ -52,35 +59,10 @@ namespace JE_Documents
             this.ClientScript.RegisterClientScriptBlock(this.GetType(), "Close", "window.close()", true);
         }
 
-        protected void ddlUser_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            JEuser user = new JEuser(ddlUser.SelectedValue, userDataFile);
-            displayEditForm(user.id + ": " + user.username, true, true, true, true, true);
-            txtUserID.Text = user.id;
-            txtUsername.Text = user.username;
-            txtFirstname.Text = user.firstname;
-            txtLastname.Text = user.lastname;
-            txtDepartment.Text = user.department;
-            txtEmail.Text = user.email;
-            //roles
-            foreach (ListItem chk in chkRoles.Items)
-            {
-                chk.Selected = false;
-                foreach (string role in user.roles)
-                {
-                    if (chk.Value.Equals(role))
-                    {
-                        chk.Selected = true;
-                    }
-                }
-            }
-            
-        }
-
         //NEW
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
-            displayEditForm("New user", false,true,true,true, false);
+            displayEditForm("New user", false, true, true, true, false);
         }
 
         //SAVE
@@ -119,16 +101,11 @@ namespace JE_Documents
             }
 
             xdoc.Save(userDataFile);
+            updateXML();
             hideEditForm();
-            
+
             //updating page
             //Response.Redirect(Request.RawUrl);
-        }
-
-        //EDIT
-        protected void btnModify_Click(object sender, EventArgs e)
-        {
-            displayEditForm("Select user to edit", true, false, false, false, false);
         }
 
         //DELETE
@@ -138,12 +115,14 @@ namespace JE_Documents
             if (xdoc != null)
             {
                 //search for user
-                var xuser= xdoc.Root.Descendants("user").Where(x => x.Element("id").Value == txtUserID.Text).SingleOrDefault();
-                if (xuser!= null)
+                var xuser = xdoc.Root.Descendants("user").Where(x => x.Element("id").Value == txtUserID.Text).SingleOrDefault();
+                if (xuser != null)
                 {
                     xuser.Remove();
+                    xdoc.Save(userDataFile);
                 }
-                xdoc.Save(userDataFile);
+                
+                updateXML();
                 hideEditForm();
             }
         }
@@ -156,18 +135,46 @@ namespace JE_Documents
 
 
         #region METHODS
+
+        protected void getUserData(JEuser rJEUser)
+        {
+            if (rJEUser != null)
+            {
+                
+                displayEditForm(rJEUser.id + ": " + rJEUser.username, true, true, true, true, true);
+                
+                txtUserID.Text = rJEUser.id;
+                txtUsername.Text = rJEUser.username;
+                txtFirstname.Text = rJEUser.firstname;
+                txtLastname.Text = rJEUser.lastname;
+                txtDepartment.Text = rJEUser.department;
+                txtEmail.Text = rJEUser.email;
+                //roles
+                foreach (ListItem chk in chkRoles.Items)
+                {
+                    chk.Selected = false;
+                    foreach (string role in rJEUser.roles)
+                    {
+                        if (chk.Value.Equals(role))
+                        {
+                            chk.Selected = true;
+                        }
+                    }
+                }
+            }
+        }
+
         protected void hideEditForm()
         {
+
             NewUser.Visible = false;
             UserList.Visible = true;
-            divNavigation.Visible = true;
             updateXML();
-            FillControls();
+
         }
 
         protected void displayEditForm(string strTitle, bool blnShowSelectUser, bool blnShowUserData, bool blnShowSave, bool blnShowCancel, bool blnShowDelete)
         {
-            divNavigation.Visible = false;
             liUserData.Visible = blnShowUserData;
             titleUser.InnerText = strTitle;
             NewUser.Visible = true;
@@ -189,10 +196,11 @@ namespace JE_Documents
                 int userCount = 0;
 
                 xDoc = XDocument.Load(userDataFile);
-                ltUsers.Text = "";
+                ltTableHead.Text = "<tr><th>Id</th><th>Username</th><th>Firstname</th><th>Lastname</th><th>Department</th><th>email</th><th>roles</th></tr>";
+                ltTableData.Text = "";
+                string strEditUrl = Request.Url.ToString();
                 if (xDoc != null)
                 {
-                    ltUsers.Text += "<tr class='w3-row listTitle'><td>Id</td><td>Username</td><td>Firstname</td><td>Lastname</td><td>Department</td><td>email</td><td>roles</td></tr>";
                     IEnumerable<XElement> rows = xDoc.Root.Descendants("user");
                     foreach (XElement xuser in xDoc.Root.Descendants("user"))
                     {
@@ -203,7 +211,7 @@ namespace JE_Documents
                         string xuserdepartment = xuser.Element("department").Value;
                         string xuseremail = xuser.Element("email").Value;
                         string xuserroles = string.Join("<br />", xuser.Element("roles").Descendants().Distinct());
-                        ltUsers.Text += string.Format("<tr class='listRow'><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xuserid, xusername, xfirstname, xlastname, xuserdepartment, xuseremail, xuserroles);
+                        ltTableData.Text += string.Format("<tr class='listRow'><td><a href='{7}?{8}={1}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xuserid, xusername, xfirstname, xlastname, xuserdepartment, xuseremail, xuserroles, strEditUrl, strQueryKey);
                         userCount += 1;
                     }
                     lblAllUsersXML.Text = string.Format("User count {0} pcs", userCount);
@@ -227,36 +235,6 @@ namespace JE_Documents
                 chkRoles.Items.Add(new ListItem(role, role));
             }
 
-            //user list
-            XDocument xdoc = XDocument.Load(userDataFile);
-            if (xdoc != null)
-            {
-                //updating selection list
-                ddlUser.Items.Clear();
-                DataSet ds = new DataSet();
-                // you can bind your data with xml file or you can fetch data from database to BLL to your              //dataset ds.
-                ds.ReadXml(userDataFile);
-                ddlUser.DataSource = ds.Tables[0];
-                ddlUser.DataTextField = "username";
-                ddlUser.DataValueField = "username";
-                ddlUser.DataBind();
-                //empty element at selection list
-                ddlUser.Items.Insert(0, "Edit users");
-
-                //for CRUD
-                ddlUser.SelectedIndex = 0;
-                txtUserID.Text = string.Empty;
-                txtUsername.Text = string.Empty;
-                txtFirstname.Text = string.Empty;
-                txtLastname.Text = string.Empty;
-                txtDepartment.Text = string.Empty;
-                txtEmail.Text = string.Empty;
-                //resetting roles to not  selected
-                foreach (ListItem rooli in chkRoles.Items)
-                {
-                    rooli.Selected = false;
-                }
-            }
             #endregion
         }
     }

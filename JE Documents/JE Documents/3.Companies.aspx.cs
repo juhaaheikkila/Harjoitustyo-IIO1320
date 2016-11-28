@@ -8,32 +8,47 @@ using System.Xml;
 using System.Xml.Linq;
 using JE_Documents.Data;
 using System.Data;
-using JE_Documents.Data;
 
 namespace JE_Documents
 {
     public partial class _02_Company : System.Web.UI.Page
     {
+        Label mpPageTitle;
         Label mpMessage;
-        static string DataFile;
+        static string companyDataFile;
         static string userDataFile;
-        static public List<string> selectedApprovers;
-        static public List<string> selectedDepartments;
+        static List<string> selectedApprovers;
+        static List<string> selectedDepartments;
+        static string strQueryKey = "CompanyID";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-
-                Label mpTitle = (Label)Page.Master.FindControl("lblTitle");
+                mpPageTitle = (Label)Page.Master.FindControl("lblPageTitle");
+                mpPageTitle.Text = "Companies page";
                 mpMessage = (Label)Page.Master.FindControl("lblMessage");
-                mpTitle.Text = "Company page";
                 mpMessage.Text = "...";
-                DataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["CompanyDataFile"]);
+
+                companyDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["CompanyDataFile"]);
                 userDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
-                updateXML();
+
                 FillControls();
+                hideEditForm();
+                
+                if (Request.QueryString[strQueryKey] != null)
+                {
+                    string strCompanyCode = Request.QueryString[strQueryKey];
+                    if (!"".Equals(strCompanyCode))
+                    {
+                        mpPageTitle.Text = "Companies page / company: " + strCompanyCode;
+                        JECompany company = new JECompany(strCompanyCode, companyDataFile);
+                        getCompanyData(company);
+                    }
+                }
             }
+
+
         }
 
         //ACTION-BUTTONS
@@ -57,7 +72,7 @@ namespace JE_Documents
         //SAVE
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(DataFile);
+            XDocument xdoc = XDocument.Load(companyDataFile);
 
             if (xdoc != null)
             {
@@ -108,7 +123,7 @@ namespace JE_Documents
                 xdoc.Element("companies").Add(company);
                 
             }
-            xdoc.Save(DataFile);
+            xdoc.Save(companyDataFile);
 
             hideEditForm();
 
@@ -116,17 +131,10 @@ namespace JE_Documents
             //Response.Redirect(Request.RawUrl);
         }
 
-        //EDIT
-        protected void btnModify_Click(object sender, EventArgs e)
-        {
-            displayEditForm("Select company to edit", true, false, false, false, false);
-        }
-
         //DELETE
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(DataFile);
-
+            XDocument xdoc = XDocument.Load(companyDataFile);
             if (xdoc != null)
             {
                 //search for user
@@ -134,8 +142,9 @@ namespace JE_Documents
                 if (xcompany != null)
                 {
                     xcompany.Remove();
-                    xdoc.Save(DataFile);
+                    xdoc.Save(companyDataFile);
                 }
+                updateXML();
                 hideEditForm();
                 
             }
@@ -173,67 +182,63 @@ namespace JE_Documents
             }
         }
 
-        //SELECT COMPANY
-        protected void ddlCompanies_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            selectedApprovers = new List<string>();
-            selectedDepartments = new List<string>();
-            selectedApprovers.Add("");
-            selectedDepartments.Add("");
-
-            JECompany company = new JECompany(ddlCompanies.SelectedValue, DataFile);
-
-            displayEditForm(company.id + ": " + company.name, true, true, true, true, true);
-
-            txtCompanyID.Text = company.id;
-            txtCompanyCode.Text = company.code;
-            txtCompanyName.Text = company.name;
-            txtAddress.Text = company.address;
-            //approvers
-            foreach (string approver in company.approvers)
-            {
-                if (!"".Equals(approver))
-                {
-                    selectedApprovers.Add(approver);
-                    ListItem liApprover = new ListItem(approver, approver, true);
-                    liApprover.Selected = true;
-                    chkApprovers.Items.Add(liApprover);
-                }
-            }
-            //departments
-            foreach (string department in company.departments)
-            {
-                if (!"".Equals(department))
-                {
-                    selectedDepartments.Add(department);
-                    ListItem liDepartment = new ListItem(department, department, true);
-                    liDepartment.Selected = true;
-                    chkDepartments.Items.Add(liDepartment);
-                }
-            }
-            txtHomeCurrency.Text = company.homecurrency;
-        }
-
         #region METHODS
+
+        protected void getCompanyData(JECompany rJECompany)
+        {
+            if (rJECompany != null)
+            {
+
+                displayEditForm(rJECompany.id + ": " + rJECompany.code + ", " + rJECompany.name, true, true, true, true, true);
+
+                selectedApprovers = new List<string>();
+                selectedDepartments = new List<string>();
+                selectedApprovers.Add("");
+                selectedDepartments.Add("");
+                txtCompanyID.Text = rJECompany.id;
+                txtCompanyCode.Text = rJECompany.code;
+                txtCompanyName.Text = rJECompany.name;
+                txtAddress.Text = rJECompany.address;
+                //approvers
+                foreach (string approver in rJECompany.approvers)
+                {
+                    if (!"".Equals(approver))
+                    {
+                        selectedApprovers.Add(approver);
+                        ListItem liApprover = new ListItem(approver, approver, true);
+                        liApprover.Selected = true;
+                        chkApprovers.Items.Add(liApprover);
+                    }
+                }
+                //departments
+                foreach (string department in rJECompany.departments)
+                {
+                    if (!"".Equals(department))
+                    {
+                        selectedDepartments.Add(department);
+                        ListItem liDepartment = new ListItem(department, department, true);
+                        liDepartment.Selected = true;
+                        chkDepartments.Items.Add(liDepartment);
+                    }
+                }
+                txtHomeCurrency.Text = rJECompany.homecurrency;
+
+            }
+
+        }
 
         protected void hideEditForm()
         {
             NewCompany.Visible = false;
             CompanyList.Visible = true;
-            divNavigation.Visible = true;
             updateXML();
-            FillControls();
         }
 
         protected void displayEditForm(string strTitle, bool blnShowSelectCompany, bool blnShowCompanyData, bool blnShowSave, bool blnShowCancel, bool blnShowDelete)
         {
-            divNavigation.Visible = false;
-            liCompanyData.Visible = blnShowCompanyData;
             titleCompany.InnerText = strTitle;
             NewCompany.Visible = true;
             CompanyList.Visible = false;
-            FillControls();
             btnSave.Visible = blnShowSave;
             btnCancel.Visible = blnShowCancel;
             btnDelete.Visible = blnShowDelete;
@@ -244,18 +249,19 @@ namespace JE_Documents
             //Listaa kaikki käyttäjät XML-tiedostosta
             try
             {
-                int userCount = 0;
+                int companyCount = 0;
 
                 XDocument xDoc = new XDocument();
-                xDoc = XDocument.Load(DataFile);
+                xDoc = XDocument.Load(companyDataFile);
                 
-                ltCompanies.Text = "";
-
+                ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th></tr>";
+                ltTableData.Text = "";
+                string strEditUrl = Request.Url.ToString();
                 if (xDoc != null)
                 {
                     // xDoc.Descendants("Team").OrderByDescending(p => DateTime.Parse(p.Element("LastAccessed").Value));
                    
-                    ltCompanies.Text += "<tr class='w3-row listTitle'><td>Id</td><td>Code</td><td>Name</td><td>Address</td><td>Departments</td><td>approvers</td><td>home Currency</td></tr>";
+                    
                     foreach (XElement xcompany in xDoc.Root.Descendants("company"))
                     {
                         string xcompanyid = xcompany.Element("id").Value;
@@ -266,11 +272,13 @@ namespace JE_Documents
                         string xcompanyapprovers = string.Join("<br />", xcompany.Element("approvers").Descendants().Distinct());
                         string xhomecurrency = xcompany.Element("homecurrency").Value;
 
-                        ltCompanies.Text += string.Format("<tr class='w3-row listRow'><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency);
-                        userCount += 1;
+                        ltTableData.Text += string.Format("<tr class='w3-row listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl,strQueryKey);
+                        companyCount += 1;
                     }
                     //                    ltCompanies.Text += "</table>";
-                    lblAllCompaniesXML.Text = string.Format("User count {0} pcs", userCount);
+                    lblAllCompaniesXML.Text = string.Format("Company count {0} pcs", companyCount);
+                    int childrenCount = xDoc.Root.Elements().Count();
+                    lblAllCompaniesXML.Text += string.Format("Company count {0} pcs", childrenCount);
                 }
             }
             catch (Exception ex)
@@ -281,17 +289,6 @@ namespace JE_Documents
 
         protected void FillControls()
         {
-            //company dropdownlist
-            ddlCompanies.Items.Clear();
-            DataSet dsCompanies = new DataSet();
-            dsCompanies.ReadXml(DataFile);
-            ddlCompanies.DataSource = dsCompanies.Tables[0];
-            ddlCompanies.DataTextField = "name";
-            ddlCompanies.DataValueField = "id";
-            ddlCompanies.DataBind();
-            //empty element at selection list
-            ddlCompanies.Items.Insert(0, "Edit company");
-            ddlCompanies.SelectedIndex = 0;
 
             //updating user selection list
             ddlUser.Items.Clear();
@@ -304,7 +301,6 @@ namespace JE_Documents
             //empty element at selection list
             ddlUser.Items.Insert(0, string.Empty);
             ddlUser.SelectedIndex = 0;
-
 
             chkApprovers.Items.Clear();
             chkDepartments.Items.Clear();
