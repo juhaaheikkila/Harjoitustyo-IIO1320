@@ -1,11 +1,51 @@
-﻿body {
+﻿/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+body {
+    margin-top:70px;
     font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 }
 
-.fa {
-    display: table;
-    text-after: hello;
-}
+
 /*action buttons*/
 .stbutton {
     margin: 0px 0px 10px 0px;
@@ -14,23 +54,27 @@
     height: 40px;
     border-radius: 3px 3px 10px 3px;
 }
+
 /* action */
 .acbutton {
     background-color: #2ba6cb !important;
 }
+
 /* document creation */
 .dcbutton {
     background-color: forestgreen !important;
 }
 
-.select {
-
-
+/*cancel*/
+.ccbutton {
+    background-color: darkorange !important;
 }
 
+/* data list tables */
 .listTable {
 
 }
+
 .listTitle {
     color: white;
     font-weight:bolder;
@@ -43,14 +87,14 @@
     vertical-align:top;
 }
 
-.listRow:nth-child(even) {background: #FFF}
-.listRow:nth-child(odd) {background: #CCC}
-
-/*cancel*/
-.ccbutton {
-    background-color: darkorange !important;
+.listRow:nth-child(even) {
+    background: #FFF;
 }
 
+.listRow:nth-child(odd) {
+    background: #CCC;
+
+}
 
 .contact_form ul {
     width: 750px;
@@ -126,8 +170,6 @@
         box-shadow: 0 0 5px #d45252;
         border-color: #b03535;
     }
-
-
 
 .form_hint, .required_notification {
     font-size: 11px;

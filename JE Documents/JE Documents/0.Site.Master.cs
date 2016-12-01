@@ -21,7 +21,8 @@ namespace JE_Documents
             {
                 string username = System.Configuration.ConfigurationManager.AppSettings["Username"];
                 string userDatafile = System.Configuration.ConfigurationManager.AppSettings["UserDataFile"];
-                muser = new JEuser(username, Server.MapPath(userDatafile));
+                string logDatafile = System.Configuration.ConfigurationManager.AppSettings["LogFile"];
+                muser = new JEuser(username, Server.MapPath(userDatafile), "username");
                 lblUserName.Text = muser.username;
                 lblUserDepartment.Text = muser.department;
                 lblUserRoles.Text = "[" + string.Join("], [", muser.roles) + "]";

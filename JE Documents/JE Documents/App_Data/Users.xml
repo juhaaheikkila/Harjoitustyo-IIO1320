@@ -23,17 +23,6 @@
     </roles>
   </user>
   <user>
-    <id>4</id>
-    <username>HKIApprover</username>
-    <firstname>Hyväksyjä</firstname>
-    <lastname>Helsinki</lastname>
-    <department>Talous</department>
-    <email>hyvaksyja.helsinki@je.com</email>
-    <roles>
-      <role>approver</role>
-    </roles>
-  </user>
-  <user>
     <id>1</id>
     <username>jheikkil</username>
     <firstname>Juha</firstname>
@@ -44,6 +33,18 @@
       <role>admin</role>
       <role>approver</role>
       <role>author</role>
+      <role>debug</role>
+    </roles>
+  </user>
+  <user>
+    <id>4</id>
+    <username>HKIApprover</username>
+    <firstname>Hyväksyjä</firstname>
+    <lastname>Helsinki</lastname>
+    <department>Talous</department>
+    <email>hyvaksyja.helsinki@je.com</email>
+    <roles>
+      <role>approver</role>
     </roles>
   </user>
 </users>

@@ -5,9 +5,6 @@
 
 <asp:Content ID="cntNavigation" ContentPlaceHolderID="navigations" runat="server">
     <ul class="nav">
-        <li>..</li>
-        <li>..</li>
-        <li>..</li>
         <li>
             <asp:Button
                 ID="btnGetUsers" runat="server"
@@ -27,7 +24,7 @@
 
 <asp:Content ID="cntForm" ContentPlaceHolderID="dataform" runat="server" Visible="false">
     <!-- New / Edit / Delete -->
-    <div id="NewUser" class="row placeholders" runat="server" visible="false">
+    <div id="NewUser" style="margin-left:15px;" class="" runat="server" visible="false">
         <div class="contact_form">
             <ul id="liUserData" runat="server">
                 <li>
@@ -74,27 +71,27 @@
         </div>
         <br />
         <!--Action-buttons for data -->
+
         <asp:Button ID="btnSave" runat="server"
             CssClass="btn stbutton acbutton"
             Text="Save"
             OnClick="btnSave_Click"
-            PostBackUrl="~/2.Users.aspx"
-             />
+            PostBackUrl="~/2.Users.aspx" />
         <asp:Button ID="btnCancel" runat="server"
             CssClass="btn stbutton"
             OnClick="btnCancel_Click"
             Text="Cancel"
             formnovalidate="true"
-            PostBackUrl="~/2.Users.aspx"
-             />
+            PostBackUrl="~/2.Users.aspx" />
         <asp:Button ID="btnDelete" runat="server"
-            CssClass="btn stbutton"
+            CssClass="btn stbutton ccbutton"
             OnClick="btnDelete_Click"
             Text="Delete"
             formnovalidate="true"
             Visible="false"
-            OnClientClick="return confirm('Do you want to delete the user ? ');" 
+            OnClientClick="return confirm('Do you want to delete the user ? ');"
             PostBackUrl="~/2.Users.aspx" />
+
     </div>
 </asp:Content>
 
@@ -102,18 +99,17 @@
     <!-- Data list -->
     <div id="UserList" runat="server" visible="false">
 
-    <h2 class="sub-header">All users:
-        <asp:Label ID="lblAllUsersXML" runat="server" Text="..."></asp:Label></h2>
-    <table class="table table-striped">
-        <thead>
-            <asp:Literal ID="ltTableHead" runat="server"></asp:Literal>
-        </thead>
-        <tbody>
-            <asp:Literal ID="ltTableData" runat="server"></asp:Literal>
-        </tbody>
-    </table>
+        <h2 class="sub-header">All users:</h2>
+        <table class="table table-striped">
+            <thead>
+                <asp:Literal ID="ltTableHead" runat="server"></asp:Literal>
+            </thead>
+            <tbody>
+                <asp:Literal ID="ltTableData" runat="server"></asp:Literal>
+            </tbody>
+        </table>
     </div>
 
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+<asp:Content ID="Content5" ContentPlaceHolderID="footer" runat="server">
 </asp:Content>

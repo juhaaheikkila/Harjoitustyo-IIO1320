@@ -7,17 +7,11 @@
     <title runat="server"></title>
     <link rel="stylesheet" href="Content/bootstrap.min.css" />
     <link rel="stylesheet" href="Content/bootstrap-datetimepicker-build.less" />
-
-
+    <link rel="stylesheet" href="~/CSS/StyleSheet1.css" />
     <script type="text/javascript" src="Scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Scripts/moment.min.js"></script>
     <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="Scripts/bootstrap-datetimepicker.min.js"></script>
-
-
-
-
-    <link rel="stylesheet" href="~/CSS/StyleSheet1.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -38,17 +32,16 @@
                     <asp:Label ID="lblPageTitle" runat="server" CssClass="navbar-brand" Text="Main" />
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <!-- normar user actions/documents -->
-                    <ul class="nav navbar-nav navbar-left">
+                    <!-- for [Admin]-users menu-->
+                    <ul class="nav navbar-nav navbar-right">
                         <li>
                             <asp:HyperLink
                                 runat="server"
                                 ID="hlJEDocuments"
                                 NavigateUrl="~/9.JE.aspx"
-                                Text="JE Documents" /></li>
-                    </ul>
-                    <!-- for [Admin]-users menu-->
-                    <ul class="nav navbar-nav navbar-right">
+                                Text="JE Documents" />
+                        </li>
+                        <li></li>
                         <li id="liSettings" runat="server" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings
                             <span class="caret"></span></a>
@@ -86,15 +79,13 @@
                 </div>
             </div>
         </nav>
-
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-3 col-md-2">
+                <div class="col-sm-3 col-md-2 sidebar">
                     <asp:ContentPlaceHolder ID="navigations" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <h1 class="page-header">H1</h1>
                     <div class="row">
                         <asp:ContentPlaceHolder ID="dataform" runat="server">
                         </asp:ContentPlaceHolder>
@@ -105,13 +96,14 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+                    <asp:Label ID="lblMessage" runat="server" Text="Main" />
+                    <asp:ContentPlaceHolder ID="footer" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
         </div>
-<!--        <div class="row">
-            <asp:Label ID="lblMessage" runat="server" Text="..." />
-            <asp:ContentPlaceHolder ID="footer" runat="server">
-            </asp:ContentPlaceHolder>
-        </div> -->
     </form>
 </body>
 </html>

@@ -43,7 +43,7 @@ namespace JE_Documents
                 if (!"".Equals(strUsername))
                 {
                     mpPageTitle.Text = "Users page / user: " + strUsername;
-                    JEuser user = new JEuser(strUsername, userDataFile);
+                    JEuser user = new JEuser(strUsername, userDataFile, "username");
                     getUserData(user);
                 }
             }
@@ -62,6 +62,26 @@ namespace JE_Documents
         //NEW
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
+            int intCounter;
+            XDocument xDoc = new XDocument();
+            xDoc = XDocument.Load(userDataFile);
+            if (xDoc != null)
+            {
+                intCounter = xDoc.Root.Elements().Count() + 1;
+            }
+            else
+            {
+                intCounter = 0;
+            }
+            txtUserID.Text = Convert.ToString(intCounter);
+            txtUserID.Text = string.Empty;
+            txtUsername.Text = string.Empty;
+            txtFirstname.Text = string.Empty;
+            txtLastname.Text = string.Empty;
+            txtDepartment.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+
+
             displayEditForm("New user", false, true, true, true, false);
         }
 
@@ -187,22 +207,25 @@ namespace JE_Documents
 
         protected void updateXML()
         {
-            //Listaa kaikki käyttäjät XML-tiedostosta
+            //List all users
             try
             {
-                //
-                XmlDocument doc = new XmlDocument();
                 XDocument xDoc = new XDocument();
                 int userCount = 0;
 
                 xDoc = XDocument.Load(userDataFile);
+                var newxDoc = new XElement("User", xDoc.Root
+                    .Elements()
+                    .OrderBy(x => (int)x.Element("id"))
+                    );
+
                 ltTableHead.Text = "<tr><th>Id</th><th>Username</th><th>Firstname</th><th>Lastname</th><th>Department</th><th>email</th><th>roles</th></tr>";
                 ltTableData.Text = "";
                 string strEditUrl = Request.Url.ToString();
-                if (xDoc != null)
+                //if (xDoc != null)
+                if (newxDoc != null)
                 {
-                    IEnumerable<XElement> rows = xDoc.Root.Descendants("user");
-                    foreach (XElement xuser in xDoc.Root.Descendants("user"))
+                    foreach (XElement xuser in newxDoc.Descendants("user"))
                     {
                         string xuserid = xuser.Element("id").Value;
                         string xusername = xuser.Element("username").Value;
@@ -214,7 +237,8 @@ namespace JE_Documents
                         ltTableData.Text += string.Format("<tr class='listRow'><td><a href='{7}?{8}={1}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xuserid, xusername, xfirstname, xlastname, xuserdepartment, xuseremail, xuserroles, strEditUrl, strQueryKey);
                         userCount += 1;
                     }
-                    lblAllUsersXML.Text = string.Format("User count {0} pcs", userCount);
+                    int childrenCount = xDoc.Root.Elements().Count();
+                    mpMessage.Text = string.Format("User count {0} pcs", childrenCount);
                 }
             }
             catch (Exception ex)

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 using System.Xml.Linq;
+using JE_Documents.Data;
 
 namespace JE_Documents
 {
@@ -41,10 +44,29 @@ namespace JE_Documents
         //NEW
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
+            int intCounter;
+            XmlDocument doc = new XmlDocument();
+            doc.Load(jeDataFile);
+            if (doc != null)
+            {
+                // XmlNodeList root = doc.DocumentElement;
+
+                // Get and display all the book titles.
+                XmlElement root = doc.DocumentElement;
+                XmlNodeList elemList = root.GetElementsByTagName("jedoc");
+                intCounter = elemList.Count + 1;
+            }
+            else
+            {
+                intCounter = 0;
+            }
+
+            txtID.Text = Convert.ToString(intCounter);
             selectedApprovers = new List<string>();
             selectedDepartments = new List<string>();
             selectedApprovers.Add("");
             selectedDepartments.Add("");
+            updateProcessingHistory();
             displayEditForm("New company", false, true, true, true, false);
         }
 
@@ -72,25 +94,59 @@ namespace JE_Documents
         protected void FillControls()
         {
             //periods
-            string strPeriods = System.Configuration.ConfigurationManager.AppSettings["JEPeriods"];
-            string[] strPeriodsArray = strPeriods.Split(',');
-            fillDropdownList(ddlPeriod, strPeriodsArray, true);
+            fillDropdownListFromWebConfig(ddlPeriod, "JEPeriods", true);
 
             //document types
-            string strDocTypes = System.Configuration.ConfigurationManager.AppSettings["JETransactionTypes"];
-            string[] strDocTypeArray = strDocTypes.Split(',');
-            fillDropdownList(ddlType, strDocTypeArray, true);
+            fillDropdownListFromWebConfig(ddlType, "JETransactionTypes", true);
 
+            //currencies
+            fillDropdownListFromWebConfig(ddlCurrency, "JECurrencies", true);
+
+            //companycodes
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            ds.ReadXml(companyDataFile);
+            dt = ds.Tables[0];
+            foreach (DataRow dr in dt.Rows)
+            {
+                string strCompany = dr["code"].ToString() + " : " + dr["name"].ToString();
+                ddlCompany.Items.Add(new ListItem(dr["name"].ToString(), dr["code"].ToString()));
+            }
+
+            ddlCompany.Items.Insert(0, string.Empty);
+
+
+        }
+
+        protected void fillDropdownListFromWebConfig(DropDownList rddl, string strKey, bool rAddEmptyline) //string[] rArray, bool rAddEmptyline)
+        {
+            string strValues = System.Configuration.ConfigurationManager.AppSettings[strKey];
+            string[] strValuesArray = strValues.Split(',');
+
+            rddl.Items.Clear();
+            foreach (var itemi in strValuesArray)
+            {
+                rddl.Items.Add(new ListItem(itemi));
+            }
+
+            if (rAddEmptyline)
+            {
+                //empty element at selection list
+                rddl.Items.Insert(0, string.Empty);
+                rddl.SelectedIndex = 0;
+            }
         }
 
         protected void fillDropdownList(DropDownList rddl, string[] rArray, bool rAddEmptyline)
         {
+            
 
             rddl.Items.Clear();
-            foreach (var period in rArray)
+            foreach (var itemi in rArray)
             {
-                rddl.Items.Add(new ListItem(period));
+                rddl.Items.Add(new ListItem(itemi));
             }
+
             if (rAddEmptyline)
             {
                 //empty element at selection list
@@ -168,6 +224,46 @@ namespace JE_Documents
 
         }
 
+        protected void hlToggleProcessingHistory_Click(object sender, EventArgs e)
+        {
+            bool showProsessing = processingHistory_All.Visible;
+
+            processingHistory_All.Visible = !showProsessing;
+            processingHistory_Latest.Visible = showProsessing;
+            if (showProsessing)
+            {
+                lblProcessingHistoryToggle.Text = ">>>";
+            } else
+            {
+                lblProcessingHistoryToggle.Text = "<<<";
+            }
+        }
+
+        protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtCompanyCode.Text = ddlCompany.SelectedValue;
+            txtCompanyName.Text = ddlCompany.SelectedItem.Text;
+            JECompany company = new JECompany(ddlCompany.SelectedValue, companyDataFile, "code");
+            fillDropdownList(ddlDepartment, company.departments, true);
+            txtHomeCurrency.Text = company.homecurrency;
+        }
+
+        protected void updateProcessingHistory()
+        {
+            ltProcessingHistoryAll.Text = "All";
+            ltProcessingHistoryLatest.Text = "Latest";
+        }
+
+        protected void ddlCurrency_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txtHomeCurrency.Text.Equals(ddlCurrency.SelectedValue))
+            {
+                txtCurrencyRate.Text = "1";
+            } else
+            {
+                txtCurrencyRate.Text = "";
+            }
+        }
     }
 
 }

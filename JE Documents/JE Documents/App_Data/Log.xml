@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logentries>
+  <logentry>
+    <date></date>
+    <entry></entry>
+    <username></username>
+    <severity></severity>
+  </logentry>
+  <logentry>
+    <id>2</id>
+    <date>1.12.2016 18:48:58</date>
+    <entry>Start application</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>3</id>
+    <date>1.12.2016 18:49:07</date>
+    <entry>Start application</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>4</id>
+    <date>1.12.2016 18:51:05</date>
+    <entry>Start application</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>5</id>
+    <date>1.12.2016 18:51:05</date>
+    <entry>userroles [admin], [approver], [author], [debug]</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>6</id>
+    <date>1.12.2016 18:51:13</date>
+    <entry>Start application</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>7</id>
+    <date>1.12.2016 18:51:13</date>
+    <entry>userroles [admin], [approver], [author], [debug]</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>8</id>
+    <date>1.12.2016 18:51:14</date>
+    <entry>Start application</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>9</id>
+    <date>1.12.2016 18:51:14</date>
+    <entry>userroles [admin], [approver], [author], [debug]</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>10</id>
+    <date>1.12.2016 18:51:46</date>
+    <entry>Start application</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>11</id>
+    <date>1.12.2016 18:51:46</date>
+    <entry>userroles [admin], [approver], [author], [debug]</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+</logentries>

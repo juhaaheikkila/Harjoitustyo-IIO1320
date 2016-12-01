@@ -35,14 +35,14 @@ namespace JE_Documents
 
                 FillControls();
                 hideEditForm();
-                
+
                 if (Request.QueryString[strQueryKey] != null)
                 {
                     string strCompanyCode = Request.QueryString[strQueryKey];
                     if (!"".Equals(strCompanyCode))
                     {
                         mpPageTitle.Text = "Companies page / company: " + strCompanyCode;
-                        JECompany company = new JECompany(strCompanyCode, companyDataFile);
+                        JECompany company = new JECompany(strCompanyCode, companyDataFile, "id");
                         getCompanyData(company);
                     }
                 }
@@ -62,10 +62,32 @@ namespace JE_Documents
         //NEW
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
+            int intCounter;
+            XmlDocument doc = new XmlDocument();
+            doc.Load(companyDataFile);
+            if (doc != null)
+            {
+                XmlElement root = doc.DocumentElement;
+                XmlNodeList elemList = root.GetElementsByTagName("company");
+                intCounter = elemList.Count + 1;
+            }
+            else
+            {
+                intCounter = 0;
+            }
+            txtCompanyID.Text = Convert.ToString(intCounter);
             selectedApprovers = new List<string>();
             selectedDepartments = new List<string>();
             selectedApprovers.Add("");
             selectedDepartments.Add("");
+            txtCompanyCode.Text = string.Empty;
+            txtCompanyName.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtHomeCurrency.Text = string.Empty;
+            //chkApprovers.ClearSelection();
+            chkApprovers.Items.Clear();
+            //chkDepartments.ClearSelection();
+            chkDepartments.Items.Clear();
             displayEditForm("New company", false, true, true, true, false);
         }
 
@@ -100,7 +122,8 @@ namespace JE_Documents
                 {
                     if (person.Selected)
                     {
-                        if (!"".Equals(person.Value)) {
+                        if (!"".Equals(person.Value))
+                        {
                             approvers.Add(new XElement("approver", person.Value));
                         }
                     }
@@ -121,7 +144,7 @@ namespace JE_Documents
                 company.Add(departments);
 
                 xdoc.Element("companies").Add(company);
-                
+
             }
             xdoc.Save(companyDataFile);
 
@@ -146,7 +169,7 @@ namespace JE_Documents
                 }
                 updateXML();
                 hideEditForm();
-                
+
             }
         }
 
@@ -249,20 +272,20 @@ namespace JE_Documents
             //Listaa kaikki käyttäjät XML-tiedostosta
             try
             {
-                int companyCount = 0;
-
+                mpMessage = (Label)Page.Master.FindControl("lblMessage");
                 XDocument xDoc = new XDocument();
                 xDoc = XDocument.Load(companyDataFile);
-                
-                ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th></tr>";
-                ltTableData.Text = "";
-                string strEditUrl = Request.Url.ToString();
                 if (xDoc != null)
                 {
-                    // xDoc.Descendants("Team").OrderByDescending(p => DateTime.Parse(p.Element("LastAccessed").Value));
-                   
-                    
-                    foreach (XElement xcompany in xDoc.Root.Descendants("company"))
+                    var newxDoc = new XElement("company", xDoc.Root
+                        .Elements()
+                        .OrderBy(x => (int)x.Element("id")));
+
+                    ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th></tr>";
+                    ltTableData.Text = "";
+                    string strEditUrl = Request.Url.ToString();
+
+                    foreach (XElement xcompany in newxDoc.Descendants("company"))
                     {
                         string xcompanyid = xcompany.Element("id").Value;
                         string xcompanycode = xcompany.Element("code").Value;
@@ -272,17 +295,16 @@ namespace JE_Documents
                         string xcompanyapprovers = string.Join("<br />", xcompany.Element("approvers").Descendants().Distinct());
                         string xhomecurrency = xcompany.Element("homecurrency").Value;
 
-                        ltTableData.Text += string.Format("<tr class='w3-row listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl,strQueryKey);
-                        companyCount += 1;
+                        ltTableData.Text += string.Format("<tr class='w3-row listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl, strQueryKey);
                     }
-                    //                    ltCompanies.Text += "</table>";
-                    lblAllCompaniesXML.Text = string.Format("Company count {0} pcs", companyCount);
                     int childrenCount = xDoc.Root.Elements().Count();
-                    lblAllCompaniesXML.Text += string.Format("Company count {0} pcs", childrenCount);
+                    
+                    mpMessage.Text = string.Format("Company count {0} pcs", childrenCount);
                 }
             }
             catch (Exception ex)
             {
+                mpMessage = (Label)Page.Master.FindControl("lblMessage");
                 mpMessage.Text += "<br />" + ex.Message;
             }
         }

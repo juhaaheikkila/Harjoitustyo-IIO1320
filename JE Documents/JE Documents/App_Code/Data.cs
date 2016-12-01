@@ -33,13 +33,13 @@ namespace JE_Documents.Data
 
         }
 
-        public JEDoc(string rstrID, string rstrJEDatafile)
+        public JEDoc(string rstrID, string rstrJEDatafile, string rstrKeyField)
         {
             XDocument xDoc = new XDocument();
             xDoc = XDocument.Load(rstrJEDatafile);
             if (xDoc != null)
             {
-                var xjedoc = xDoc.Root.Descendants("user").Where(x => x.Element("username").Value == rstrJEDatafile).SingleOrDefault();
+                var xjedoc = xDoc.Root.Descendants("user").Where(x => x.Element(rstrKeyField).Value == rstrJEDatafile).SingleOrDefault();
                 if (xjedoc != null)
                 {
                     string xid = xjedoc.Element("id").Value;
@@ -126,6 +126,7 @@ namespace JE_Documents.Data
 
         }
     }
+
     public class JEuser
     {
         public string id { get; set; }
@@ -141,13 +142,13 @@ namespace JE_Documents.Data
 
         }
 
-        public JEuser(string rstrusername, string rstrUserDataFile)
+        public JEuser(string rstrusername, string rstrUserDataFile, string rstrKeyField)
         {
             XDocument xDoc = new XDocument();
             xDoc = XDocument.Load(rstrUserDataFile);
             if (xDoc != null)
             {
-                var xuser = xDoc.Root.Descendants("user").Where(x => x.Element("username").Value == rstrusername).SingleOrDefault();
+                var xuser = xDoc.Root.Descendants("user").Where(x => x.Element(rstrKeyField).Value == rstrusername).SingleOrDefault();
                 if (xuser != null)
                 {
                     string xuserid = xuser.Element("id").Value;
@@ -184,6 +185,7 @@ namespace JE_Documents.Data
         }
 
     }
+
     public class JEusers
     {
         public JEuser[] allusers { get; set; }
@@ -205,13 +207,14 @@ namespace JE_Documents.Data
         {
 
         }
-        public JECompany(string rstrcompany, string rstrCompanyDataFile)
+
+        public JECompany(string rstrcompany, string rstrCompanyDataFile, string keyField)
         {
             XDocument xDoc = new XDocument();
             xDoc = XDocument.Load(rstrCompanyDataFile);
             if (xDoc != null)
             {
-                var xcompany = xDoc.Root.Descendants("company").Where(x => x.Element("id").Value == rstrcompany).SingleOrDefault();
+                var xcompany = xDoc.Root.Descendants("company").Where(x => x.Element(keyField).Value == rstrcompany).SingleOrDefault();
                 string xid = xcompany.Element("id").Value;
                 string xcode = xcompany.Element("code").Value;
                 string xname = xcompany.Element("name").Value;
@@ -249,7 +252,58 @@ namespace JE_Documents.Data
             }
         }
 
+
     }
 
+    public class JELog
+    {
+        public int id { get; set; }
+        public string date { get; set; }
+        public string entry { get; set; }
+        public string username { get; set; }
+        public string severity { get; set; }
+
+        public JELog()
+        {
+
+        }
+
+        public JELog(string rstrJELogfile, string strUsername, string strEntry, string strDate, string strSeverity)
+        {
+            XDocument xDoc = new XDocument();
+            int childrenCount;
+            xDoc = XDocument.Load(rstrJELogfile);
+            if (xDoc != null)
+            {
+                childrenCount = xDoc.Root.Elements().Count();
+            }
+            else
+            {
+                childrenCount = 1;
+            }
+
+            var jeLog = new JELog();
+
+            jeLog.id = childrenCount + 1;
+            jeLog.date = strDate;
+            jeLog.username = strUsername;
+            jeLog.entry = strEntry;
+            jeLog.severity = strSeverity;
+
+            XElement logEntry = new XElement("logentry");
+
+            logEntry.Add(new XElement("id", jeLog.id));
+            logEntry.Add(new XElement("date", jeLog.date));
+            logEntry.Add(new XElement("entry", jeLog.entry));
+            logEntry.Add(new XElement("username", jeLog.username));
+            logEntry.Add(new XElement("severity", jeLog.severity));
+            xDoc.Element("logentries").Add(logEntry);
+            xDoc.Save(rstrJELogfile);
+        }
+        public void save()
+        {
+
+        }
+    }
 
 }

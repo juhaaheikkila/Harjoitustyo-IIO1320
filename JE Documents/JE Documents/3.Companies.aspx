@@ -4,9 +4,6 @@
 </asp:Content>
 <asp:Content ID="cntNavigation" ContentPlaceHolderID="navigations" runat="server">
     <ul class="nav">
-        <li>..</li>
-        <li>..</li>
-        <li>..</li>
         <li>
             <asp:Button
                 ID="btnGetCompanies"
@@ -27,7 +24,7 @@
 </asp:Content>
 
 <asp:Content ID="cntForm" ContentPlaceHolderID="dataform" runat="server">
-    <div id="NewCompany" runat="server" visible="false">
+    <div id="NewCompany" style="margin-left:15px;" class="" runat="server" visible="false">
         <div class="contact_form">
             <ul id="liCompanyData" runat="server">
                 <li>
@@ -36,7 +33,7 @@
                 </li>
                 <li>
                     <label for="txtCompanyID">Id:</label>
-                    <asp:TextBox ID="txtCompanyID" runat="server" required></asp:TextBox>
+                    <asp:TextBox ID="txtCompanyID" runat="server" ReadOnly="True"></asp:TextBox>
                     <span class="form_hint">Company ID</span>
                 </li>
                 <li>
@@ -118,11 +115,9 @@
 </asp:Content>
 
 <asp:Content ID="cntTable" ContentPlaceHolderID="datatable" runat="server">
+    <!-- Data list -->
     <div id="CompanyList" runat="server" visible="false">
-        <h2>All companies:
-            <asp:Label ID="lblAllCompaniesXML" runat="server" Text="..."></asp:Label></h2>
-        <br />
-
+        <h2>All companies:</h2>
         <table class="table table-striped">
             <thead>
                 <asp:Literal ID="ltTableHead" runat="server"></asp:Literal>
@@ -131,9 +126,8 @@
                 <asp:Literal ID="ltTableData" runat="server"></asp:Literal>
             </tbody>
         </table>
-
     </div>
 </asp:Content>
 
-<asp:Content ID="cntFooter" ContentPlaceHolderID="footer" runat="server">
+<asp:Content ID="Content5" ContentPlaceHolderID="footer" runat="server">
 </asp:Content>
