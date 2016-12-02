@@ -9,9 +9,22 @@
                 ID="btnGetJEDocs" runat="server"
                 OnClick="btnGetJEDocs_Click"
                 CssClass="btn btn-link"
-                Text="Display all JE documents" />
+                Text="by ID" />
         </li>
-
+        <li>
+            <asp:Button
+                ID="btnGetJEDocsByCompany" runat="server"
+                OnClick="btnGetJEDocsByCompany_Click"
+                CssClass="btn btn-link"
+                Text="by Company" />
+        </li>
+         <li>
+            <asp:Button
+                ID="btnGetJEDocsByStatus" runat="server"
+                OnClick="btnGetJEDocsByStatus_Click"
+                CssClass="btn btn-link"
+                Text="by Company" />
+        </li>
         <li>
             <asp:Button ID="btnAddNew" runat="server"
                 OnClick="btnAddNew_Click"

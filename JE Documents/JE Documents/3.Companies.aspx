@@ -10,7 +10,15 @@
                 runat="server"
                 CssClass="btn btn-link"
                 OnClick="btnGetCompanies_Click"
-                Text="Display all companies" />
+                Text="by id" />
+        </li>
+        <li>
+            <asp:Button
+                ID="btnGetCompaniesByName"
+                runat="server"
+                CssClass="btn btn-link"
+                OnClick="btnGetCompaniesByName_Click"
+                Text="by name" />
         </li>
         <li>
             <asp:Button

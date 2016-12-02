@@ -1,16 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logentries>
   <logentry>
-    <date></date>
-    <entry></entry>
-    <username></username>
-    <severity></severity>
-  </logentry>
-  <logentry>
     <id>2</id>
     <date>1.12.2016 18:48:58</date>
     <entry>Start application</entry>
-    <username>jheikkil</username>
+    <username>Kheikkil</username>
     <severity>0</severity>
   </logentry>
   <logentry>
@@ -73,6 +67,265 @@
     <id>11</id>
     <date>1.12.2016 18:51:46</date>
     <entry>userroles [admin], [approver], [author], [debug]</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>11</id>
+    <date>2.12.2016 7:37:20</date>
+    <entry>jheikkil</entry>
+    <username>Application start</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>12</id>
+    <date>2.12.2016 7:37:20</date>
+    <entry>jheikkil</entry>
+    <username>Username: jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>13</id>
+    <date>2.12.2016 7:37:24</date>
+    <entry>jheikkil</entry>
+    <username>Application start</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>14</id>
+    <date>2.12.2016 7:37:24</date>
+    <entry>jheikkil</entry>
+    <username>Username: jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>15</id>
+    <date>2.12.2016 7:39:10</date>
+    <entry>jheikkil</entry>
+    <username>Application start</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>16</id>
+    <date>2.12.2016 7:39:10</date>
+    <entry>jheikkil</entry>
+    <username>Username: jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>17</id>
+    <date>2.12.2016 7:39:13</date>
+    <entry>jheikkil</entry>
+    <username>Application start</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>18</id>
+    <date>2.12.2016 7:39:13</date>
+    <entry>jheikkil</entry>
+    <username>Username: jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>19</id>
+    <date>2.12.2016 7:39:51</date>
+    <entry>jheikkil</entry>
+    <username>Application start</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>20</id>
+    <date>2.12.2016 7:39:51</date>
+    <entry>jheikkil</entry>
+    <username>Username: jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>21</id>
+    <date>2.12.2016 7:40:42</date>
+    <entry>jheikkil</entry>
+    <username>Application start</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>22</id>
+    <date>2.12.2016 7:40:42</date>
+    <entry>jheikkil</entry>
+    <username>Username: jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>23</id>
+    <date>2.12.2016 7:54:36</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>24</id>
+    <date>2.12.2016 7:54:40</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>25</id>
+    <date>2.12.2016 7:54:45</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>26</id>
+    <date>2.12.2016 7:55:15</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>27</id>
+    <date>2.12.2016 7:55:17</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>28</id>
+    <date>2.12.2016 7:55:21</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>29</id>
+    <date>2.12.2016 7:55:40</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>30</id>
+    <date>2.12.2016 7:56:23</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>31</id>
+    <date>2.12.2016 7:56:29</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>32</id>
+    <date>2.12.2016 7:56:52</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>33</id>
+    <date>2.12.2016 8:05:19</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>34</id>
+    <date>2.12.2016 8:05:40</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>35</id>
+    <date>2.12.2016 8:13:51</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>36</id>
+    <date>2.12.2016 8:13:55</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>37</id>
+    <date>2.12.2016 8:14:41</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>38</id>
+    <date>2.12.2016 8:14:49</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>39</id>
+    <date>2.12.2016 8:16:21</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>40</id>
+    <date>2.12.2016 8:16:25</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>41</id>
+    <date>2.12.2016 8:17:58</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>42</id>
+    <date>2.12.2016 8:18:01</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>43</id>
+    <date>2.12.2016 8:24:51</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>44</id>
+    <date>2.12.2016 8:24:56</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>45</id>
+    <date>2.12.2016 8:28:29</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>46</id>
+    <date>2.12.2016 8:28:31</date>
+    <entry>Application start</entry>
+    <username>jheikkil</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>47</id>
+    <date>2.12.2016 8:28:46</date>
+    <entry>Application start</entry>
     <username>jheikkil</username>
     <severity>0</severity>
   </logentry>

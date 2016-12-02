@@ -14,6 +14,7 @@ namespace JE_Documents
     {
         //public static JE_Documents.Data.user gUser;
         JEuser muser = null;
+        JELogHelper log;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,8 +28,15 @@ namespace JE_Documents
                 lblUserDepartment.Text = muser.department;
                 lblUserRoles.Text = "[" + string.Join("], [", muser.roles) + "]";
                 SetButtons(muser);
+                log = new JELogHelper(Server.MapPath(logDatafile), Server.MapPath(userDatafile), username);
+
+                log.logEvent("Application start");
+
+
             }
         }
+
+
 
 
         protected void SetButtons(JEuser rUser)
@@ -37,6 +45,7 @@ namespace JE_Documents
             liSettings.Visible = muser.isUserRoleOn("admin");
             hlUsers.Visible = muser.isUserRoleOn("admin");
             hlCompanies.Visible = muser.isUserRoleOn("admin");
+            hlLogs.Visible = muser.isUserRoleOn("admin");
         }
 
     }

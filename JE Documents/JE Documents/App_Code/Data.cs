@@ -9,6 +9,7 @@ using System.Xml.Linq;
 
 namespace JE_Documents.Data
 {
+
     public class JEDoc
     {
         public string id { get; set; }
@@ -255,6 +256,29 @@ namespace JE_Documents.Data
 
     }
 
+    public class JELogHelper
+    {
+        private JEuser user;
+        private XDocument xdoc;
+        private string strJELogFile;
+
+        public JELogHelper(string rstrJELogFile, string rstrJEUsers, string rstrUsername)
+        {
+           
+            xdoc = new XDocument();
+            xdoc = XDocument.Load(rstrJELogFile);
+            user = new JEuser(rstrUsername, rstrJEUsers, "username");
+            this.strJELogFile = rstrJELogFile;
+
+        }
+
+        public void logEvent(string vstrLogEntry)
+        {
+            JELog logging = new JELog(xdoc, user.username, vstrLogEntry, "0", this.strJELogFile);
+        }
+
+    }
+
     public class JELog
     {
         public int id { get; set; }
@@ -262,6 +286,43 @@ namespace JE_Documents.Data
         public string entry { get; set; }
         public string username { get; set; }
         public string severity { get; set; }
+
+        public JELog(XDocument xdoc, string username, string logentry, string strSeverity, string rstrJELogfile)
+        {
+            int childrenCount = getCount(xdoc);
+            var jeLog = new JELog();
+            jeLog.id = childrenCount + 1;
+            jeLog.date = DateTime.Now.ToString();
+            jeLog.username = username;
+            jeLog.entry = logentry;
+            jeLog.severity = strSeverity;
+
+            XElement logEntry = new XElement("logentry");
+
+            logEntry.Add(new XElement("id", jeLog.id));
+            logEntry.Add(new XElement("date", jeLog.date));
+            logEntry.Add(new XElement("entry", jeLog.entry));
+            logEntry.Add(new XElement("username", jeLog.username));
+            logEntry.Add(new XElement("severity", jeLog.severity));
+            xdoc.Element("logentries").Add(logEntry);
+            xdoc.Save(rstrJELogfile);
+
+        }
+
+        private int getCount(XDocument xdoc)
+        {
+            int childrenCount;
+            
+            if (xdoc != null)
+            {
+                childrenCount = xdoc.Root.Elements().Count();
+            }
+            else
+            {
+                childrenCount = 0;
+            }
+            return childrenCount;
+        }
 
         public JELog()
         {
@@ -271,16 +332,9 @@ namespace JE_Documents.Data
         public JELog(string rstrJELogfile, string strUsername, string strEntry, string strDate, string strSeverity)
         {
             XDocument xDoc = new XDocument();
-            int childrenCount;
+            
             xDoc = XDocument.Load(rstrJELogfile);
-            if (xDoc != null)
-            {
-                childrenCount = xDoc.Root.Elements().Count();
-            }
-            else
-            {
-                childrenCount = 1;
-            }
+            int childrenCount = getCount(xDoc);
 
             var jeLog = new JELog();
 
@@ -300,10 +354,8 @@ namespace JE_Documents.Data
             xDoc.Element("logentries").Add(logEntry);
             xDoc.Save(rstrJELogfile);
         }
-        public void save()
-        {
 
-        }
     }
+
 
 }

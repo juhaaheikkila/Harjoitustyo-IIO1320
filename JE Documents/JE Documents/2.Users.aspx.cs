@@ -15,10 +15,11 @@ namespace JE_Documents
     public partial class _2_Users : System.Web.UI.Page
 
     {
+        JELogHelper log;
 
         Label mpMessage;
         Label mpPageTitle;
-        static string userDataFile;
+        static string userDatafile;
         static string strQueryKey = "UserName";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,15 +28,16 @@ namespace JE_Documents
             mpPageTitle.Text = "Users page";
             mpMessage = (Label)Page.Master.FindControl("lblMessage");
             mpMessage.Text = "...";
-            userDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
-
+            userDatafile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
+            string logDatafile = System.Configuration.ConfigurationManager.AppSettings["LogFile"];
+            //log = new JELogHelper(Server.MapPath(logDatafile), Server.MapPath(userDatafile), username);
             if (!IsPostBack)
             {
                 FillControls();
             }
 
             hideEditForm();
-            
+
 
             if (Request.QueryString[strQueryKey] != null)
             {
@@ -43,7 +45,7 @@ namespace JE_Documents
                 if (!"".Equals(strUsername))
                 {
                     mpPageTitle.Text = "Users page / user: " + strUsername;
-                    JEuser user = new JEuser(strUsername, userDataFile, "username");
+                    JEuser user = new JEuser(strUsername, userDatafile, "username");
                     getUserData(user);
                 }
             }
@@ -51,7 +53,7 @@ namespace JE_Documents
 
         protected void btnGetUsers_Click(object sender, EventArgs e)
         {
-            updateXML();
+            updateXML("id");
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
@@ -64,7 +66,7 @@ namespace JE_Documents
         {
             int intCounter;
             XDocument xDoc = new XDocument();
-            xDoc = XDocument.Load(userDataFile);
+            xDoc = XDocument.Load(userDatafile);
             if (xDoc != null)
             {
                 intCounter = xDoc.Root.Elements().Count() + 1;
@@ -88,7 +90,7 @@ namespace JE_Documents
         //SAVE
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(userDataFile);
+            XDocument xdoc = XDocument.Load(userDatafile);
 
             if (xdoc != null)
             {
@@ -120,8 +122,8 @@ namespace JE_Documents
 
             }
 
-            xdoc.Save(userDataFile);
-            updateXML();
+            xdoc.Save(userDatafile);
+            updateXML("id");
             hideEditForm();
 
             //updating page
@@ -131,7 +133,7 @@ namespace JE_Documents
         //DELETE
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(userDataFile);
+            XDocument xdoc = XDocument.Load(userDatafile);
             if (xdoc != null)
             {
                 //search for user
@@ -139,10 +141,10 @@ namespace JE_Documents
                 if (xuser != null)
                 {
                     xuser.Remove();
-                    xdoc.Save(userDataFile);
+                    xdoc.Save(userDatafile);
                 }
-                
-                updateXML();
+
+                updateXML("id");
                 hideEditForm();
             }
         }
@@ -160,9 +162,9 @@ namespace JE_Documents
         {
             if (rJEUser != null)
             {
-                
+
                 displayEditForm(rJEUser.id + ": " + rJEUser.username, true, true, true, true, true);
-                
+
                 txtUserID.Text = rJEUser.id;
                 txtUsername.Text = rJEUser.username;
                 txtFirstname.Text = rJEUser.firstname;
@@ -189,7 +191,7 @@ namespace JE_Documents
 
             NewUser.Visible = false;
             UserList.Visible = true;
-            updateXML();
+            updateXML("id");
 
         }
 
@@ -205,20 +207,30 @@ namespace JE_Documents
             btnDelete.Visible = blnShowDelete;
         }
 
-        protected void updateXML()
+        protected void updateXML(string vstrOrderKey)
         {
             //List all users
             try
             {
                 XDocument xDoc = new XDocument();
+                XElement newxDoc;
                 int userCount = 0;
 
-                xDoc = XDocument.Load(userDataFile);
-                var newxDoc = new XElement("User", xDoc.Root
+                xDoc = XDocument.Load(userDatafile);
+                if (vstrOrderKey.Equals("id"))
+                {
+                    newxDoc = new XElement("User", xDoc.Root
                     .Elements()
-                    .OrderBy(x => (int)x.Element("id"))
+                    .OrderBy(x => (int)x.Element(vstrOrderKey))
                     );
-
+                }
+                else
+                {
+                    newxDoc = new XElement("User", xDoc.Root
+                    .Elements()
+                    .OrderBy(x => (string)x.Element(vstrOrderKey))
+                    );
+                }
                 ltTableHead.Text = "<tr><th>Id</th><th>Username</th><th>Firstname</th><th>Lastname</th><th>Department</th><th>email</th><th>roles</th></tr>";
                 ltTableData.Text = "";
                 string strEditUrl = Request.Url.ToString();
@@ -237,13 +249,14 @@ namespace JE_Documents
                         ltTableData.Text += string.Format("<tr class='listRow'><td><a href='{7}?{8}={1}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xuserid, xusername, xfirstname, xlastname, xuserdepartment, xuseremail, xuserroles, strEditUrl, strQueryKey);
                         userCount += 1;
                     }
-                    int childrenCount = xDoc.Root.Elements().Count();
+                    //int childrenCount = xDoc.Root.Elements().Count();
+                    int childrenCount = newxDoc.Elements().Count();
                     mpMessage.Text = string.Format("User count {0} pcs", childrenCount);
                 }
             }
             catch (Exception ex)
             {
-                mpMessage.Text += "<br />" + ex.Message;
+                mpMessage.Text = "<br />" + ex.Message;
             }
         }
 
@@ -260,6 +273,11 @@ namespace JE_Documents
             }
 
             #endregion
+        }
+
+        protected void btnGetUserByName_Click(object sender, EventArgs e)
+        {
+            updateXML("username");
         }
     }
 }

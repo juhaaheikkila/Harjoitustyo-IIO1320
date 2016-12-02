@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="3.Companies.aspx" />
     <Content Include="2.Users.aspx" />
+    <Content Include="4.Logs.aspx" />
     <Content Include="9.JE.aspx" />
     <Content Include="App_Data\Companies.xml" />
     <Content Include="App_Data\JEDocs.xml" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="2.Users.aspx.designer.cs">
       <DependentUpon>2.Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="4.Logs.aspx.cs">
+      <DependentUpon>4.Logs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="4.Logs.aspx.designer.cs">
+      <DependentUpon>4.Logs.aspx</DependentUpon>
     </Compile>
     <Compile Include="9.JE.aspx.cs">
       <DependentUpon>9.JE.aspx</DependentUpon>

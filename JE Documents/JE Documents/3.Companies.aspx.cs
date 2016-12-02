@@ -56,7 +56,7 @@ namespace JE_Documents
         //LIST COMPANIES
         protected void btnGetCompanies_Click(object sender, EventArgs e)
         {
-            updateXML();
+            updateXML("id");
         }
 
         //NEW
@@ -167,7 +167,7 @@ namespace JE_Documents
                     xcompany.Remove();
                     xdoc.Save(companyDataFile);
                 }
-                updateXML();
+                updateXML("id");
                 hideEditForm();
 
             }
@@ -254,7 +254,7 @@ namespace JE_Documents
         {
             NewCompany.Visible = false;
             CompanyList.Visible = true;
-            updateXML();
+            updateXML("id");
         }
 
         protected void displayEditForm(string strTitle, bool blnShowSelectCompany, bool blnShowCompanyData, bool blnShowSave, bool blnShowCancel, bool blnShowDelete)
@@ -267,19 +267,32 @@ namespace JE_Documents
             btnDelete.Visible = blnShowDelete;
         }
 
-        protected void updateXML()
+        protected void updateXML(string vstrOrderKey)
         {
             //Listaa kaikki käyttäjät XML-tiedostosta
             try
             {
                 mpMessage = (Label)Page.Master.FindControl("lblMessage");
                 XDocument xDoc = new XDocument();
+                XElement newxDoc;
                 xDoc = XDocument.Load(companyDataFile);
                 if (xDoc != null)
                 {
-                    var newxDoc = new XElement("company", xDoc.Root
-                        .Elements()
-                        .OrderBy(x => (int)x.Element("id")));
+
+                    if (vstrOrderKey.Equals("id"))
+                    {
+                        newxDoc = new XElement("company", xDoc.Root
+                            .Elements()
+                            .OrderBy(x => (int)x.Element(vstrOrderKey))
+                            );
+                    }
+                    else
+                    {
+                        newxDoc = new XElement("company", xDoc.Root
+                            .Elements()
+                            .OrderBy(x => (string)x.Element(vstrOrderKey))
+                            );
+                    }
 
                     ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th></tr>";
                     ltTableData.Text = "";
@@ -305,7 +318,7 @@ namespace JE_Documents
             catch (Exception ex)
             {
                 mpMessage = (Label)Page.Master.FindControl("lblMessage");
-                mpMessage.Text += "<br />" + ex.Message;
+                mpMessage.Text = "<br />" + ex.Message;
             }
         }
 
@@ -331,5 +344,9 @@ namespace JE_Documents
 
         #endregion
 
+        protected void btnGetCompaniesByName_Click(object sender, EventArgs e)
+        {
+            updateXML("code");
+        }
     }
 }

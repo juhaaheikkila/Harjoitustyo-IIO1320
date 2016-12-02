@@ -12,9 +12,12 @@
     <author></author>
     <department></department>
     <headertext></headertext>
+    <homecurrency></homecurrency>
     <currency>EUR</currency>
     <currencyrate></currencyrate>
     <information></information>
+    <totaldebet></totaldebet>
+    <totalcredit></totalcredit>
     <jerows>
       <jerow>
         <id>1</id>

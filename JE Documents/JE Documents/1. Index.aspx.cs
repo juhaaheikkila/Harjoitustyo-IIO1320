@@ -20,8 +20,7 @@ namespace JE_Documents
                 mpPageTitle.Text = "Main page";
                 mpMessage.Text = "...";
 
-                JELog mLog = new JELog(Server.MapPath(JE_Documents.logDatafile), muser.username, "Start application", DateTime.Now.ToString(), "0");
-                mLog = new JELog(Server.MapPath(logDatafile), muser.username, "userroles " + lblUserRoles.Text, DateTime.Now.ToString(), "0");
+                
             }
         }
 

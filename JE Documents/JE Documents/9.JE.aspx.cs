@@ -37,7 +37,22 @@ namespace JE_Documents
                 userDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
                 jeDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["JEDataFile"]);
                 FillControls();
+                
             }
+
+            hideEditForm();
+
+            if (Request.QueryString[strQueryKey] != null)
+            {
+                string strID = Request.QueryString[strQueryKey];
+                if (!"".Equals(strID))
+                {
+                    mpPageTitle.Text = "JE page / JEdoc: " + strID;
+                    JEDoc jeDoc = new JEDoc(strID, jeDataFile, "id");
+                    getJEData(jeDoc);
+                }
+            }
+
 
         }
 
@@ -160,48 +175,66 @@ namespace JE_Documents
 
             JEDoc.Visible = false;
             JEList.Visible = true;
-            updateXML();
+            updateXML("id");
 
         }
 
-        protected void updateXML()
+        protected void updateXML(string vstrOrderKey)
         {
-            //Listaa kaikki käyttäjät XML-tiedostosta
             try
             {
+                JEList.Visible = true;
+
                 int docCount = 0;
 
                 XDocument xDoc = new XDocument();
+                XElement newxDoc;
                 xDoc = XDocument.Load(jeDataFile);
+                mpMessage = (Label)Page.Master.FindControl("lblMessage");
 
-                ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th></tr>";
+                ltTableHead.Text = "<tr><th>Id</th><th>Status</th><th>Company</th><th>Period</th><th>Document type</th><th>Document number</th><th>Author</th><th>Department</th></tr>";
                 ltTableData.Text = "";
                 string strEditUrl = Request.Url.ToString();
                 if (xDoc != null)
                 {
                     // xDoc.Descendants("Team").OrderByDescending(p => DateTime.Parse(p.Element("LastAccessed").Value));
+                    if (vstrOrderKey.Equals("id"))
+                    {
+                        newxDoc = new XElement("jedoc", xDoc.Root
+                        .Elements()
+                        .OrderBy(x => (int)x.Element(vstrOrderKey))
+                        );
+                    }
+                    else
+                    {
+                        newxDoc = new XElement("jedoc", xDoc.Root
+                        .Elements()
+                        .OrderBy(x => (string)x.Element(vstrOrderKey))
+                        );
+                    }
 
-
-                    foreach (XElement xcompany in xDoc.Root.Descendants("jedoc"))
+                    foreach (XElement xcompany in newxDoc.Descendants("jedoc"))
                     {
                         string xid = xcompany.Element("id").Value;
-                        string xstatus = xcompany.Element("code").Value;
-                        string xcompanyname = xcompany.Element("name").Value;
-                        string xcompanyaddress = xcompany.Element("address").Value;
-                        string xdepartments = string.Join("<br />", xcompany.Element("departments").Descendants());
-                        string xcompanyapprovers = string.Join("<br />", xcompany.Element("approvers").Descendants().Distinct());
-                        string xhomecurrency = xcompany.Element("homecurrency").Value;
+                        string xstatus = xcompany.Element("status").Value;
+                        string xcompanyname = xcompany.Element("companyname").Value;
+                        string xperiod = xcompany.Element("period").Value;
+                        string xdoctype = xcompany.Element("documenttype").Value;
+                        string xdocnro = xcompany.Element("documentnumber").Value;
+                        string xauthor = xcompany.Element("author").Value;
+                        string xdepartment = xcompany.Element("department").Value;
 
-                        //ltTableData.Text += string.Format("<tr class='w3-row listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl, strQueryKey);
+                        ltTableData.Text += string.Format("<tr class='listRow'><td><a href='{8}?{9}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td></tr>", 
+                            xid, xstatus, xcompanyname, xperiod, xdoctype, xdocnro, xauthor, xdepartment, strEditUrl, strQueryKey);
                         docCount += 1;
                     }
-                    //                    ltCompanies.Text += "</table>";
-                    lblAllJEDocuments.Text = string.Format("JE documents count {0} pcs", docCount);
+                    int childrenCount = newxDoc.Elements().Count();
+                    lblAllJEDocuments.Text = string.Format("JE documents count {0} pcs", childrenCount);
                 }
             }
             catch (Exception ex)
             {
-                mpMessage.Text += "<br />" + ex.Message;
+                mpMessage.Text = "<br />" + ex.Message;
             }
         }
 
@@ -217,12 +250,6 @@ namespace JE_Documents
 
         #endregion
 
-
-
-        protected void btnGetJEDocs_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void hlToggleProcessingHistory_Click(object sender, EventArgs e)
         {
@@ -263,6 +290,22 @@ namespace JE_Documents
             {
                 txtCurrencyRate.Text = "";
             }
+        }
+
+//Navigation, display JE doc lists
+        protected void btnGetJEDocs_Click(object sender, EventArgs e)
+        {
+            updateXML("id");
+        }
+
+        protected void btnGetJEDocsByCompany_Click(object sender, EventArgs e)
+        {
+            updateXML("companycode");
+        }
+
+        protected void btnGetJEDocsByStatus_Click(object sender, EventArgs e)
+        {
+            updateXML("status");
         }
     }
 

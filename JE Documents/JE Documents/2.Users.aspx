@@ -10,7 +10,14 @@
                 ID="btnGetUsers" runat="server"
                 OnClick="btnGetUsers_Click"
                 CssClass="btn btn-link"
-                Text="Display all users" />
+                Text="by id" />
+        </li>
+        <li>
+            <asp:Button
+                ID="btnGetUserByName" runat="server"
+                OnClick="btnGetUserByName_Click"
+                CssClass="btn btn-link"
+                Text="by name" />
         </li>
 
         <li>
