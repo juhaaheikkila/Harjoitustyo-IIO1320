@@ -9569,4 +9569,25 @@
     <username>jheikkila</username>
     <severity>0</severity>
   </logentry>
+  <logentry>
+    <id>1368</id>
+    <date>6.12.2016 9:23:13</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1369</id>
+    <date>6.12.2016 9:23:18</date>
+    <entry>Opening Users page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1370</id>
+    <date>6.12.2016 9:23:32</date>
+    <entry>Opening Users page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
 </logentries>
