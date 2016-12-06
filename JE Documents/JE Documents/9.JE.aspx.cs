@@ -259,7 +259,7 @@ namespace JE_Documents
                 }
                 while ((data = reader.GetCSVLine()) != null)
                 {
-                    
+
                     JEDocRow row = new JEDocRow();
                     row.id = string.Format("{0}", CommonCodes.gJEDoc.rows.Count + 1);//data[0];
                     row.company = data[1];
@@ -485,43 +485,7 @@ namespace JE_Documents
                 case CommonCodes.STATUS_TRANFERED:
                     btnSave.Visible = false;
                     break;
-
             }
-            /*
-            if (CommonCodes.STATUS_DRAFT.Equals(CommonCodes.gJEDoc.status))
-            {
-                //if ((CommonCodes.gUsername).Equals(txtAuthor.Text))
-                //{
-                    btnToBeApproved.Visible = true;
-                //}
-                FileUploadControls.Visible = true;
-                btnDelete.Visible = true;
-                
-            }
-
-            if (CommonCodes.STATUS_TO_BE_APPROVED.Equals(CommonCodes.gJEDoc.status))
-            {
-                if ((CommonCodes.gUser.isUserRoleOn("admin") | CommonCodes.gUser.isUserRoleOn("approver")) & (CommonCodes.gUsername).Equals(ddlApprover.Text))
-                {
-                    btnApprove.Visible = true;
-                    btnReject.Visible = true;
-                }
-            }
-
-            if (CommonCodes.STATUS_APPROVED.Equals(CommonCodes.gJEDoc.status))
-            {
-                if (CommonCodes.gUser.isUserRoleOn("admin") | CommonCodes.gUser.isUserRoleOn("approver"))
-                {
-                    btnTransfer.Visible = true;
-                }
-            }
-
-            if (CommonCodes.STATUS_TRANFERED.Equals(CommonCodes.gJEDoc.status))
-            {
-                btnSave.Visible = false;
-                //btnDelete.Visible = false;
-            }
-            */
         }
 
         protected void getJEData(JEDoc rJEDoc)
@@ -554,15 +518,14 @@ namespace JE_Documents
                     txtHomeCurrency.Text = company.homecurrency;
 
                     fillDropdownList(ddlApprover, company.approvers, true);
+                    ddlApprover.Text = rJEDoc.approver;
+
+
+                    if (ddlDepartment.Items.FindByValue(rJEDoc.department) != null)
+                    {
+                        ddlDepartment.Items.FindByValue(rJEDoc.department).Selected = true;
+                    }
                 }
-
-                //approvers
-
-                if (ddlDepartment.Items.FindByValue(rJEDoc.department) != null)
-                {
-                    ddlDepartment.Items.FindByValue(rJEDoc.department).Selected = true;
-                }
-
                 ddlDepartment.Text = rJEDoc.department;
                 txtHeadertext.Text = rJEDoc.headertext;
                 txtHomeCurrency.Text = rJEDoc.homecurrency;
@@ -610,7 +573,7 @@ namespace JE_Documents
                             status.id, status.status, status.username, status.date, status.message);
                     }
                 }
-               
+
                 displayEditForm(rJEDoc.id + ": " + rJEDoc.documenttype + "/" + rJEDoc.documentnumber, true, true, true, true, true);
 
             }
@@ -618,7 +581,7 @@ namespace JE_Documents
 
         protected void updatingRows(JEDoc rJEDoc)
         {
-            
+
             //updating rows
             ltDataRows.Text = "";
             double creditTotal = 0;

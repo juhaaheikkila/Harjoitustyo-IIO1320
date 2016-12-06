@@ -194,37 +194,6 @@
     </jerows>
   </jedoc>
   <jedoc>
-    <id>2</id>
-    <status>draft</status>
-    <period>01 - 1.1.-31.1.</period>
-    <documenttype>JNL</documenttype>
-    <documentnumber>000002</documentnumber>
-    <date>01.12.2016</date>
-    <companycode>SO003</companycode>
-    <companyname>Solteq Oyj, JKL</companyname>
-    <author>jheikkil</author>
-    <approver></approver>
-    <department>0100</department>
-    <headertext>reference text again</headertext>
-    <homecurrency>EUR</homecurrency>
-    <currency>EUR</currency>
-    <currencyrate>1</currencyrate>
-    <information>further information modified</information>
-    <debettotal>0</debettotal>
-    <credittotal>0</credittotal>
-    <dataok></dataok>
-    <jestatuses>
-      <jestatus>
-        <id>1</id>
-        <status>draft</status>
-        <username>jheikkil</username>
-        <date>20.11.2016</date>
-        <message>new document</message>
-      </jestatus>
-    </jestatuses>
-    <jerows />
-  </jedoc>
-  <jedoc>
     <id>4</id>
     <status>draft</status>
     <period>12 - 1.12.-31.12.</period>
@@ -529,6 +498,44 @@
     <jerows />
   </jedoc>
   <jedoc>
+    <id>15</id>
+    <status>deleted</status>
+    <period></period>
+    <documenttype></documenttype>
+    <documentnumber></documentnumber>
+    <date></date>
+    <companycode></companycode>
+    <companyname></companyname>
+    <author>jheikkila</author>
+    <approver></approver>
+    <department></department>
+    <headertext></headertext>
+    <homecurrency></homecurrency>
+    <currency></currency>
+    <currencyrate>0</currencyrate>
+    <information></information>
+    <debettotal>0</debettotal>
+    <credittotal>0</credittotal>
+    <dataok></dataok>
+    <jestatuses>
+      <jestatus>
+        <id>1</id>
+        <status>draft</status>
+        <username>jheikkila</username>
+        <date>6.12.2016 7:55:55</date>
+        <message>New JE document</message>
+      </jestatus>
+      <jestatus>
+        <id>11</id>
+        <status>deleted</status>
+        <username>jheikkila</username>
+        <date>6.12.2016 7:56:09</date>
+        <message>JE document deleted</message>
+      </jestatus>
+    </jestatuses>
+    <jerows />
+  </jedoc>
+  <jedoc>
     <id>3</id>
     <status>to be approved</status>
     <period>01 - 1.1.-31.1.</period>
@@ -538,7 +545,7 @@
     <companycode>SO001</companycode>
     <companyname>Solteq Oyj, HKI</companyname>
     <author>jheikkil</author>
-    <approver></approver>
+    <approver>HKIApprover</approver>
     <department>2100</department>
     <headertext></headertext>
     <homecurrency>EUR</homecurrency>
@@ -972,22 +979,22 @@
     </jerows>
   </jedoc>
   <jedoc>
-    <id>15</id>
-    <status>deleted</status>
-    <period></period>
-    <documenttype></documenttype>
-    <documentnumber></documentnumber>
-    <date></date>
-    <companycode></companycode>
-    <companyname></companyname>
-    <author>jheikkila</author>
-    <approver></approver>
-    <department></department>
-    <headertext></headertext>
-    <homecurrency></homecurrency>
-    <currency></currency>
-    <currencyrate>0</currencyrate>
-    <information></information>
+    <id>2</id>
+    <status>draft</status>
+    <period>01 - 1.1.-31.1.</period>
+    <documenttype>JNL</documenttype>
+    <documentnumber>000002</documentnumber>
+    <date>01.12.2016</date>
+    <companycode>SO003</companycode>
+    <companyname>Solteq Oyj, JKL</companyname>
+    <author>jheikkil</author>
+    <approver>jheikkil</approver>
+    <department>0100</department>
+    <headertext>reference text again</headertext>
+    <homecurrency>EUR</homecurrency>
+    <currency>EUR</currency>
+    <currencyrate>1</currencyrate>
+    <information>further information modified</information>
     <debettotal>0</debettotal>
     <credittotal>0</credittotal>
     <dataok></dataok>
@@ -995,16 +1002,9 @@
       <jestatus>
         <id>1</id>
         <status>draft</status>
-        <username>jheikkila</username>
-        <date>6.12.2016 7:55:55</date>
-        <message>New JE document</message>
-      </jestatus>
-      <jestatus>
-        <id>11</id>
-        <status>deleted</status>
-        <username>jheikkila</username>
-        <date>6.12.2016 7:56:09</date>
-        <message>JE document deleted</message>
+        <username>jheikkil</username>
+        <date>20.11.2016</date>
+        <message>new document</message>
       </jestatus>
     </jestatuses>
     <jerows />
