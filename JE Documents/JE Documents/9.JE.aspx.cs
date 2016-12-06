@@ -17,6 +17,7 @@ namespace JE_Documents
     {
 
         Label mpPageTitle;
+
         Label mpMessage;
         Label mpUsername;
         static List<string> selectedApprovers;
