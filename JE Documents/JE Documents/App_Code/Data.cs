@@ -491,6 +491,11 @@ namespace JE_Documents.Data
             JELog logging = new JELog(xdoc, user.username, vstrLogEntry, SEVERITY_ERROR.ToString(), this.strJELogFile);
         }
 
+        public void logError(string vstrLogEntry, Exception ex)
+        {
+            JELog logging = new JELog(xdoc, user.username, vstrLogEntry + ", " + ex.Message + ": " + ex.StackTrace, SEVERITY_ERROR.ToString(), this.strJELogFile);
+        }
+
     }
 
     public class JELog

@@ -1270,4 +1270,42 @@
       </jerow>
     </jerows>
   </jedoc>
+  <jedoc>
+    <id>16</id>
+    <status>deleted</status>
+    <period></period>
+    <documenttype></documenttype>
+    <documentnumber></documentnumber>
+    <date></date>
+    <companycode></companycode>
+    <companyname></companyname>
+    <author>jheikkila</author>
+    <approver></approver>
+    <department></department>
+    <headertext></headertext>
+    <homecurrency></homecurrency>
+    <currency></currency>
+    <currencyrate></currencyrate>
+    <information></information>
+    <debettotal>0</debettotal>
+    <credittotal>0</credittotal>
+    <dataok></dataok>
+    <jestatuses>
+      <jestatus>
+        <id>1</id>
+        <status>draft</status>
+        <username>jheikkila</username>
+        <date>6.12.2016 13:56:44</date>
+        <message>New JE document</message>
+      </jestatus>
+      <jestatus>
+        <id>11</id>
+        <status>deleted</status>
+        <username>jheikkila</username>
+        <date>6.12.2016 13:56:53</date>
+        <message>JE document deleted</message>
+      </jestatus>
+    </jestatuses>
+    <jerows />
+  </jedoc>
 </jedocs>

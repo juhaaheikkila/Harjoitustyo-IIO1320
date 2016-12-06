@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using System.Xml.Linq;
 using JE_Documents.Data;
-using System.Data.OleDb;
 using System.IO;
 
 namespace JE_Documents
@@ -21,8 +18,8 @@ namespace JE_Documents
         Label mpMessage;
         Label mpUsername;
 
-        static List<string> selectedApprovers;
-        static List<string> selectedDepartments;
+        //static List<string> selectedApprovers;
+        //static List<string> selectedDepartments;
         static string strPagetitle = "JE page";
         static string strQueryKey = "jeid";
         static string strRedirectTo = "9.JE.aspx";
@@ -63,52 +60,63 @@ namespace JE_Documents
         //NEW
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
-            CommonCodes.gJEDoc = new JEDoc();
-            int intCounter = CommonCodes.getCount(CommonCodes.gJEDocDatafile);
-
-            CommonCodes.gJEDoc.id = Convert.ToString(intCounter);
-
-            CommonCodes.gJEDoc.author = CommonCodes.gUsername;
-
-            addNewStatus(CommonCodes.STATUS_DRAFT, "New JE document");
-
-            //populating fields
-            txtID.Text = Convert.ToString(intCounter);
-            ddlPeriod.Text = string.Empty;
-            ddlType.Text = string.Empty;
-            txtDocumentNumber.Text = string.Empty;
-            txtDate.Text = string.Empty;
-            txtAuthor.Text = CommonCodes.gUsername;
-            ddlApprover.Text = string.Empty;
-            ddlApprover.Items.Clear();
-            txtCompanyCode.Text = string.Empty;
-            txtCompanyName.Text = string.Empty;
-            ddlCompany.Text = string.Empty;
-            ddlDepartment.Text = string.Empty;
-            txtHomeCurrency.Text = string.Empty;
-
-            ddlDepartment.Text = string.Empty;
-            ddlDepartment.Items.Clear();
-            txtHeadertext.Text = string.Empty;
-            txtHomeCurrency.Text = string.Empty;
-            ddlCurrency.Text = string.Empty;
-            txtCurrencyRate.Text = string.Empty;
-            txtInformation.Text = string.Empty;
-            ltProcessingHistoryAll.Text = "";
-            lblDebetTotal.Text = string.Empty;
-            lblCreditTotal.Text = string.Empty;
-            lblDifference.Text = string.Empty;
-            //display processing history
-            if (CommonCodes.gJEDoc.processinghistory != null)
+            try
             {
-                foreach (JEDocStatus status in CommonCodes.gJEDoc.processinghistory)
-                {
-                    ltProcessingHistoryAll.Text += string.Format("<tr class='listRow'><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>",
-                        status.id, status.status, status.username, status.date, status.message);
-                }
-            }
+                CommonCodes.gJEDoc = new JEDoc();
+                int intCounter = CommonCodes.getCount(CommonCodes.gJEDocDatafile);
 
-            displayEditForm("New JE document", false, true, true, true, false);
+                CommonCodes.gJEDoc.id = Convert.ToString(intCounter);
+
+                CommonCodes.gJEDoc.author = CommonCodes.gUsername;
+
+                addNewStatus(CommonCodes.STATUS_DRAFT, "New JE document");
+
+                //populating fields
+                txtID.Text = Convert.ToString(intCounter);
+                ddlPeriod.Text = string.Empty;
+                ddlType.Text = string.Empty;
+                txtDocumentNumber.Text = string.Empty;
+                txtDate.Text = string.Empty;
+                txtAuthor.Text = CommonCodes.gUsername;
+                ddlApprover.Text = string.Empty;
+                ddlApprover.Items.Clear();
+                txtCompanyCode.Text = string.Empty;
+                txtCompanyName.Text = string.Empty;
+                ddlCompany.Text = string.Empty;
+                ddlDepartment.Text = string.Empty;
+                txtHomeCurrency.Text = string.Empty;
+
+                ddlDepartment.Text = string.Empty;
+                ddlDepartment.Items.Clear();
+                txtHeadertext.Text = string.Empty;
+                txtHomeCurrency.Text = string.Empty;
+                ddlCurrency.Text = string.Empty;
+                txtCurrencyRate.Text = string.Empty;
+                txtInformation.Text = string.Empty;
+                ltProcessingHistoryAll.Text = "";
+                lblDebetTotal.Text = string.Empty;
+                lblCreditTotal.Text = string.Empty;
+                lblDifference.Text = string.Empty;
+                //display processing history
+                if (CommonCodes.gJEDoc.processinghistory != null)
+                {
+                    foreach (JEDocStatus status in CommonCodes.gJEDoc.processinghistory)
+                    {
+                        ltProcessingHistoryAll.Text += string.Format("<tr class='listRow'><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>",
+                            status.id, status.status, status.username, status.date, status.message);
+                    }
+                }
+
+                displayEditForm("New JE document", false, true, true, true, false);
+            }
+            catch (Exception ex)
+            {
+                CommonCodes.gLog.logError(strPagetitle + ", creating new JE document: ", ex);
+
+                mpMessage.Text = "<br />" + ex.Message;
+
+
+            }
         }
 
         //CANCEL
@@ -120,16 +128,27 @@ namespace JE_Documents
         //DELETE
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            string strDocStatus = CommonCodes.STATUS_DELETED;
+            try
+            {
+                string strDocStatus = CommonCodes.STATUS_DELETED;
 
-            CommonCodes.gJEDoc.status = strDocStatus;
-            addNewStatus(strDocStatus, "JE document deleted");
+                CommonCodes.gJEDoc.status = strDocStatus;
+                addNewStatus(strDocStatus, "JE document deleted");
 
-            saveJEDoc();
+                saveJEDoc();
 
-            updateXML("id");
+                updateXML("id");
 
-            Response.Redirect(strRedirectTo);
+                Response.Redirect(strRedirectTo);
+            }
+            catch (Exception ex)
+            {
+                CommonCodes.gLog.logError(strPagetitle + ", deleting JE document: ", ex);
+
+                mpMessage.Text = "<br />" + ex.Message;
+
+
+            }
 
         }
 
@@ -300,31 +319,13 @@ namespace JE_Documents
             }
             catch (Exception ex)
             {
-                CommonCodes.gLog.logError(strPagetitle + ", importing rows: " + ex.Message + " " + ex.InnerException);
+                CommonCodes.gLog.logError(strPagetitle + ", importing rows: ", ex);
 
                 mpMessage.Text = "<br />" + ex.Message;
 
 
             }
         }
-
-        protected string valid(OleDbDataReader myreader, int stval)  //this method checks for null values in the .CSV file, if there are null replace them with 0
-
-        {
-            object val = myreader[stval];
-            if (val != DBNull.Value)
-            {
-
-                return val.ToString();
-            }
-            else
-            {
-                return Convert.ToString(0);
-            }
-
-
-        }
-
 
         #region METHODS
 
@@ -458,7 +459,7 @@ namespace JE_Documents
             }
             catch (Exception ex)
             {
-                CommonCodes.gLog.logError(strPagetitle + ": " + ex.Message + " " + ex.InnerException);
+                CommonCodes.gLog.logError(strPagetitle + ": ", ex);
 
                 mpMessage.Text = "<br />" + ex.Message;
             }

@@ -9982,4 +9982,45 @@
     <username>jheikkila</username>
     <severity>0</severity>
   </logentry>
+  <logentry>
+    <id>1427</id>
+    <date>6.12.2016 13:56:39</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1428</id>
+    <date>6.12.2016 13:56:41</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1429</id>
+    <date>6.12.2016 13:56:53</date>
+    <entry>JE page, deleting JE document: Thread was being aborted.:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at System.Web.HttpResponse.Redirect(String url)
+   at JE_Documents._9_JE.btnDelete_Click(Object sender, EventArgs e) in C:\Users\jheikkil\Documents\L0011\Harjoitustyo-IIO1320\JE Documents\JE Documents\9.JE.aspx.cs:line 145</entry>
+    <username>jheikkila</username>
+    <severity>9</severity>
+  </logentry>
+  <logentry>
+    <id>1430</id>
+    <date>6.12.2016 13:56:53</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1431</id>
+    <date>6.12.2016 13:56:57</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
 </logentries>
