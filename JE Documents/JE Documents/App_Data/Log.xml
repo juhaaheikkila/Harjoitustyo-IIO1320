@@ -9975,4 +9975,11 @@
     <username>jheikkila</username>
     <severity>0</severity>
   </logentry>
+  <logentry>
+    <id>1426</id>
+    <date>6.12.2016 12:33:49</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
 </logentries>
