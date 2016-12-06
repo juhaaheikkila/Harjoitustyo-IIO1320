@@ -9499,4 +9499,74 @@
     <username>jheikkila</username>
     <severity>0</severity>
   </logentry>
+  <logentry>
+    <id>1358</id>
+    <date>6.12.2016 8:50:57</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1359</id>
+    <date>6.12.2016 8:57:53</date>
+    <entry>Opening Users page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1360</id>
+    <date>6.12.2016 8:57:55</date>
+    <entry>Opening Users page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1361</id>
+    <date>6.12.2016 9:00:01</date>
+    <entry>Opening VAT Code page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1362</id>
+    <date>6.12.2016 9:00:19</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1363</id>
+    <date>6.12.2016 9:02:14</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1364</id>
+    <date>6.12.2016 9:13:30</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1365</id>
+    <date>6.12.2016 9:14:39</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1366</id>
+    <date>6.12.2016 9:18:29</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1367</id>
+    <date>6.12.2016 9:18:35</date>
+    <entry>Opening Companies page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
 </logentries>
