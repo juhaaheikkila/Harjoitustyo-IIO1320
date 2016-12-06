@@ -504,7 +504,6 @@ namespace JE_Documents
                 txtAuthor.Text = rJEDoc.author;
                 txtCompanyCode.Text = rJEDoc.companycode;
                 txtCompanyName.Text = rJEDoc.companyname;
-
                 if (ddlCompany.Items.FindByValue(rJEDoc.companycode) != null)
                 {
                     ddlCompany.Items.FindByValue(rJEDoc.companycode).Selected = true;
