@@ -9828,4 +9828,151 @@
     <username>jheikkila</username>
     <severity>0</severity>
   </logentry>
+  <logentry>
+    <id>1405</id>
+    <date>6.12.2016 12:12:36</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1406</id>
+    <date>6.12.2016 12:12:46</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1407</id>
+    <date>6.12.2016 12:12:48</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1408</id>
+    <date>6.12.2016 12:12:48</date>
+    <entry>Opening jedoc 2</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1409</id>
+    <date>6.12.2016 12:16:35</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1410</id>
+    <date>6.12.2016 12:16:38</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1411</id>
+    <date>6.12.2016 12:16:39</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1412</id>
+    <date>6.12.2016 12:16:39</date>
+    <entry>Opening jedoc 2</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1413</id>
+    <date>6.12.2016 12:16:55</date>
+    <entry>JE page, importing rows: Object reference not set to an instance of an object. </entry>
+    <username>jheikkila</username>
+    <severity>9</severity>
+  </logentry>
+  <logentry>
+    <id>1414</id>
+    <date>6.12.2016 12:17:50</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1415</id>
+    <date>6.12.2016 12:18:04</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1416</id>
+    <date>6.12.2016 12:18:06</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1417</id>
+    <date>6.12.2016 12:18:06</date>
+    <entry>Opening jedoc 2</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1418</id>
+    <date>6.12.2016 12:20:06</date>
+    <entry>JE page, importing rows: Object reference not set to an instance of an object. </entry>
+    <username>jheikkila</username>
+    <severity>9</severity>
+  </logentry>
+  <logentry>
+    <id>1419</id>
+    <date>6.12.2016 12:20:27</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1420</id>
+    <date>6.12.2016 12:20:31</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1421</id>
+    <date>6.12.2016 12:20:33</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1422</id>
+    <date>6.12.2016 12:20:33</date>
+    <entry>Opening jedoc 2</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1423</id>
+    <date>6.12.2016 12:23:40</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1424</id>
+    <date>6.12.2016 12:23:40</date>
+    <entry>Opening jedoc 2</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1425</id>
+    <date>6.12.2016 12:24:08</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
 </logentries>

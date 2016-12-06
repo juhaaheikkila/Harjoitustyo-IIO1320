@@ -232,60 +232,79 @@ namespace JE_Documents
         //IMPORT DATA
         protected void btnImportCSV_Click(object sender, EventArgs e)
         {
-            if (FileUpload1.HasFile)   //Upload file here
+            try
             {
-                FileInfo fileInfo = new FileInfo(FileUpload1.PostedFile.FileName);
-
-                string fileExt = System.IO.Path.GetExtension(FileUpload1.FileName);  //Get extension
-
-                if (fileExt == ".csv")   //check to see if its a .csv file
+                mpMessage.Text = "";
+                if (FileUpload1.HasFile)   //Upload file here
                 {
-                    //Saving file
-                    FileUpload1.SaveAs(Server.MapPath("UploadedCSVFiles//" + FileUpload1.FileName));        //save file to the specified folder
+                    FileInfo fileInfo = new FileInfo(FileUpload1.PostedFile.FileName);
 
-                }
-                else
-                {
-                    //no csv file selected
-                    return;
-                }
-                //create object for CSVReader and pass the stream
-                CSVReader reader = new CSVReader(FileUpload1.PostedFile.InputStream);
-                string[] headers = reader.GetCSVLine();
+                    string fileExt = System.IO.Path.GetExtension(FileUpload1.FileName);  //Get extension
 
-                string[] data;
-                int intRowCount = 0;
-                if (rbReplace.Checked)
-                {
-                    CommonCodes.gJEDoc.rows.Clear();
-                }
-                while ((data = reader.GetCSVLine()) != null)
-                {
-
-                    JEDocRow row = new JEDocRow();
-                    row.id = string.Format("{0}", CommonCodes.gJEDoc.rows.Count + 1);//data[0];
-                    row.company = data[1];
-                    row.account = data[2];
-                    row.debetcredit = data[3];
-                    row.project = data[4];
-                    row.dim1 = data[5];
-                    row.element = data[6];
-                    //total
-                    string strTotal = data[7];
-                    row.total = Convert.ToDouble(strTotal.Replace(".", CSVReader.CSVDesimalToBe));
-                    row.country = data[8];
-                    row.vatcode = data[9];
-                    row.reference = data[10];
-
-                    if (CommonCodes.gJEDoc.rows == null)
+                    if (fileExt == ".csv")   //check to see if its a .csv file
                     {
-                        CommonCodes.gJEDoc.rows = new List<JEDocRow>();
+                        //Saving file
+                        FileUpload1.SaveAs(Server.MapPath("UploadedCSVFiles//" + FileUpload1.FileName));        //save file to the specified folder
+
                     }
-                    CommonCodes.gJEDoc.rows.Add(row);
-                    intRowCount += 1;
+                    else
+                    {
+                        //no csv file selected
+                        return;
+                    }
+                    //create object for CSVReader and pass the stream
+                    CSVReader reader = new CSVReader(FileUpload1.PostedFile.InputStream);
+                    string[] headers = reader.GetCSVLine();
+
+                    string[] data;
+                    int intRowCount = 0;
+                    if (rbReplace.Checked & CommonCodes.gJEDoc.rows != null)
+                    {
+                        CommonCodes.gJEDoc.rows.Clear();
+                    }
+                    while ((data = reader.GetCSVLine()) != null)
+                    {
+
+                        JEDocRow row = new JEDocRow();
+                        if (CommonCodes.gJEDoc.rows != null)
+                        {
+                            row.id = string.Format("{0}", CommonCodes.gJEDoc.rows.Count + 1);//data[0];
+                        }
+                        else
+                        {
+                            row.id = "1";
+                        }
+                        row.company = data[1];
+                        row.account = data[2];
+                        row.debetcredit = data[3];
+                        row.project = data[4];
+                        row.dim1 = data[5];
+                        row.element = data[6];
+                        //total
+                        string strTotal = data[7];
+                        row.total = Convert.ToDouble(strTotal.Replace(".", CSVReader.CSVDesimalToBe));
+                        row.country = data[8];
+                        row.vatcode = data[9];
+                        row.reference = data[10];
+
+                        if (CommonCodes.gJEDoc.rows == null)
+                        {
+                            CommonCodes.gJEDoc.rows = new List<JEDocRow>();
+                        }
+                        CommonCodes.gJEDoc.rows.Add(row);
+                        intRowCount += 1;
+                    }
+                    mpMessage.Text = string.Format("Imported from {0} {1} rows", FileUpload1.FileName, intRowCount);
+                    updatingRows(CommonCodes.gJEDoc);
                 }
-                mpMessage.Text = string.Format("Imported from {0} {1} rows", FileUpload1.FileName, intRowCount);
-                updatingRows(CommonCodes.gJEDoc);
+            }
+            catch (Exception ex)
+            {
+                CommonCodes.gLog.logError(strPagetitle + ", importing rows: " + ex.Message + " " + ex.InnerException);
+
+                mpMessage.Text = "<br />" + ex.Message;
+
+
             }
         }
 
