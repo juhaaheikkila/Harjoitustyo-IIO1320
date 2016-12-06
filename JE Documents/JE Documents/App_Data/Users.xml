@@ -2,6 +2,7 @@
 <users>
   <user>
     <id>3</id>
+    <status>draft</status>
     <username>JKLApprover</username>
     <firstname>Hyväksyjä</firstname>
     <lastname>Jyväskylä</lastname>
@@ -10,9 +11,11 @@
     <roles>
       <role>approver</role>
     </roles>
+    <dataok></dataok>
   </user>
   <user>
     <id>2</id>
+    <status>draft</status>
     <username>TREApprover</username>
     <firstname>Hyväksyjä</firstname>
     <lastname>Tampere</lastname>
@@ -21,9 +24,11 @@
     <roles>
       <role>approver</role>
     </roles>
+    <dataok></dataok>
   </user>
   <user>
     <id>1</id>
+    <status>draft</status>
     <username>jheikkil</username>
     <firstname>Juha</firstname>
     <lastname>Heikkilä</lastname>
@@ -35,9 +40,11 @@
       <role>author</role>
       <role>debug</role>
     </roles>
+    <dataok></dataok>
   </user>
   <user>
     <id>4</id>
+    <status>draft</status>
     <username>HKIApprover</username>
     <firstname>Hyväksyjä</firstname>
     <lastname>Helsinki</lastname>
@@ -45,6 +52,77 @@
     <email>hyvaksyja.helsinki@je.com</email>
     <roles>
       <role>approver</role>
+    </roles>
+    <dataok></dataok>
+  </user>
+  <user>
+    <id>5</id>
+    <status>deleted</status>
+    <username>hjk</username>
+    <firstname></firstname>
+    <lastname></lastname>
+    <department></department>
+    <email></email>
+    <dataok>firstname missing&lt;br/&gt;lastname missing&lt;br/&gt;deparment missing&lt;br/&gt;email missing&lt;br/&gt;role missing</dataok>
+    <roles />
+  </user>
+  <user>
+    <id>6</id>
+    <status>deleted</status>
+    <username>uu</username>
+    <firstname></firstname>
+    <lastname></lastname>
+    <department></department>
+    <email></email>
+    <dataok>firstname missing&lt;br/&gt;lastname missing&lt;br/&gt;deparment missing&lt;br/&gt;email missing&lt;br/&gt;role missing</dataok>
+    <roles />
+  </user>
+  <user>
+    <id>7</id>
+    <status>deleted</status>
+    <username>hj</username>
+    <firstname></firstname>
+    <lastname></lastname>
+    <department></department>
+    <email></email>
+    <dataok>firstname missing&lt;br/&gt;lastname missing&lt;br/&gt;deparment missing&lt;br/&gt;email missing&lt;br/&gt;role missing</dataok>
+    <roles />
+  </user>
+  <user>
+    <id>8</id>
+    <status>deleted</status>
+    <username>useri</username>
+    <firstname></firstname>
+    <lastname></lastname>
+    <department></department>
+    <email></email>
+    <dataok>firstname missing&lt;br/&gt;lastname missing&lt;br/&gt;deparment missing&lt;br/&gt;email missing&lt;br/&gt;role missing</dataok>
+    <roles />
+  </user>
+  <user>
+    <id>9</id>
+    <status>deleted</status>
+    <username>must</username>
+    <firstname></firstname>
+    <lastname></lastname>
+    <department></department>
+    <email></email>
+    <dataok>firstname missing&lt;br/&gt;lastname missing&lt;br/&gt;deparment missing&lt;br/&gt;email missing&lt;br/&gt;role missing</dataok>
+    <roles />
+  </user>
+  <user>
+    <id>10</id>
+    <status>draft</status>
+    <username>jheikkila</username>
+    <firstname>Juha</firstname>
+    <lastname>Heikkilä</lastname>
+    <department>Notes-tiimi</department>
+    <email>juha.heikkila@solteq.com</email>
+    <dataok></dataok>
+    <roles>
+      <role>admin</role>
+      <role>approver</role>
+      <role>author</role>
     </roles>
   </user>
 </users>

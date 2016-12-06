@@ -15,23 +15,20 @@ namespace JE_Documents
     {
         Label mpPageTitle;
         Label mpMessage;
-        static string companyDataFile;
-        static string userDataFile;
         static List<string> selectedApprovers;
         static List<string> selectedDepartments;
         static string strQueryKey = "CompanyID";
+        static string strPagetitle = "Companies page";
+        static string strRedirectTo = "3.Companies.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 mpPageTitle = (Label)Page.Master.FindControl("lblPageTitle");
-                mpPageTitle.Text = "Companies page";
+                mpPageTitle.Text = strPagetitle;
                 mpMessage = (Label)Page.Master.FindControl("lblMessage");
                 mpMessage.Text = "...";
-
-                companyDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["CompanyDataFile"]);
-                userDataFile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
 
                 FillControls();
                 hideEditForm();
@@ -41,11 +38,13 @@ namespace JE_Documents
                     string strCompanyCode = Request.QueryString[strQueryKey];
                     if (!"".Equals(strCompanyCode))
                     {
-                        mpPageTitle.Text = "Companies page / company: " + strCompanyCode;
-                        JECompany company = new JECompany(strCompanyCode, companyDataFile, "id");
+                        JECompany company = new JECompany(strCompanyCode, CommonCodes.gCompanyDatafile, "id");
+                        mpPageTitle.Text = strPagetitle + " / company: " + strCompanyCode + " : " + company.name;
                         getCompanyData(company);
                     }
                 }
+
+                CommonCodes.gLog.logEvent("Opening " + strPagetitle);
             }
 
 
@@ -63,18 +62,7 @@ namespace JE_Documents
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
             int intCounter;
-            XmlDocument doc = new XmlDocument();
-            doc.Load(companyDataFile);
-            if (doc != null)
-            {
-                XmlElement root = doc.DocumentElement;
-                XmlNodeList elemList = root.GetElementsByTagName("company");
-                intCounter = elemList.Count + 1;
-            }
-            else
-            {
-                intCounter = 0;
-            }
+            intCounter = CommonCodes.getCount(CommonCodes.gCompanyDatafile);
             txtCompanyID.Text = Convert.ToString(intCounter);
             selectedApprovers = new List<string>();
             selectedDepartments = new List<string>();
@@ -83,7 +71,8 @@ namespace JE_Documents
             txtCompanyCode.Text = string.Empty;
             txtCompanyName.Text = string.Empty;
             txtAddress.Text = string.Empty;
-            txtHomeCurrency.Text = string.Empty;
+            //txtHomeCurrency.Text = string.Empty;
+            ddlCurrency.Text = string.Empty;
             //chkApprovers.ClearSelection();
             chkApprovers.Items.Clear();
             //chkDepartments.ClearSelection();
@@ -94,7 +83,7 @@ namespace JE_Documents
         //SAVE
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(companyDataFile);
+            XDocument xdoc = XDocument.Load(CommonCodes.gCompanyDatafile);
 
             if (xdoc != null)
             {
@@ -112,11 +101,12 @@ namespace JE_Documents
                 XElement departments = new XElement("departments");
 
                 company.Add(new XElement("id", txtCompanyID.Text));
+                company.Add(new XElement("status", txtStatus.Text));
                 company.Add(new XElement("code", txtCompanyCode.Text));
                 company.Add(new XElement("name", txtCompanyName.Text));
                 company.Add(new XElement("address", txtAddress.Text));
-                company.Add(new XElement("homecurrency", txtHomeCurrency.Text));
-
+                company.Add(new XElement("homecurrency", ddlCurrency.Text));
+                company.Add(new XElement("dataok", isDataOk()));
                 //approvers
                 foreach (ListItem person in chkApprovers.Items)
                 {
@@ -146,31 +136,19 @@ namespace JE_Documents
                 xdoc.Element("companies").Add(company);
 
             }
-            xdoc.Save(companyDataFile);
-
+            xdoc.Save(CommonCodes.gCompanyDatafile);
+            updateXML("id");
             hideEditForm();
 
-            //updating page
-            //Response.Redirect(Request.RawUrl);
+            Response.Redirect(strRedirectTo);
         }
 
         //DELETE
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(companyDataFile);
-            if (xdoc != null)
-            {
-                //search for user
-                var xcompany = xdoc.Root.Descendants("company").Where(x => x.Element("id").Value == txtCompanyID.Text).SingleOrDefault();
-                if (xcompany != null)
-                {
-                    xcompany.Remove();
-                    xdoc.Save(companyDataFile);
-                }
-                updateXML("id");
-                hideEditForm();
-
-            }
+            txtStatus.Text = CommonCodes.STATUS_DELETED;
+            btnSave_Click(sender, e);
+            
         }
 
         //CANCED
@@ -201,11 +179,26 @@ namespace JE_Documents
                 ListItem liDepartment = new ListItem(txtDepartment.Text, txtDepartment.Text, true);
                 liDepartment.Selected = true;
                 chkDepartments.Items.Add(liDepartment);
-                txtDepartment.Text = "";
+                //txtDepartment.Text = "";
+                ddlCurrency.Text = "";
             }
         }
 
         #region METHODS
+
+        protected string isDataOk()
+        {
+            List<string> strDataOk = new List<string>();
+
+            if ("".Equals(txtCompanyCode.Text)) strDataOk.Add("code missing");
+            if ("".Equals(txtCompanyName.Text)) strDataOk.Add("name missing");
+            if ("".Equals(txtAddress.Text)) strDataOk.Add("address missing");
+            if ("".Equals(ddlCurrency.Text)) strDataOk.Add("homecurrency missing");
+            if ("".Equals(chkApprovers.SelectedValue)) strDataOk.Add("approvers missing");
+            if ("".Equals(chkDepartments.SelectedValue)) strDataOk.Add("departments missing");
+
+            return string.Join("<br/>", strDataOk);
+        }
 
         protected void getCompanyData(JECompany rJECompany)
         {
@@ -219,6 +212,7 @@ namespace JE_Documents
                 selectedApprovers.Add("");
                 selectedDepartments.Add("");
                 txtCompanyID.Text = rJECompany.id;
+                txtStatus.Text = rJECompany.status;
                 txtCompanyCode.Text = rJECompany.code;
                 txtCompanyName.Text = rJECompany.name;
                 txtAddress.Text = rJECompany.address;
@@ -244,7 +238,8 @@ namespace JE_Documents
                         chkDepartments.Items.Add(liDepartment);
                     }
                 }
-                txtHomeCurrency.Text = rJECompany.homecurrency;
+                //txtHomeCurrency.Text = rJECompany.homecurrency;
+                ddlCurrency.Text = rJECompany.homecurrency;
 
             }
 
@@ -255,6 +250,7 @@ namespace JE_Documents
             NewCompany.Visible = false;
             CompanyList.Visible = true;
             updateXML("id");
+            //mpPageTitle.Text = strPagetitle;
         }
 
         protected void displayEditForm(string strTitle, bool blnShowSelectCompany, bool blnShowCompanyData, bool blnShowSave, bool blnShowCancel, bool blnShowDelete)
@@ -275,26 +271,27 @@ namespace JE_Documents
                 mpMessage = (Label)Page.Master.FindControl("lblMessage");
                 XDocument xDoc = new XDocument();
                 XElement newxDoc;
-                xDoc = XDocument.Load(companyDataFile);
+                xDoc = XDocument.Load(CommonCodes.gCompanyDatafile);
                 if (xDoc != null)
                 {
 
                     if (vstrOrderKey.Equals("id"))
                     {
                         newxDoc = new XElement("company", xDoc.Root
-                            .Elements()
+                            .Elements().Where(x => x.Element("status").Value != CommonCodes.STATUS_DELETED)
                             .OrderBy(x => (int)x.Element(vstrOrderKey))
                             );
                     }
                     else
                     {
                         newxDoc = new XElement("company", xDoc.Root
-                            .Elements()
+                            .Elements().Where(x => x.Element("status").Value != CommonCodes.STATUS_DELETED)
                             .OrderBy(x => (string)x.Element(vstrOrderKey))
+
                             );
                     }
 
-                    ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th></tr>";
+                    ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th><th></th></tr>";
                     ltTableData.Text = "";
                     string strEditUrl = Request.Url.ToString();
 
@@ -307,16 +304,21 @@ namespace JE_Documents
                         string xdepartments = string.Join("<br />", xcompany.Element("departments").Descendants());
                         string xcompanyapprovers = string.Join("<br />", xcompany.Element("approvers").Descendants().Distinct());
                         string xhomecurrency = xcompany.Element("homecurrency").Value;
-
-                        ltTableData.Text += string.Format("<tr class='w3-row listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl, strQueryKey);
+                        string strDataOk = xcompany.Element("dataok").Value;
+                        if (!"".Equals(strDataOk))
+                        {
+                            strDataOk = string.Format("<span title='{0}' style='color:red'><b>X</b></span>", strDataOk);
+                        }
+                        ltTableData.Text += string.Format("<tr class='w3-row listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{9}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl, strQueryKey, strDataOk);
                     }
-                    int childrenCount = xDoc.Root.Elements().Count();
+                    int childrenCount = newxDoc.Elements().Count();
                     
                     mpMessage.Text = string.Format("Company count {0} pcs", childrenCount);
                 }
             }
             catch (Exception ex)
             {
+                CommonCodes.gLog.logError(strPagetitle + " : " + ex.Message);
                 mpMessage = (Label)Page.Master.FindControl("lblMessage");
                 mpMessage.Text = "<br />" + ex.Message;
             }
@@ -328,19 +330,41 @@ namespace JE_Documents
             //updating user selection list
             ddlUser.Items.Clear();
             DataSet ds = new DataSet();
-            ds.ReadXml(userDataFile);
+            ds.ReadXml(CommonCodes.gUserDatafile);
             ddlUser.DataSource = ds.Tables[0];
             ddlUser.DataTextField = "username";
             ddlUser.DataValueField = "username";
             ddlUser.DataBind();
+
             //empty element at selection list
             ddlUser.Items.Insert(0, string.Empty);
             ddlUser.SelectedIndex = 0;
+
+            //currencies
+            fillDropdownListFromWebConfig(ddlCurrency, "JECurrencies", true);
 
             chkApprovers.Items.Clear();
             chkDepartments.Items.Clear();
         }
 
+        protected void fillDropdownListFromWebConfig(DropDownList rddl, string strKey, bool rAddEmptyline) //string[] rArray, bool rAddEmptyline)
+        {
+            string strValues = System.Configuration.ConfigurationManager.AppSettings[strKey];
+            string[] strValuesArray = strValues.Split(',');
+
+            rddl.Items.Clear();
+            foreach (var itemi in strValuesArray)
+            {
+                rddl.Items.Add(new ListItem(itemi));
+            }
+
+            if (rAddEmptyline)
+            {
+                //empty element at selection list
+                rddl.Items.Insert(0, string.Empty);
+                rddl.SelectedIndex = 0;
+            }
+        }
 
         #endregion
 

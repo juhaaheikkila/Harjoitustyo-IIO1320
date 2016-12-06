@@ -97,15 +97,21 @@
     <Content Include="3.Companies.aspx" />
     <Content Include="2.Users.aspx" />
     <Content Include="4.Logs.aspx" />
+    <Content Include="5.VAT_Codes.aspx" />
     <Content Include="9.JE.aspx" />
     <Content Include="App_Data\Companies.xml" />
-    <Content Include="App_Data\JEDocs.xml" />
-    <Content Include="App_Data\Log.xml" />
+    <Content Include="App_Data\JEDocs.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\Log.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\Users.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="1. Index.aspx" />
     <Content Include="App_Data\Users.xsl" />
+    <Content Include="App_Data\VATCodes.xml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -116,7 +122,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="CSS\StyleSheet1.css" />
+    <Content Include="CSS\StyleSheet.css" />
     <Content Include="0.Site.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -260,6 +266,13 @@
     <Compile Include="4.Logs.aspx.designer.cs">
       <DependentUpon>4.Logs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="5.VAT_Codes.aspx.cs">
+      <DependentUpon>5.VAT_Codes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="5.VAT_Codes.aspx.designer.cs">
+      <DependentUpon>5.VAT_Codes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="9.JE.aspx.cs">
       <DependentUpon>9.JE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -315,6 +328,7 @@
   <ItemGroup>
     <Folder Include="App_GlobalResources\" />
     <Folder Include="App_LocalResources\" />
+    <Folder Include="UploadedCSVFiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

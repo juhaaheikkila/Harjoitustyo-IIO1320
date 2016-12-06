@@ -10,168 +10,168 @@
 namespace JE_Documents {
     
     
-    public partial class Site1 {
+    public partial class _5_VAT_Codes {
         
         /// <summary>
-        /// head control.
+        /// btnGetVATCodes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Button btnGetVATCodes;
         
         /// <summary>
-        /// form1 control.
+        /// btnAddNew control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Button btnAddNew;
         
         /// <summary>
-        /// lknHome control.
+        /// NewVAT control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lknHome;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewVAT;
         
         /// <summary>
-        /// lblPageTitle control.
+        /// liUserData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPageTitle;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUserData;
         
         /// <summary>
-        /// hlJEDocuments control.
+        /// titleUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlJEDocuments;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titleUser;
         
         /// <summary>
-        /// liSettings control.
+        /// txtID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtID;
         
         /// <summary>
-        /// hlCompanies control.
+        /// txtStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlCompanies;
+        protected global::System.Web.UI.WebControls.TextBox txtStatus;
         
         /// <summary>
-        /// hlUsers control.
+        /// txtVATCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlUsers;
+        protected global::System.Web.UI.WebControls.TextBox txtVATCode;
         
         /// <summary>
-        /// hlVATCodes control.
+        /// txtDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlVATCodes;
+        protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// hlLogs control.
+        /// txtVATPercentage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlLogs;
+        protected global::System.Web.UI.WebControls.TextBox txtVATPercentage;
         
         /// <summary>
-        /// lblUserName control.
+        /// rbInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserName;
+        protected global::System.Web.UI.WebControls.RadioButton rbInput;
         
         /// <summary>
-        /// lblUserDepartment control.
+        /// rbOutput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserDepartment;
+        protected global::System.Web.UI.WebControls.RadioButton rbOutput;
         
         /// <summary>
-        /// lblUserRoles control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserRoles;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// navigations control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder navigations;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
-        /// dataform control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder dataform;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
         
         /// <summary>
-        /// datatable control.
+        /// VATList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder datatable;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VATList;
         
         /// <summary>
-        /// lblMessage control.
+        /// ltTableHead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Literal ltTableHead;
         
         /// <summary>
-        /// footer control.
+        /// ltTableData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder footer;
+        protected global::System.Web.UI.WebControls.Literal ltTableData;
     }
 }

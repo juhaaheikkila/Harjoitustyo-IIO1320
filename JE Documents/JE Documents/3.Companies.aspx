@@ -6,24 +6,21 @@
     <ul class="nav">
         <li>
             <asp:Button
-                ID="btnGetCompanies"
-                runat="server"
+                ID="btnGetCompanies" runat="server"
                 CssClass="btn btn-link"
                 OnClick="btnGetCompanies_Click"
                 Text="by id" />
         </li>
         <li>
             <asp:Button
-                ID="btnGetCompaniesByName"
-                runat="server"
+                ID="btnGetCompaniesByName" runat="server"
                 CssClass="btn btn-link"
                 OnClick="btnGetCompaniesByName_Click"
                 Text="by name" />
         </li>
         <li>
             <asp:Button
-                ID="btnAddNew"
-                runat="server"
+                ID="btnAddNew" runat="server"
                 CssClass="btn btn-link"
                 OnClick="btnAddNew_Click"
                 Text="Create new company" />
@@ -32,86 +29,85 @@
 </asp:Content>
 
 <asp:Content ID="cntForm" ContentPlaceHolderID="dataform" runat="server">
-    <div id="NewCompany" style="margin-left:15px;" class="" runat="server" visible="false">
+    <div id="NewCompany" style="margin-left: 15px;" class="" runat="server" visible="false">
         <div class="contact_form">
             <ul id="liCompanyData" runat="server">
                 <li>
                     <h2 id="titleCompany" runat="server">New company</h2>
-                    <span class="required_notification">* Denotes Required Field</span>
                 </li>
                 <li>
                     <label for="txtCompanyID">Id:</label>
-                    <asp:TextBox ID="txtCompanyID" runat="server" ReadOnly="True"></asp:TextBox>
-                    <span class="form_hint">Company ID</span>
+                    <asp:TextBox ID="txtCompanyID" runat="server" Enabled="false"></asp:TextBox>
+
+                </li>
+                <li>
+                    <label for="txttxtStatus">Status:</label>
+                    <asp:TextBox ID="txtStatus" runat="server" Enabled="false"></asp:TextBox>
+
                 </li>
                 <li>
                     <label for="txtCompanyCode">Code:</label>
-                    <asp:TextBox ID="txtCompanyCode" runat="server" required></asp:TextBox>
-                    <span class="form_hint">Company code</span>
+                    <asp:TextBox ID="txtCompanyCode" runat="server"></asp:TextBox>
+
                 </li>
                 <li>
                     <label for="txtCompanyName">Name:</label>
-                    <asp:TextBox ID="txtCompanyName" runat="server" required></asp:TextBox>
-                    <span class="form_hint">Company name</span>
+                    <asp:TextBox ID="txtCompanyName" runat="server"></asp:TextBox>
+
                 </li>
                 <li>
                     <label for="txtAddress">Address:</label>
-                    <asp:TextBox ID="txtAddress" runat="server" required></asp:TextBox>
-                    <span class="form_hint">Address</span>
+                    <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+
                 </li>
                 <li>
                     <label for="txtApprovers">Approvers:</label>
                     <asp:DropDownList ID="ddlUser" runat="server" AutoPostBack="False" Style="height: 30px; width: 300px; padding: 5px 8px;" />
-                    <asp:Button 
-                        ID="addApprover" runat="server" 
+                    <asp:Button
+                        ID="addApprover" runat="server"
                         CssClass="fa glyphicon-arrow-down"
                         Style="height: 30px; width: 45px; padding: 5px 8px;" Text="Add" formnovalidate="true" OnClick="addApprover_Click" />
-                        
-                    
-                    <span class="form_hint">Approvers</span>
-                </li>
-                <li>
-                    <label for="txtApprovers">Selected Approvers:</label>
-                    <asp:CheckBoxList ID="chkApprovers" runat="server" />
-                    <span class="form_hint">Selected approvers</span>
+                    <br />
+                    <br />
+                    <label for="txtApprovers">Selected Approvers:</label><br />
+                    <asp:CheckBoxList ID="chkApprovers" runat="server"/>
                 </li>
                 <li>
                     <label for="txtDepartments">Departments:</label>
                     <asp:TextBox ID="txtDepartment" runat="server"></asp:TextBox>
                     <asp:Button ID="addDepartment" runat="server" Style="height: 30px; width: 45px; padding: 5px 8px;" Text="Add" formnovalidate="true" OnClick="addDepartment_Click" />
-                    <span class="form_hint">Department codes</span>
-                </li>
-                <li>
-                    <label for="txtApprovers">Selected departments:</label>
-                    <asp:CheckBoxList ID="chkDepartments" runat="server" />
-                    <span class="form_hint">Selected departments</span>
-
+                    <br />
+                    <br />
+                    <label for="txtApprovers">Selected departments:</label><br />
+                    <asp:CheckBoxList ID="chkDepartments" runat="server"/>
                 </li>
                 <li>
                     <label for="txtHomeCurrency">Home currency:</label>
-                    <asp:TextBox ID="txtHomeCurrency" runat="server" required></asp:TextBox>
-                    <span class="form_hint">Company home currency</span>
+                    <asp:DropDownList ID="ddlCurrency" CssClass="select" runat="server" Style="width: 120px;"></asp:DropDownList>
                 </li>
             </ul>
         </div>
         <br />
 
         <!--Action-buttons -->
-        <asp:Button ID="btnSave" runat="server"
+        <asp:Button
+            ID="btnSave" runat="server"
             CssClass="btn stbutton acbutton"
             Text="Save"
             OnClick="btnSave_Click"
             PostBackUrl="~/3.Companies.aspx" />
 
-        <asp:Button ID="btnCancel" runat="server"
+        <asp:Button
+            ID="btnCancel" runat="server"
             CssClass="btn stbutton"
             Text="Cancel"
             formnovalidate="true"
             OnClick="btnCancel_Click"
             PostBackUrl="~/3.Companies.aspx" />
 
-        <asp:Button ID="btnDelete" runat="server"
-            CssClass="btn stbutton"
+        <asp:Button
+            ID="btnDelete" runat="server"
+            CssClass="btn stbutton ccbutton"
             Text="Delete"
             OnClick="btnDelete_Click"
             formnovalidate="true"

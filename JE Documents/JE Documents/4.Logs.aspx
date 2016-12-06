@@ -25,6 +25,18 @@
                 Text="by user"
                 OnClick="btnLogsByUser_Click" />
         </li>
+        <li>
+            <asp:Button ID="btnLogsBySeverity" runat="server"
+                CssClass="btn btn-link"
+                Text="all errors"
+                OnClick="btnLogsBySeverity_Click" />
+        </li>
+                <li>
+            <asp:Button ID="btnLogsByError" runat="server"
+                CssClass="btn btn-link"
+                Text="by severity"
+                OnClick="btnLogsByError_Click" />
+        </li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="dataform" runat="server">

@@ -76,6 +76,15 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.TextBox txtCompanyID;
         
         /// <summary>
+        /// txtStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStatus;
+        
+        /// <summary>
         /// txtCompanyCode control.
         /// </summary>
         /// <remarks>
@@ -157,13 +166,13 @@ namespace JE_Documents {
         protected global::System.Web.UI.WebControls.CheckBoxList chkDepartments;
         
         /// <summary>
-        /// txtHomeCurrency control.
+        /// ddlCurrency control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHomeCurrency;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCurrency;
         
         /// <summary>
         /// btnSave control.

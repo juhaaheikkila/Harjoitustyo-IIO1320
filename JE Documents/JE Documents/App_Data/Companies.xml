@@ -2,7 +2,8 @@
 <companies>
   <company>
     <id>3</id>
-    <code>FA678</code>
+    <status>draft</status>
+    <code>SO001</code>
     <name>Solteq Oyj, HKI</name>
     <address>Aviapolis 50, 11111 Hki</address>
     <homecurrency>EUR</homecurrency>
@@ -16,10 +17,12 @@
       <department>2120</department>
       <department>2130</department>
     </departments>
+    <dataok></dataok>
   </company>
   <company>
     <id>2</id>
-    <code>FA345</code>
+    <status>draft</status>
+    <code>SO002</code>
     <name>Solteq Oyj, TRE</name>
     <address>Aleksanterinkatu 50, 33333 Tampere</address>
     <homecurrency>EUR</homecurrency>
@@ -33,10 +36,12 @@
       <department>1120</department>
       <department>1130</department>
     </departments>
+    <dataok></dataok>
   </company>
   <company>
     <id>1</id>
-    <code>FA123</code>
+    <status>draft</status>
+    <code>SO003</code>
     <name>Solteq Oyj, JKL</name>
     <address>Vapaudenkatu 48-50, 40101 Jyväskylä</address>
     <homecurrency>EUR</homecurrency>
@@ -51,5 +56,50 @@
       <department>0130</department>
       <department>0140</department>
     </departments>
+    <dataok></dataok>
+  </company>
+  <company>
+    <id>4</id>
+    <status>deleted</status>
+    <code>fff</code>
+    <name></name>
+    <address></address>
+    <homecurrency></homecurrency>
+    <dataok>name missing&lt;br/&gt;address missing&lt;br/&gt;homecurrency missing&lt;br/&gt;approvers missing&lt;br/&gt;departments missing</dataok>
+    <approvers />
+    <departments />
+  </company>
+  <company>
+    <id>5</id>
+    <status>deleted</status>
+    <code></code>
+    <name></name>
+    <address></address>
+    <homecurrency></homecurrency>
+    <dataok>code missing&lt;br/&gt;name missing&lt;br/&gt;address missing&lt;br/&gt;homecurrency missing&lt;br/&gt;approvers missing&lt;br/&gt;departments missing</dataok>
+    <approvers />
+    <departments />
+  </company>
+  <company>
+    <id>6</id>
+    <status>deleted</status>
+    <code></code>
+    <name></name>
+    <address></address>
+    <homecurrency></homecurrency>
+    <dataok>code missing&lt;br/&gt;name missing&lt;br/&gt;address missing&lt;br/&gt;homecurrency missing&lt;br/&gt;approvers missing&lt;br/&gt;departments missing</dataok>
+    <approvers />
+    <departments />
+  </company>
+  <company>
+    <id>7</id>
+    <status>deleted</status>
+    <code></code>
+    <name></name>
+    <address></address>
+    <homecurrency></homecurrency>
+    <dataok>code missing&lt;br/&gt;name missing&lt;br/&gt;address missing&lt;br/&gt;homecurrency missing&lt;br/&gt;approvers missing&lt;br/&gt;departments missing</dataok>
+    <approvers />
+    <departments />
   </company>
 </companies>

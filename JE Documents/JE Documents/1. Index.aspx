@@ -10,6 +10,21 @@
     <div class="w3-row">
         <div class="w3-twothird">
             <h1>JE Documents</h1>
+            <ul>
+                <li>
+                    Journal entry documents to correct accounting records
+                </li>
+                <li>
+                    New Journal entries
+                </li>
+                <li>
+                    Approval process
+                </li>
+                <li>
+                    Transfer to financial system
+                </li>
+            </ul>
+
         </div>
     </div>
 </asp:Content>

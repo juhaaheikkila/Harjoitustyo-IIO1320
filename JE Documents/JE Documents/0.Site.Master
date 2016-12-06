@@ -7,7 +7,7 @@
     <title runat="server"></title>
     <link rel="stylesheet" href="Content/bootstrap.min.css" />
     <link rel="stylesheet" href="Content/bootstrap-datetimepicker-build.less" />
-    <link rel="stylesheet" href="~/CSS/StyleSheet1.css" />
+    <link rel="stylesheet" href="CSS/StyleSheet.css" />
     <script type="text/javascript" src="Scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Scripts/moment.min.js"></script>
     <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
@@ -61,7 +61,17 @@
                                         Text="Users"
                                         Visible="false" /></li>
                             
-                            <li>
+                            
+                                 <li>
+                                    <asp:HyperLink
+                                        runat="server"
+                                        ID="hlVATCodes"
+                                        NavigateUrl="~/5.VAT_Codes.aspx"
+                                        Text="VAT Codes"
+                                        Visible="false" />
+
+                            </li>
+                                <li>
                                     <asp:HyperLink
                                         runat="server"
                                         ID="hlLogs"

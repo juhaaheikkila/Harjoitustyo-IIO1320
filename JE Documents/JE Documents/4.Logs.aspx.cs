@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using JE_Documents.Data;
 
 namespace JE_Documents
 {
@@ -33,9 +34,35 @@ namespace JE_Documents
 
         }
 
+        //Navigation
+        protected void btnLogsByDate_Click(object sender, EventArgs e)
+        {
+            updateXML("date");
+        }
+
+        protected void btnLogsByUser_Click(object sender, EventArgs e)
+        {
+            updateXML("username");
+        }
+
+        protected void btnLogsById_Click(object sender, EventArgs e)
+        {
+            updateXML("id");
+        }
+
+        protected void btnLogsBySeverity_Click(object sender, EventArgs e)
+        {
+            updateXML("severity");
+        }
+
+        protected void btnLogsByError_Click(object sender, EventArgs e)
+        {
+            updateXML("error");
+        }
+
+        //updating list
         protected void updateXML(string vstrOrderKey)
         {
-            //List all users
             try
             {
                 XDocument xDoc = new XDocument();
@@ -50,11 +77,19 @@ namespace JE_Documents
                         .OrderBy(x => (int)x.Element(vstrOrderKey))
                         );
                 }
+                else if (vstrOrderKey.Equals("error"))
+                {
+                    newxDoc = new XElement("logentry", xDoc.Root
+                        .Elements()
+                        .Where(x => x.Element("severity").Value == "9")
+                        .OrderBy(x => (string)x.Element(vstrOrderKey))
+                        );
+                }
                 else
                 {
                     newxDoc = new XElement("logentry", xDoc.Root
                         .Elements()
-                        .OrderBy(x => (string)x.Element(vstrOrderKey))
+                        .OrderByDescending(x => (string)x.Element(vstrOrderKey))
                         );
                 }
                 ltTableHead.Text = "<tr><th>id</th><th>date</th><th>Log entry</th><th>Username</th><th>Severity</th></tr>";
@@ -73,29 +108,17 @@ namespace JE_Documents
                         ltTableData.Text += string.Format("<tr class='listRow'><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>", xcol1, xcol2, xcol3, xcol4, xcol5);
                         userCount += 1;
                     }
-                    int childrenCount = xDoc.Root.Elements().Count();
+                    int childrenCount = newxDoc.Elements().Count();
                     mpMessage.Text = string.Format("Log entries count {0} pcs", childrenCount);
                 }
             }
             catch (Exception ex)
             {
+                CommonCodes.gLog.logError(ex.Message);
                 mpMessage.Text = "<br />" + ex.Message;
             }
         }
 
-        protected void btnLogsByDate_Click(object sender, EventArgs e)
-        {
-            updateXML("date");
-        }
 
-        protected void btnLogsByUser_Click(object sender, EventArgs e)
-        {
-            updateXML("username");
-        }
-
-        protected void btnLogsById_Click(object sender, EventArgs e)
-        {
-            updateXML("id");
-        }
     }
 }

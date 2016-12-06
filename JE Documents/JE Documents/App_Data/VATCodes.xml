@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<vatcodes>
+  <vatcode>
+    <id>1</id>
+    <status>draft</status>
+    <code>A0</code>
+    <description>FI Sales 0 %</description>
+    <percentage>0</percentage>
+    <inputoutput>output</inputoutput>
+    <dataok></dataok>
+  </vatcode>
+  <vatcode>
+    <id>3</id>
+    <status>draft</status>
+    <code>14</code>
+    <description>FI Sales 14 %</description>
+    <percentage>14</percentage>
+    <inputoutput>output</inputoutput>
+    <dataok></dataok>
+  </vatcode>
+  <vatcode>
+    <id>5</id>
+    <status>draft</status>
+    <code>A08</code>
+    <description>FI Purchases 8 %</description>
+    <percentage>8</percentage>
+    <inputoutput>input</inputoutput>
+    <dataok></dataok>
+  </vatcode>
+  <vatcode>
+    <id>2</id>
+    <status>draft</status>
+    <code>10</code>
+    <description>FI Sales 10 %</description>
+    <percentage>10</percentage>
+    <inputoutput>Output</inputoutput>
+    <dataok></dataok>
+  </vatcode>
+  <vatcode>
+    <id>4</id>
+    <status>draft</status>
+    <code>24</code>
+    <description>FI Sales 24 %</description>
+    <percentage>24</percentage>
+    <inputoutput>Output</inputoutput>
+    <dataok></dataok>
+  </vatcode>
+  <vatcode>
+    <id>6</id>
+    <status>draft</status>
+    <code>A1</code>
+    <description>FI Sales 23%</description>
+    <percentage>23</percentage>
+    <inputoutput>Output</inputoutput>
+    <dataok></dataok>
+  </vatcode>
+  <vatcode>
+    <id>7</id>
+    <status>deleted</status>
+    <code>code</code>
+    <description></description>
+    <percentage></percentage>
+    <inputoutput></inputoutput>
+    <dataok>description missing&lt;br/&gt;percentage missing&lt;br/&gt;input / output missing</dataok>
+  </vatcode>
+</vatcodes>

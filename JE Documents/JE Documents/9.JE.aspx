@@ -18,13 +18,14 @@
                 CssClass="btn btn-link"
                 Text="by Company" />
         </li>
-         <li>
+        <li>
             <asp:Button
                 ID="btnGetJEDocsByStatus" runat="server"
                 OnClick="btnGetJEDocsByStatus_Click"
                 CssClass="btn btn-link"
-                Text="by Company" />
+                Text="by Status" />
         </li>
+        
         <li>
             <asp:Button ID="btnAddNew" runat="server"
                 OnClick="btnAddNew_Click"
@@ -39,22 +40,30 @@
             <ul id="liJEData" runat="server">
                 <li>
                     <h2 id="titleJE" runat="server">...</h2>
-                    <span class="required_notification">* Denotes Required Field</span>
                 </li>
                 <li>
                     <label for="txtID">Id:</label>
-                    <asp:TextBox ID="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                    <span class="form_hint">JE ID</span>
+                    <asp:TextBox ID="txtID" runat="server" CssClass="" Enabled="false"></asp:TextBox>
+
+                </li>
+                <li>
+                    <label for="txtStatus">Status:</label>
+                    <asp:Label ID="lblStatus" runat="server" Text="" />
                 </li>
                 <li>
                     <label for="ddlPeriod">Period:</label>
                     <asp:DropDownList ID="ddlPeriod" runat="server" CssClass="select"></asp:DropDownList>
-                    <span class="form_hint">Period</span>
+
                 </li>
                 <li>
                     <label for="ddlType">Document type:</label>
                     <asp:DropDownList ID="ddlType" runat="server" CssClass="select"></asp:DropDownList>
-                    <span class="form_hint">Document type</span>
+
+                </li>
+                <li>
+                    <label for="ddlType">Document number:</label>
+                    <asp:TextBox ID="txtDocumentNumber" runat="server" CssClass="" Enabled="false"></asp:TextBox>
+
                 </li>
                 <li>
                     <label for="txtDate">Date:</label>
@@ -64,67 +73,124 @@
                             <span class="glyphicon glyphicon-calendar open-datetimepicker"></span>
                         </span>
                     </div>
-                    <span class="form_hint">Date</span>
+                </li>
+                <li>
+                    <label for="txtAuthor">Author:</label>
+                    <asp:TextBox ID="txtAuthor" runat="server" Enabled="false"></asp:TextBox>
                 </li>
 
                 <li>
                     <label for="txtCompany">Company:</label>
                     <asp:DropDownList ID="ddlCompany" runat="server" CssClass="select" ValidateRequestMode="Disabled" AutoPostBack="True" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged"></asp:DropDownList><br />
-                    <span class="form_hint">Company code</span>
                 </li>
-                <li style="display:none;">
+                <li style="display: none;">
                     <label for="txtCompany">Company code:</label>
                     <asp:TextBox ID="txtCompanyCode" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                    <span class="form_hint">Company code</span>
                 </li>
-                <li style="display:none;">
-                    <label for="txtCompany">Company name:</label>
+                <li style="display: none;">
+                    <label for="txtCompanyName">Company name:</label>
                     <asp:TextBox ID="txtCompanyName" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                    <span class="form_hint">Company name</span>
                 </li>
                 <li>
-                    <label for="txtDepartment">Department:</label>
+                    <label for="ddlDepartment">Department:</label>
                     <asp:DropDownList ID="ddlDepartment" CssClass="select" runat="server"></asp:DropDownList>
-                    <span class="form_hint">Department</span>
                 </li>
                 <li>
-                    <label for="txtReference">Reference:</label>
-                    <asp:TextBox ID="txtReference" runat="server" CssClass="form-control" required></asp:TextBox>
-                    <span class="form_hint">Header text / reference</span>
+                    <label for="ddlDepartment">Approver:</label>
+                    <asp:DropDownList ID="ddlApprover" CssClass="select" runat="server"></asp:DropDownList>
+                </li>
+
+                <li>
+                    <label for="txtHeadertext">Reference:</label>
+                    <asp:TextBox ID="txtHeadertext" runat="server" CssClass="form-control textarea" Rows="4" TextMode="MultiLine"></asp:TextBox>
                 </li>
                 <li>
                     <label for="txtHomeCurrency">Home currency:</label>
-                    <asp:TextBox ID="txtHomeCurrency" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                    <span class="form_hint">Company's home currency</span>
+                    <asp:TextBox ID="txtHomeCurrency" runat="server" CssClass="form-control" Enabled="false" Style="width: 120px;"></asp:TextBox>
                 </li>
+
                 <li>
                     <label for="txtDate">Currency:</label>
-                    <asp:DropDownList ID="ddlCurrency" CssClass="select" runat="server" OnSelectedIndexChanged="ddlCurrency_SelectedIndexChanged" required AutoPostBack="True"></asp:DropDownList>
-                    <span class="form_hint">Currency</span>
+                    <asp:DropDownList ID="ddlCurrency" CssClass="select" runat="server" OnSelectedIndexChanged="ddlCurrency_SelectedIndexChanged" AutoPostBack="True" Style="width: 120px;"></asp:DropDownList>
                 </li>
                 <li>
                     <label for="txtCurrencyRate">Currency rate:</label>
-                    <asp:TextBox ID="txtCurrencyRate" runat="server" CssClass="form-control" required></asp:TextBox>
-                    <span class="form_hint">Currency rate</span>
+                    <asp:TextBox ID="txtCurrencyRate" runat="server" CssClass="form-control" Style="width: 120px;"></asp:TextBox>
                 </li>
                 <li>
                     <label for="txtInformation">Further information:</label>
-                    <asp:TextBox ID="txtInformation" runat="server" CssClass="form-control" required></asp:TextBox>
-                    <span class="form_hint">Further information</span>
+                    <asp:TextBox ID="txtInformation" runat="server" CssClass="form-control textarea" Rows="4" TextMode="MultiLine"></asp:TextBox>
                 </li>
-            </ul>
-            <ul>
-                <li>Document processing history:<asp:LinkButton ID="hlToggleProcessingHistory" runat="server" OnClick="hlToggleProcessingHistory_Click">
-                    <asp:Label ID="lblProcessingHistoryToggle" runat="server" Text="Label">>>></asp:Label>
-                </asp:LinkButton></li>
-                <div id="processingHistory_Latest" runat="server">
-                    <asp:Literal ID="ltProcessingHistoryLatest" runat="server"></asp:Literal>
-                </div>
-                <div id="processingHistory_All" runat="server" visible="false">
-                    <asp:Literal ID="ltProcessingHistoryAll" runat="server"></asp:Literal>
-                </div>
+
+
+                <li>
+                    <label for="lblProcessingHistory">Document processing history:</label>
+                    <table>
+                        <tr>
+                            <th width="10%">id</th>
+                            <th width="20%">status</th>
+                            <th width="20%">username</th>
+                            <th width="20%">date</th>
+                            <th width="30%">message</th>
+                        </tr>
+                        <asp:Literal ID="ltProcessingHistoryAll" runat="server"></asp:Literal>
+                    </table>
+                </li>
+
             </ul>
         </div>
+
+        <br />
+        <label>Document data rows:</label>
+        <div id="FileUploadControls" visible="false" runat="server">
+            <asp:FileUpload ID="FileUpload1" runat="server" />
+            <!-- append / replace -->
+            <asp:RadioButton ID="rbAppend" runat="server" Text="Append" GroupName="rbtnAppendReplace" Style="width: 120px;" /><br />
+            <asp:RadioButton ID="rbReplace" runat="server" Text="Replace" GroupName="rbtnAppendReplace" Style="width: 120px;" />
+            <asp:Button ID="btnImportCSV" Text="import data" runat="server" CssClass="btn btn-link" OnClick="btnImportCSV_Click" />
+
+        </div>
+        <table>
+            <tr>
+                <th width="5%">id</th>
+                <th width="5%">company</th>
+                <th width="5%">account</th>
+                <th width="5%">d/c</th>
+                <th width="5%">project</th>
+                <th width="5%">dim1</th>
+                <th width="5%">element</th>
+                <th width="10%">total</th>
+                <th width="5%">co</th>
+                <th width="5%">tax</th>
+                <th width="45%">reference</th>
+            </tr>
+            <asp:Literal ID="ltDataRows" runat="server"></asp:Literal>
+
+            <tr>
+                <td colspan="6">Credit total:
+                </td>
+                <td colspan="2" style="text-align: right;">
+                    <asp:Label ID="lblCreditTotal" runat="server" Text="" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">Debit total:
+                </td>
+                <td colspan="2" style="text-align: right;">
+                    <asp:Label ID="lblDebetTotal" runat="server" Text="" />
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">Difference:
+                </td>
+                <td colspan="2" style="text-align: right;">
+                    <asp:Label ID="lblDifference" runat="server" Text="" />
+                </td>
+            </tr>
+
+        </table>
+
         <br />
         <!--Action-buttons for data -->
         <asp:Button ID="btnSave" runat="server"
@@ -136,15 +202,45 @@
             CssClass="btn stbutton"
             OnClick="btnCancel_Click"
             Text="Cancel"
-            formnovalidate="true"
             PostBackUrl="~/9.JE.aspx" />
+
         <asp:Button ID="btnDelete" runat="server"
-            CssClass="btn stbutton"
+            CssClass="btn stbutton ccbutton"
             OnClick="btnDelete_Click"
             Text="Delete"
             formnovalidate="true"
             Visible="false"
-            OnClientClick="return confirm('Do you want to delete the JE Document ? ');"
+            OnClientClick="return confirm('Do you want to delete the user ? ');"
+            PostBackUrl="~/9.JE.aspx" />
+
+        <br />
+        <asp:Button ID="btnToBeApproved" runat="server"
+            CssClass="btn stbutton ccbutton"
+            Text="To be approved"
+            OnClick="btnToBeApproved_Click"
+            Visible="false"
+            OnClientClick="return confirm('Do you want to send this JE Document to be approved? ');"
+            PostBackUrl="~/9.JE.aspx" />
+        <asp:Button ID="btnApprove" runat="server"
+            CssClass="btn stbutton ccbutton"
+            Text="Approve"
+            OnClick="btnApprove_Click"
+            Visible="false"
+            OnClientClick="return confirm('Do you want to approve this JE Document? ');"
+            PostBackUrl="~/9.JE.aspx" />
+        <asp:Button ID="btnReject" runat="server"
+            CssClass="btn stbutton ccbutton"
+            Text="Reject"
+            OnClick="btnReject_Click"
+            Visible="false"
+            OnClientClick="return confirm('Do you want reject this JE Document? ');"
+            PostBackUrl="~/9.JE.aspx" />
+        <asp:Button ID="btnTransfer" runat="server"
+            CssClass="btn stbutton ccbutton"
+            Text="Approve"
+            OnClick="btnTransfer_Click"
+            Visible="false"
+            OnClientClick="return confirm('Do you want to transfer this JE Document? ');"
             PostBackUrl="~/9.JE.aspx" />
     </div>
 
@@ -161,9 +257,6 @@
         });
 
     </script>
-
-
-
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="datatable" runat="server">
     <div id="JEList" runat="server" visible="false">

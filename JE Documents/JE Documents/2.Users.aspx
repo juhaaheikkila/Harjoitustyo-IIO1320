@@ -36,43 +36,38 @@
             <ul id="liUserData" runat="server">
                 <li>
                     <h2 id="titleUser" runat="server">New user</h2>
-                    <span class="required_notification">* Denotes Required Field</span>
                 </li>
                 <li>
                     <label for="txtuserID">User id:</label>
-                    <asp:TextBox ID="txtUserID" runat="server" required></asp:TextBox>
-                    <span class="form_hint">User id</span>
+                    <asp:TextBox ID="txtUserID" runat="server" Enabled="false"></asp:TextBox>
+                </li>
+                <li>
+                    <label for="txttxtStatus">Status:</label>
+                    <asp:TextBox ID="txtStatus" runat="server" Enabled="false"></asp:TextBox>
                 </li>
                 <li>
                     <label for="txtUsername">User name:</label>
                     <asp:TextBox ID="txtUsername" runat="server" required></asp:TextBox>
-                    <span class="form_hint">User shorname</span>
                 </li>
                 <li>
                     <label for="txtFirstname">Firstname:</label>
-                    <asp:TextBox ID="txtFirstname" runat="server" required></asp:TextBox>
-                    <span class="form_hint">User firstname</span>
+                    <asp:TextBox ID="txtFirstname" runat="server"></asp:TextBox>
                 </li>
                 <li>
                     <label for="txtLastname">Lastname:</label>
-                    <asp:TextBox ID="txtLastname" runat="server" required></asp:TextBox>
-                    <span class="form_hint">User lastname</span>
+                    <asp:TextBox ID="txtLastname" runat="server"></asp:TextBox>
                 </li>
                 <li>
                     <label for="txtDepartment">Department:</label>
-                    <asp:TextBox ID="txtDepartment" runat="server" required></asp:TextBox>
-                    <span class="form_hint">Department</span>
+                    <asp:TextBox ID="txtDepartment" runat="server"></asp:TextBox>
                 </li>
                 <li>
                     <label for="txtEmail">Email:</label>
-                    <asp:TextBox ID="txtEmail" runat="server" required></asp:TextBox>
-                    <span class="form_hint">User's email address</span>
-
+                    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                 </li>
                 <li>
                     <label for="chkRoles">Roles:</label>
                     <asp:CheckBoxList ID="chkRoles" CssClass="w3-check" Style="width: 20px;" runat="server"></asp:CheckBoxList>
-                    <span class="form_hint">User roles</span>
                 </li>
             </ul>
         </div>

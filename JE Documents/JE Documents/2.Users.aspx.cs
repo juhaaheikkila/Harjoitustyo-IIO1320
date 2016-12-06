@@ -15,24 +15,22 @@ namespace JE_Documents
     public partial class _2_Users : System.Web.UI.Page
 
     {
-        JELogHelper log;
-
         Label mpMessage;
         Label mpPageTitle;
-        static string userDatafile;
+        static string strPagetitle = "Users page";
         static string strQueryKey = "UserName";
+        static string strRedirectTo = "2.Users";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             mpPageTitle = (Label)Page.Master.FindControl("lblPageTitle");
-            mpPageTitle.Text = "Users page";
+            mpPageTitle.Text = strPagetitle;
             mpMessage = (Label)Page.Master.FindControl("lblMessage");
             mpMessage.Text = "...";
-            userDatafile = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UserDataFile"]);
-            string logDatafile = System.Configuration.ConfigurationManager.AppSettings["LogFile"];
-            //log = new JELogHelper(Server.MapPath(logDatafile), Server.MapPath(userDatafile), username);
+
             if (!IsPostBack)
             {
+                CommonCodes.gLog.logEvent("Opening " + strPagetitle);
                 FillControls();
             }
 
@@ -44,8 +42,9 @@ namespace JE_Documents
                 string strUsername = Request.QueryString[strQueryKey];
                 if (!"".Equals(strUsername))
                 {
-                    mpPageTitle.Text = "Users page / user: " + strUsername;
-                    JEuser user = new JEuser(strUsername, userDatafile, "username");
+
+                    JEuser user = new JEuser(strUsername, CommonCodes.gUserDatafile, "username");
+                    mpPageTitle.Text = strPagetitle + " / user: " + user.id + " : " + strUsername;
                     getUserData(user);
                 }
             }
@@ -65,24 +64,15 @@ namespace JE_Documents
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
             int intCounter;
-            XDocument xDoc = new XDocument();
-            xDoc = XDocument.Load(userDatafile);
-            if (xDoc != null)
-            {
-                intCounter = xDoc.Root.Elements().Count() + 1;
-            }
-            else
-            {
-                intCounter = 0;
-            }
+            intCounter = CommonCodes.getCount(CommonCodes.gUserDatafile);
+
             txtUserID.Text = Convert.ToString(intCounter);
-            txtUserID.Text = string.Empty;
+            txtStatus.Text = CommonCodes.STATUS_DRAFT;
             txtUsername.Text = string.Empty;
             txtFirstname.Text = string.Empty;
             txtLastname.Text = string.Empty;
             txtDepartment.Text = string.Empty;
             txtEmail.Text = string.Empty;
-
 
             displayEditForm("New user", false, true, true, true, false);
         }
@@ -90,7 +80,7 @@ namespace JE_Documents
         //SAVE
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(userDatafile);
+            XDocument xdoc = XDocument.Load(CommonCodes.gUserDatafile);
 
             if (xdoc != null)
             {
@@ -104,17 +94,20 @@ namespace JE_Documents
                 XElement user = new XElement("user");
                 XElement userroles = new XElement("roles");
                 user.Add(new XElement("id", txtUserID.Text));
+                user.Add(new XElement("status", txtStatus.Text));
                 user.Add(new XElement("username", txtUsername.Text));
                 user.Add(new XElement("firstname", txtFirstname.Text));
                 user.Add(new XElement("lastname", txtLastname.Text));
                 user.Add(new XElement("department", txtDepartment.Text));
                 user.Add(new XElement("email", txtEmail.Text));
+                user.Add(new XElement("dataok", isDataOk()));
                 //user.Add(new XElement("roles", ""));
                 foreach (ListItem rooli in chkRoles.Items)
                 {
                     if (rooli.Selected)
                     {
                         userroles.Add(new XElement("role", rooli.Value));
+
                     }
                 }
                 user.Add(userroles);
@@ -122,10 +115,10 @@ namespace JE_Documents
 
             }
 
-            xdoc.Save(userDatafile);
+            xdoc.Save(CommonCodes.gUserDatafile);
             updateXML("id");
             hideEditForm();
-
+            Response.Redirect(strRedirectTo);
             //updating page
             //Response.Redirect(Request.RawUrl);
         }
@@ -133,30 +126,32 @@ namespace JE_Documents
         //DELETE
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            XDocument xdoc = XDocument.Load(userDatafile);
-            if (xdoc != null)
-            {
-                //search for user
-                var xuser = xdoc.Root.Descendants("user").Where(x => x.Element("id").Value == txtUserID.Text).SingleOrDefault();
-                if (xuser != null)
-                {
-                    xuser.Remove();
-                    xdoc.Save(userDatafile);
-                }
-
-                updateXML("id");
-                hideEditForm();
-            }
+            txtStatus.Text = CommonCodes.STATUS_DELETED;
+            btnSave_Click(sender, e);
         }
 
         //CANCED
         protected void btnCancel_Click(object sended, EventArgs e)
         {
             hideEditForm();
+
         }
 
 
         #region METHODS
+
+        protected string isDataOk()
+        {
+            List<string> strDataOk = new List<string>();
+            if ("".Equals(txtUsername.Text)) strDataOk.Add("username missing");
+            if ("".Equals(txtFirstname.Text)) strDataOk.Add("firstname missing");
+            if ("".Equals(txtLastname.Text)) strDataOk.Add("lastname missing");
+            if ("".Equals(txtDepartment.Text)) strDataOk.Add("deparment missing");
+            if ("".Equals(txtEmail.Text)) strDataOk.Add("email missing");
+            if ("".Equals(chkRoles.SelectedValue)) strDataOk.Add("role missing");
+
+            return string.Join("<br/>", strDataOk);
+        }
 
         protected void getUserData(JEuser rJEUser)
         {
@@ -192,6 +187,7 @@ namespace JE_Documents
             NewUser.Visible = false;
             UserList.Visible = true;
             updateXML("id");
+            mpPageTitle.Text = strPagetitle;
 
         }
 
@@ -216,22 +212,22 @@ namespace JE_Documents
                 XElement newxDoc;
                 int userCount = 0;
 
-                xDoc = XDocument.Load(userDatafile);
+                xDoc = XDocument.Load(CommonCodes.gUserDatafile);
                 if (vstrOrderKey.Equals("id"))
                 {
                     newxDoc = new XElement("User", xDoc.Root
-                    .Elements()
+                    .Elements().Where(x => x.Element("status").Value != CommonCodes.STATUS_DELETED)
                     .OrderBy(x => (int)x.Element(vstrOrderKey))
                     );
                 }
                 else
                 {
                     newxDoc = new XElement("User", xDoc.Root
-                    .Elements()
+                    .Elements().Where(x => x.Element("status").Value != CommonCodes.STATUS_DELETED)
                     .OrderBy(x => (string)x.Element(vstrOrderKey))
                     );
                 }
-                ltTableHead.Text = "<tr><th>Id</th><th>Username</th><th>Firstname</th><th>Lastname</th><th>Department</th><th>email</th><th>roles</th></tr>";
+                ltTableHead.Text = "<tr><th>Id</th><th>Username</th><th>Firstname</th><th>Lastname</th><th>Department</th><th>email</th><th>roles</th><th></th></tr>";
                 ltTableData.Text = "";
                 string strEditUrl = Request.Url.ToString();
                 //if (xDoc != null)
@@ -246,7 +242,12 @@ namespace JE_Documents
                         string xuserdepartment = xuser.Element("department").Value;
                         string xuseremail = xuser.Element("email").Value;
                         string xuserroles = string.Join("<br />", xuser.Element("roles").Descendants().Distinct());
-                        ltTableData.Text += string.Format("<tr class='listRow'><td><a href='{7}?{8}={1}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td></tr>", xuserid, xusername, xfirstname, xlastname, xuserdepartment, xuseremail, xuserroles, strEditUrl, strQueryKey);
+                        string strDataOk = xuser.Element("dataok").Value;
+                        if (!"".Equals(strDataOk))
+                        {
+                            strDataOk = string.Format("<span title='{0}' style='color:red'><b>X</b></span>", strDataOk);
+                        }
+                        ltTableData.Text += string.Format("<tr class='listRow'><td><a href='{7}?{8}={1}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{9}</td></tr>", xuserid, xusername, xfirstname, xlastname, xuserdepartment, xuseremail, xuserroles, strEditUrl, strQueryKey, strDataOk);
                         userCount += 1;
                     }
                     //int childrenCount = xDoc.Root.Elements().Count();
@@ -256,6 +257,7 @@ namespace JE_Documents
             }
             catch (Exception ex)
             {
+                CommonCodes.gLog.logError(strPagetitle + " : " + ex.Message);
                 mpMessage.Text = "<br />" + ex.Message;
             }
         }
@@ -271,10 +273,9 @@ namespace JE_Documents
             {
                 chkRoles.Items.Add(new ListItem(role, role));
             }
-
-            #endregion
         }
 
+        #endregion
         protected void btnGetUserByName_Click(object sender, EventArgs e)
         {
             updateXML("username");

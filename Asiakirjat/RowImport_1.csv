@@ -1,0 +1,11 @@
+id;co;account;d / c;project;dim1;element;total;country;tax code;reference
+1;1100;123456;d;project;dimi;el1;100,25;FI;A1;testing import
+2;1100;123456;c;project;dimi;el2;101,43;FI;A1;testing import
+3;1100;123456;d;project;dimi;el3;101;FI;A1;testing import
+4;1100;123456;c;project;dimi;el4;100;FI;A1;testing import
+5;1100;123456;d;project;dimi;el5;100;FI;A1;testing import
+6;1100;123456;c;project;dimi;el6;99;FI;A1;testing import
+7;1100;123456;d;project;dimi;el7;100;FI;A1;testing import
+8;1100;123456;c;project;dimi;el8;100;FI;A1;testing import
+9;1100;123456;d;project;dimi;el9;100;FI;A1;testing import
+10;1100;123456;c;project;dimi;el10;99;FI;A1;testing import
