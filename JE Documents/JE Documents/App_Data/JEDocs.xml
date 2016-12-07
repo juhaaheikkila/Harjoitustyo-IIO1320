@@ -979,6 +979,44 @@
     </jerows>
   </jedoc>
   <jedoc>
+    <id>16</id>
+    <status>deleted</status>
+    <period></period>
+    <documenttype></documenttype>
+    <documentnumber></documentnumber>
+    <date></date>
+    <companycode></companycode>
+    <companyname></companyname>
+    <author>jheikkila</author>
+    <approver></approver>
+    <department></department>
+    <headertext></headertext>
+    <homecurrency></homecurrency>
+    <currency></currency>
+    <currencyrate></currencyrate>
+    <information></information>
+    <debettotal>0</debettotal>
+    <credittotal>0</credittotal>
+    <dataok></dataok>
+    <jestatuses>
+      <jestatus>
+        <id>1</id>
+        <status>draft</status>
+        <username>jheikkila</username>
+        <date>6.12.2016 13:56:44</date>
+        <message>New JE document</message>
+      </jestatus>
+      <jestatus>
+        <id>11</id>
+        <status>deleted</status>
+        <username>jheikkila</username>
+        <date>6.12.2016 13:56:53</date>
+        <message>JE document deleted</message>
+      </jestatus>
+    </jestatuses>
+    <jerows />
+  </jedoc>
+  <jedoc>
     <id>2</id>
     <status>draft</status>
     <period>01 - 1.1.-31.1.</period>
@@ -995,8 +1033,8 @@
     <currency>EUR</currency>
     <currencyrate>1</currencyrate>
     <information>further information modified</information>
-    <debettotal>1002.5</debettotal>
-    <credittotal>998.86</credittotal>
+    <debettotal>1503.75</debettotal>
+    <credittotal>1498.29</credittotal>
     <dataok></dataok>
     <jestatuses>
       <jestatus>
@@ -1268,44 +1306,136 @@
         <vatcode>A1</vatcode>
         <reference>testing import</reference>
       </jerow>
+      <jerow>
+        <id>21</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>d</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el1</element>
+        <total>100.25</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>22</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>c</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el2</element>
+        <total>101.43</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>23</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>d</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el3</element>
+        <total>101</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>24</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>c</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el4</element>
+        <total>100</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>25</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>d</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el5</element>
+        <total>100</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>26</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>c</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el6</element>
+        <total>99</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>27</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>d</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el7</element>
+        <total>100</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>28</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>c</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el8</element>
+        <total>100</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>29</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>d</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el9</element>
+        <total>100</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
+      <jerow>
+        <id>30</id>
+        <company>1100</company>
+        <account>123456</account>
+        <debetcredit>c</debetcredit>
+        <project>project</project>
+        <dim1>dimi</dim1>
+        <element>el10</element>
+        <total>99</total>
+        <country>FI</country>
+        <vatcode>A1</vatcode>
+        <reference>testing import</reference>
+      </jerow>
     </jerows>
-  </jedoc>
-  <jedoc>
-    <id>16</id>
-    <status>deleted</status>
-    <period></period>
-    <documenttype></documenttype>
-    <documentnumber></documentnumber>
-    <date></date>
-    <companycode></companycode>
-    <companyname></companyname>
-    <author>jheikkila</author>
-    <approver></approver>
-    <department></department>
-    <headertext></headertext>
-    <homecurrency></homecurrency>
-    <currency></currency>
-    <currencyrate></currencyrate>
-    <information></information>
-    <debettotal>0</debettotal>
-    <credittotal>0</credittotal>
-    <dataok></dataok>
-    <jestatuses>
-      <jestatus>
-        <id>1</id>
-        <status>draft</status>
-        <username>jheikkila</username>
-        <date>6.12.2016 13:56:44</date>
-        <message>New JE document</message>
-      </jestatus>
-      <jestatus>
-        <id>11</id>
-        <status>deleted</status>
-        <username>jheikkila</username>
-        <date>6.12.2016 13:56:53</date>
-        <message>JE document deleted</message>
-      </jestatus>
-    </jestatuses>
-    <jerows />
   </jedoc>
 </jedocs>

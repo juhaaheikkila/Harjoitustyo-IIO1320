@@ -10030,4 +10030,95 @@
     <username>jheikkila</username>
     <severity>0</severity>
   </logentry>
+  <logentry>
+    <id>1433</id>
+    <date>7.12.2016 7:03:56</date>
+    <entry>Opening Main page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1434</id>
+    <date>7.12.2016 7:05:44</date>
+    <entry>Opening Companies page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1435</id>
+    <date>7.12.2016 7:05:46</date>
+    <entry>Opening Companies page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1436</id>
+    <date>7.12.2016 7:05:55</date>
+    <entry>Opening Users page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1437</id>
+    <date>7.12.2016 7:06:06</date>
+    <entry>Opening VAT Code page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1438</id>
+    <date>7.12.2016 7:06:25</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1439</id>
+    <date>7.12.2016 7:06:28</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1440</id>
+    <date>7.12.2016 7:06:28</date>
+    <entry>Opening jedoc 3</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1441</id>
+    <date>7.12.2016 7:06:53</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1442</id>
+    <date>7.12.2016 7:06:53</date>
+    <entry>Opening jedoc 2</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1443</id>
+    <date>7.12.2016 7:07:18</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1444</id>
+    <date>7.12.2016 7:07:20</date>
+    <entry>Opening JE page</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
+  <logentry>
+    <id>1445</id>
+    <date>7.12.2016 7:07:20</date>
+    <entry>Opening jedoc 2</entry>
+    <username>jheikkila</username>
+    <severity>0</severity>
+  </logentry>
 </logentries>
