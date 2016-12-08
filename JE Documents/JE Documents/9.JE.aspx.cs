@@ -36,7 +36,6 @@ namespace JE_Documents
                 mpMessage.Text = "";
                 FillControls();
                 hideEditForm();
-
                 CommonCodes.gLog.logEvent("Opening " + strPagetitle);
                 if (Request.QueryString[strQueryKey] != null)
                 {
@@ -53,6 +52,10 @@ namespace JE_Documents
                         }
                     }
                 }
+                else
+                {
+                    updateXML("id");
+                }
             }
         }
 
@@ -65,6 +68,8 @@ namespace JE_Documents
                 CommonCodes.gJEDoc = new JEDoc();
                 int intCounter = CommonCodes.getCount(CommonCodes.gJEDocDatafile);
 
+                //CommonCodes.gJEDoc.processinghistory.Clear();
+                //CommonCodes.gJEDoc.rows.Clear();
                 CommonCodes.gJEDoc.id = Convert.ToString(intCounter);
 
                 CommonCodes.gJEDoc.author = CommonCodes.gUsername;
@@ -97,6 +102,7 @@ namespace JE_Documents
                 lblDebetTotal.Text = string.Empty;
                 lblCreditTotal.Text = string.Empty;
                 lblDifference.Text = string.Empty;
+                ltDataRows.Text = "";
                 //display processing history
                 if (CommonCodes.gJEDoc.processinghistory != null)
                 {
@@ -108,6 +114,7 @@ namespace JE_Documents
                 }
 
                 displayEditForm("New JE document", false, true, true, true, false);
+
             }
             catch (Exception ex)
             {
@@ -123,6 +130,7 @@ namespace JE_Documents
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             hideEditForm();
+            updateXML("id");
         }
 
         //DELETE
@@ -228,6 +236,13 @@ namespace JE_Documents
                 txtCurrencyRate.Text = "";
             }
         }
+
+        //SELECT APPROVER
+        protected void ddlApprover_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnToBeApproved.Visible = !"".Equals(ddlApprover.Text);
+        }
+
 
         //Navigation, display JE doc lists
         //BY ID
@@ -392,12 +407,9 @@ namespace JE_Documents
 
         protected void hideEditForm()
         {
-
             JEDoc.Visible = false;
             JEList.Visible = true;
-            updateXML("id");
             mpPageTitle.Text = strPagetitle;
-
         }
 
         protected void updateXML(string vstrOrderKey)
@@ -455,6 +467,7 @@ namespace JE_Documents
                     }
                     int childrenCount = newxDoc.Elements().Count();
                     mpMessage.Text = string.Format("JE documents count {0} pcs", childrenCount);
+                    hideEditForm();
                 }
             }
             catch (Exception ex)
@@ -481,17 +494,21 @@ namespace JE_Documents
             btnTransfer.Visible = false;
             FileUploadControls.Visible = false;
 
+            CommonCodes.gLog.logEvent(string.Format("tila: {0}, approver {1}, admin {2}", CommonCodes.gJEDoc.status, CommonCodes.gUser.isUserRoleOn("approver"), CommonCodes.gUser.isUserRoleOn("admin")));
+            CommonCodes.gLog.logEvent(string.Format("selected approver: {0}", ddlApprover.Text));
+            CommonCodes.gLog.logEvent(string.Format("username: {0}", CommonCodes.gUsername));
+            //            CommonCodes.gLog.logEvent()
             //buttons per status
             switch (CommonCodes.gJEDoc.status)
             {
                 case CommonCodes.STATUS_DRAFT:
-                    btnToBeApproved.Visible = true;
+                    btnToBeApproved.Visible = !"".Equals(ddlApprover.Text);
                     FileUploadControls.Visible = true;
                     btnDelete.Visible = true;
                     break;
 
                 case CommonCodes.STATUS_TO_BE_APPROVED:
-                    if ((CommonCodes.gUser.isUserRoleOn("admin") | CommonCodes.gUser.isUserRoleOn("approver")) & (CommonCodes.gUsername).Equals(ddlApprover.Text))
+                    if ((CommonCodes.gUser.isUserRoleOn("admin") || CommonCodes.gUser.isUserRoleOn("approver")) && (CommonCodes.gUsername).Equals(ddlApprover.Text))
                     {
                         btnApprove.Visible = true;
                         btnReject.Visible = true;
@@ -499,7 +516,7 @@ namespace JE_Documents
                     break;
 
                 case CommonCodes.STATUS_APPROVED:
-                    if (CommonCodes.gUser.isUserRoleOn("admin") | CommonCodes.gUser.isUserRoleOn("approver"))
+                    if (CommonCodes.gUser.isUserRoleOn("admin") || CommonCodes.gUser.isUserRoleOn("approver"))
                     {
                         btnTransfer.Visible = true;
                     }

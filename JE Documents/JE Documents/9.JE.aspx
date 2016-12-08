@@ -97,7 +97,7 @@
                 </li>
                 <li>
                     <label for="ddlDepartment">Approver:</label>
-                    <asp:DropDownList ID="ddlApprover" CssClass="select" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlApprover" CssClass="select" runat="server" OnSelectedIndexChanged="ddlApprover_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                 </li>
 
                 <li>
