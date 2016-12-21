@@ -362,8 +362,11 @@ namespace JE_Documents
             dt = ds.Tables[0];
             foreach (DataRow dr in dt.Rows)
             {
-                string strCompany = dr["code"].ToString() + " : " + dr["name"].ToString();
-                ddlCompany.Items.Add(new ListItem(dr["name"].ToString(), dr["code"].ToString()));
+                if (!CommonCodes.STATUS_DELETED.Equals(dr["status"]) && "".Equals(dr["dataok"]))
+                {
+                    //string strCompany = dr["code"].ToString() + " : " + dr["name"].ToString();
+                    ddlCompany.Items.Add(new ListItem(dr["name"].ToString(), dr["code"].ToString()));
+                }
             }
             //add empty line in selection
             ddlCompany.Items.Insert(0, string.Empty);

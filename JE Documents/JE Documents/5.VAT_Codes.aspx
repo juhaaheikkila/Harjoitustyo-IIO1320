@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/0.Site.Master" AutoEventWireup="true" CodeBehind="5.VAT_Codes.aspx.cs" Inherits="JE_Documents._5_VAT_Codes" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="navigations" runat="server">
@@ -10,7 +11,7 @@
                 OnClick="btnGetVATCodes_Click"
                 Text="by id" />
         </li>
-        
+
         <li>
             <asp:Button
                 ID="btnAddNew" runat="server"
@@ -21,8 +22,8 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="dataform" runat="server">
-        <!-- New / Edit / Delete -->
-    <div id="NewVAT" style="margin-left:15px;" class="" runat="server" visible="false">
+    <!-- New / Edit / Delete -->
+    <div id="NewVAT" style="margin-left: 15px;" class="" runat="server" visible="false">
         <div class="contact_form">
             <ul id="liUserData" runat="server">
                 <li>
@@ -51,8 +52,8 @@
                 </li>
                 <li>
                     <!-- input / output -->
-                    <asp:RadioButton ID="rbInput" runat="server" Text="Input" GroupName="rbtnInputOutut" style="width:120px;"/><br />
-                    <asp:RadioButton ID="rbOutput" runat="server" Text="Output" GroupName="rbtnInputOutut"  style="width:120px;"/>
+                    <asp:RadioButton ID="rbInput" runat="server" Text="Input" GroupName="rbtnInputOutut" Style="width: 120px;" /><br />
+                    <asp:RadioButton ID="rbOutput" runat="server" Text="Output" GroupName="rbtnInputOutut" Style="width: 120px;" />
                 </li>
 
             </ul>
@@ -82,7 +83,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="datatable" runat="server">
-        <!-- Data list -->
+    <!-- Data list -->
     <div id="VATList" runat="server" visible="false">
 
         <h2 class="sub-header">All VAT codes:</h2>
@@ -94,6 +95,37 @@
                 <asp:Literal ID="ltTableData" runat="server"></asp:Literal>
             </tbody>
         </table>
+        <!-- listaus XMLData sourcella, ei päivity uutta lisättäessa ilman refresh
+        <p>Tadaa, sama listaus käyttäen XMLDataSourcea</p>
+        
+        <asp:XmlDataSource ID="srcVatCodes" runat="server" DataFile="~/App_Data/VATCodes.xml" XPath="/vatcodes/vatcode[status!='deleted']"></asp:XmlDataSource>
+        <asp:Repeater ID="Repeater1" DataSourceID="srcVatCodes" runat="server">
+            <HeaderTemplate>
+                <table class="table table-striped">
+                    <thead>
+                        <th>ID</th>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>%</th>
+                        <th>Input/Output</th>
+                        <th></th>
+                    </thead>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr class="listRow">
+                    <td><a href="5.VAT_Codes.aspx?id=<%# XPath ("id") %>"><%# XPath ("id") %></a></td>
+                    <td><%# XPath ("code") %></td>
+                    <td><%# XPath ("description") %></td>
+                    <td><%# XPath ("percentage") %></td>
+                    <td><%# XPath ("inputoutput") %></td>
+                    <td><%# "".Equals(XPath("dataok")) ? "" : "<span title='" + XPath("dataok") + "' style='color:red'><b>X</b></span>" %></td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
+        </asp:Repeater>
+            -->
     </div>
 
 </asp:Content>

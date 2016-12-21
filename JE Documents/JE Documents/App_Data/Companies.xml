@@ -39,26 +39,6 @@
     <dataok></dataok>
   </company>
   <company>
-    <id>1</id>
-    <status>draft</status>
-    <code>SO003</code>
-    <name>Solteq Oyj, JKL</name>
-    <address>Vapaudenkatu 48-50, 40101 Jyväskylä</address>
-    <homecurrency>EUR</homecurrency>
-    <approvers>
-      <approver>jheikkil</approver>
-      <approver>JKLApprover</approver>
-    </approvers>
-    <departments>
-      <department>0100</department>
-      <department>0110</department>
-      <department>0120</department>
-      <department>0130</department>
-      <department>0140</department>
-    </departments>
-    <dataok></dataok>
-  </company>
-  <company>
     <id>4</id>
     <status>deleted</status>
     <code>fff</code>
@@ -101,5 +81,44 @@
     <dataok>code missing&lt;br/&gt;name missing&lt;br/&gt;address missing&lt;br/&gt;homecurrency missing&lt;br/&gt;approvers missing&lt;br/&gt;departments missing</dataok>
     <approvers />
     <departments />
+  </company>
+  <company>
+    <id>1</id>
+    <status>draft</status>
+    <code>SO003</code>
+    <name>Solteq Oyj, JKL</name>
+    <address>Vapaudenkatu 48-50, 40101 Jyväskylä</address>
+    <homecurrency>EUR</homecurrency>
+    <dataok></dataok>
+    <approvers>
+      <approver>jheikkil</approver>
+      <approver>JKLApprover</approver>
+    </approvers>
+    <departments>
+      <department>0100</department>
+      <department>0110</department>
+      <department>0120</department>
+      <department>0130</department>
+      <department>0140</department>
+    </departments>
+  </company>
+  <company>
+    <id>8</id>
+    <status>draft</status>
+    <code></code>
+    <name></name>
+    <address></address>
+    <homecurrency>EUR</homecurrency>
+    <dataok>code missing&amp;#10;name missing&amp;#10;address missing</dataok>
+    <approvers>
+      <approver>jheikkil</approver>
+      <approver>JKLApprover</approver>
+      <approver>uusi</approver>
+    </approvers>
+    <departments>
+      <department>4400</department>
+      <department>4300</department>
+      <department>4200</department>
+    </departments>
   </company>
 </companies>

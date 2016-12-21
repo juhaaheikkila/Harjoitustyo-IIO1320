@@ -125,4 +125,17 @@
       <role>author</role>
     </roles>
   </user>
+  <user>
+    <id>11</id>
+    <status></status>
+    <username>uusi</username>
+    <firstname>name</firstname>
+    <lastname>last</lastname>
+    <department>dept</department>
+    <email>email</email>
+    <dataok></dataok>
+    <roles>
+      <role>approver</role>
+    </roles>
+  </user>
 </users>

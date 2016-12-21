@@ -148,7 +148,7 @@ namespace JE_Documents
         {
             txtStatus.Text = CommonCodes.STATUS_DELETED;
             btnSave_Click(sender, e);
-            
+
         }
 
         //CANCED
@@ -176,11 +176,11 @@ namespace JE_Documents
             if (!selectedDepartments.Contains(txtDepartment.Text) && !"".Equals(txtDepartment.Text))
             {
                 selectedDepartments.Add(txtDepartment.Text);
-                ListItem liDepartment = new ListItem(txtDepartment.Text, txtDepartment.Text, true);
+                //ListItem liDepartment = new ListItem(txtDepartment.Text, txtDepartment.Text, true);
+                ListItem liDepartment = new ListItem(txtDepartment.Text);
                 liDepartment.Selected = true;
                 chkDepartments.Items.Add(liDepartment);
-                //txtDepartment.Text = "";
-                ddlCurrency.Text = "";
+                txtDepartment.Text = "";
             }
         }
 
@@ -197,7 +197,7 @@ namespace JE_Documents
             if ("".Equals(chkApprovers.SelectedValue)) strDataOk.Add("approvers missing");
             if ("".Equals(chkDepartments.SelectedValue)) strDataOk.Add("departments missing");
 
-            return string.Join("<br/>", strDataOk);
+            return string.Join("&#10;", strDataOk);
         }
 
         protected void getCompanyData(JECompany rJECompany)
@@ -291,7 +291,8 @@ namespace JE_Documents
                             );
                     }
 
-                    ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th><th></th></tr>";
+                    //ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th><th></th></tr>";
+                    ltTableHead.Text = "<tr><th>Id</th><th>Code</th><th>Name</th><th>Address</th><th>Departments</th><th>approvers</th><th>home Currency</th></tr>";
                     ltTableData.Text = "";
                     string strEditUrl = Request.Url.ToString();
 
@@ -308,11 +309,13 @@ namespace JE_Documents
                         if (!"".Equals(strDataOk))
                         {
                             strDataOk = string.Format("<span title='{0}' style='color:red'><b>X</b></span>", strDataOk);
+                            
                         }
-                        ltTableData.Text += string.Format("<tr class='w3-row listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{9}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl, strQueryKey, strDataOk);
+                        ltTableData.Text += string.Format("<tr class='listRow'><td><a href='{7}?{8}={0}'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{9}</td></tr>", xcompanyid, xcompanycode, xcompanyname, xcompanyaddress, xdepartments, xcompanyapprovers, xhomecurrency, strEditUrl, strQueryKey, strDataOk);
+                        
                     }
                     int childrenCount = newxDoc.Elements().Count();
-                    
+
                     mpMessage.Text = string.Format("Company count {0} pcs", childrenCount);
                 }
             }
@@ -327,14 +330,47 @@ namespace JE_Documents
         protected void FillControls()
         {
 
-            //updating user selection list
+            //updating user selection list loop through table
             ddlUser.Items.Clear();
             DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
             ds.ReadXml(CommonCodes.gUserDatafile);
-            ddlUser.DataSource = ds.Tables[0];
-            ddlUser.DataTextField = "username";
-            ddlUser.DataValueField = "username";
-            ddlUser.DataBind();
+            dt = ds.Tables[0];
+            /*
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (!CommonCodes.STATUS_DELETED.Equals(dr["status"]))
+                {
+                    string strUsername = dr["username"].ToString();
+                    ddlUser.Items.Add(new ListItem(strUsername, strUsername));
+                }
+            }
+            */
+            //using xdocument  linq
+            XDocument xDoc = new XDocument();
+            XElement newxDoc;
+            xDoc = XDocument.Load(CommonCodes.gUserDatafile);
+            if (xDoc != null)
+            {
+                newxDoc = new XElement("user", xDoc.Root.Elements().Where(x => x.Element("status").Value != CommonCodes.STATUS_DELETED && "".Equals(x.Element("dataok").Value))
+                        .OrderBy(x => (string)x.Element("username"))
+                        );
+                DataSet ds2 = new DataSet();
+                System.IO.MemoryStream memstr = new System.IO.MemoryStream();
+                newxDoc.Save(memstr);
+                memstr.Position = 0;
+                ds2.ReadXml(memstr, XmlReadMode.Auto);
+
+                ddlUser.DataSource = ds2.Tables[0];
+                ddlUser.DataValueField = "username";
+                ddlUser.DataTextField = "username";
+                ddlUser.DataBind();
+            }
+
+            //  ddlUser.DataSource = ds.Tables[0];
+            //  ddlUser.DataTextField = "username";
+            //  ddlUser.DataValueField = "username";
+            //  ddlUser.DataBind();
 
             //empty element at selection list
             ddlUser.Items.Insert(0, string.Empty);

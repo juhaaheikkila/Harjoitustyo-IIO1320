@@ -19,7 +19,7 @@ namespace JE_Documents
         Label mpPageTitle;
         static string strPagetitle = "Users page";
         static string strQueryKey = "UserName";
-        static string strRedirectTo = "2.Users";
+        static string strRedirectTo = "2.Users.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -63,4 +63,13 @@
     <inputoutput></inputoutput>
     <dataok>description missing&lt;br/&gt;percentage missing&lt;br/&gt;input / output missing</dataok>
   </vatcode>
+  <vatcode>
+    <id>8</id>
+    <status>draft</status>
+    <code>A111</code>
+    <description></description>
+    <percentage></percentage>
+    <inputoutput></inputoutput>
+    <dataok>description missing&lt;br/&gt;percentage missing&lt;br/&gt;input / output missing</dataok>
+  </vatcode>
 </vatcodes>
